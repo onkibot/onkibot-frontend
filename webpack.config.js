@@ -1,23 +1,25 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const debug = process.env.NODE_ENV !== 'production';
+
 const extractSass = new ExtractTextPlugin({
-	filename: '[name].[contenthash].css',
-	disable: process.env.NODE_ENV === 'development'
+	filename: '[name].css',
+	disable: debug
 });
 
 module.exports = {
 	context: path.join(__dirname, 'app'),
 	entry: './entry',
 	output: {
-		path: path.join(__dirname, 'dest'),
+		path: path.join(__dirname, 'dist'),
 		publicPath: '',
 		filename: 'bundle.js'
 	},
 	devServer: {
 		contentBase: './public',
-		hot: true,
 		proxy: {
 			'/api/*': 'http://localhost:8080'
 		},
@@ -29,7 +31,13 @@ module.exports = {
 			template: 'index.ejs'
 		}),
 		extractSass
-	],
+	].concat(debug ? [
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoEmitOnErrorsPlugin()
+	] : [
+		new webpack.optimize.OccurrenceOrderPlugin(),
+		new webpack.optimize.UglifyJsPlugin()
+	]),
 	module: {
 		rules: [{
 			test: /\.scss$/,
