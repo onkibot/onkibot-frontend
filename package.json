@@ -1,0 +1,18 @@
+{
+  "name": "onkibot-frontend",
+  "version": "0.0.1",
+  "description": "Optimalization. Nuclear. Knowledge. Intelligence.",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^2.2.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.3.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --hot --progress --colors",
+    "test": "test"
+  },
+  "author": "79",
+  "license": "MIT"
+}
