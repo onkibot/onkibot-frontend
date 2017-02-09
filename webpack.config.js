@@ -1,16 +1,22 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractSass = new ExtractTextPlugin({
+	filename: '[name].[contenthash].css',
+	disable: process.env.NODE_ENV === 'development'
+});
 
 module.exports = {
 	context: path.join(__dirname, 'app'),
 	entry: './entry',
 	output: {
 		path: path.join(__dirname, 'dest'),
-		publicPath: 'http://localhost:8080',
+		publicPath: '',
 		filename: 'bundle.js'
 	},
 	devServer: {
-		contentBase: "./public",
+		contentBase: './public',
 		hot: true,
 		proxy: {
 			'/api/*': 'http://localhost:8080'
@@ -21,6 +27,20 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'OnkiBot',
 			template: 'index.ejs'
-		})
-	]
+		}),
+		extractSass
+	],
+	module: {
+		rules: [{
+			test: /\.scss$/,
+			loader: extractSass.extract({
+				loader: [{
+					loader: "css-loader"
+				}, {
+					loader: "sass-loader"
+				}],
+				fallbackLoader: "style-loader"
+			})
+		}]
+	}
 };

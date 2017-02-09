@@ -4,6 +4,11 @@
   "description": "Optimalization. Nuclear. Knowledge. Intelligence.",
   "main": "index.js",
   "dependencies": {
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^5.0.1",
+    "style-loader": "^0.13.1",
     "webpack": "^2.2.1"
   },
   "devDependencies": {

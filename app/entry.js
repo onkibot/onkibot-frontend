@@ -1,1 +1,3 @@
-document.write("It works.");
+require('./style.scss');
+
+document.write('It works.');
