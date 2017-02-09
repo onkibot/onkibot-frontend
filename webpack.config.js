@@ -1,4 +1,5 @@
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	context: path.join(__dirname, 'app'),
@@ -15,5 +16,11 @@ module.exports = {
 			'/api/*': 'http://localhost:8080'
 		},
 		port: 3000
-	}
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			title: 'OnkiBot',
+			template: 'index.ejs'
+		})
+	]
 };
