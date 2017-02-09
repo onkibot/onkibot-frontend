@@ -49,6 +49,13 @@ module.exports = {
 				}],
 				fallbackLoader: "style-loader"
 			})
+		}, {
+			test: /\.js$/,
+			loader: 'babel-loader',
+			include: path.join(__dirname, 'app'),
+			query: {
+				presets: ['react', 'es2015', 'stage-0']
+			}
 		}]
 	}
 };
