@@ -12,7 +12,7 @@
 # How to build
 1. Set environment variable `NODE_ENV` to `development` or `production`. Linux: `export NODE_ENV=production`.
 2. Run `./node_modules/.bin/webpack`.
-3. Copy files from `build` and `public`.
+3. Copy files from `dist` and `public`.
 
 The local development server will auto-refresh when code is changed.
 
