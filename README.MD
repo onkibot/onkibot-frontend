@@ -43,3 +43,4 @@ The local development server will auto-refresh when code is changed.
 - [Redux and React-Redux documentation](http://redux.js.org/)
 - [React documentation](https://facebook.github.io/react/)
 - [ES6 (JavaScript) documentation](http://es6-features.org/)
+- [Material UI documentation](http://www.material-ui.com/#/components/app-bar)
