@@ -1,18 +1,20 @@
-import 'bootstrap/dist/css/bootstrap.css';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import onkibotApp from './reducers';
+import OnkibotApp from './components/OnkibotApp';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { Button } from 'reactstrap';
+injectTapEventPlugin();
 
-class MyComponent extends React.Component {
-	render() {
-		return (
-			<div>
-				<Button color="danger">Danger!</Button>
-			</div>
-		);
-	}
-}
+const store = createStore(onkibotApp);
 
-ReactDOM.render(<MyComponent />, document.querySelector('#root'));
+render(
+	<MuiThemeProvider>
+		<Provider store={store}>
+			<OnkibotApp />
+		</Provider>
+	</MuiThemeProvider>
+, document.querySelector('#root'));
