@@ -28,9 +28,9 @@ The local development server will auto-refresh when code is changed.
 - *SASS*: Provides advanced CSS features.
 
 # The folder stucture
-- `index.ejs`: Template for the index page.
-- `entry.js`: Entry module for the JavaScript.
 - `app`: All files that have to be compiled by Webpack.
+    - `index.ejs`: Template for the index page.
+    - `entry.js`: Entry module for the JavaScript.
     - `actions`: Action generator functions.
     - `reducers`: Redux reducer functions.
         - `index.js`: Exports the combined reducer function.
