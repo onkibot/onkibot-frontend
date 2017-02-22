@@ -8,7 +8,7 @@ const LoginForm = (props) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <Field name="username" component={TextField} floatingLabelText="Username" />
+                <Field name="email" component={TextField} floatingLabelText="Email" type="email" />
             </div>
             <div>
                 <Field name="password" component={TextField} floatingLabelText="Password" type="password" />
