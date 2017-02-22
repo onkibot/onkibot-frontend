@@ -3,11 +3,15 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import onkibotApp from './reducers';
-import App from './components/App';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import App from './components/App';
+import Index from './components/Index';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import TheButton from './components/TheButton';
 
 
 injectTapEventPlugin();
@@ -27,7 +31,10 @@ render(
         <MuiThemeProvider>
             <Router history={history}>
                 <Route path="/" component={App}>
-                    <Route path="login" component={TestComponent} />
+                    <IndexRoute component={Index} />
+                    <Route path="login" component={Login} />
+                    <Route path="signup" component={Signup} />
+                    <Route path="button" component={TheButton} />
                 </Route>
             </Router>
         </MuiThemeProvider>
