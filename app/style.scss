@@ -1,1 +1,76 @@
- 
+/* =================================
+  WEB FONTS
+==================================== */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Signika);
+
+/* =================================
+  BASE COLORS
+==================================== */
+
+$primary-green:         #5FCF80;
+$primary-blue:          #49C4DB;
+$primary-dark:          #3E474F;
+$text-color:            #FFFFFF;
+$text-color-inactive:   #B2BBBD;
+
+/* =================================
+  LAYOUT & PAGE STYLES
+==================================== */
+
+body {
+  color: $primary-dark;
+  background: $primary-blue;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Header -------- */
+
+h1,
+h2,
+h3 {
+  font-family: 'Signika', sans-serif;
+}
+
+header {
+  background-color: $primary-dark;
+  color: $text-color;
+  font-family: 'Signika', sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      font-size: 24px;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+      list-style-type: none;
+      display: block;
+      color: $text-color-inactive;
+      transition: .2s;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      padding: 1em 1.5em;
+
+      &:hover, &.active {
+        color: $text-color;
+      }
+
+    }
+
+  }
+
+}
