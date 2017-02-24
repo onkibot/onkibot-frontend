@@ -1,12 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import onkibotApp from './reducers';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import thunkMiddleware from 'redux-thunk';
+
 import App from './components/App';
 import Index from './components/Index';
 import Login from './components/Login';
@@ -18,7 +20,9 @@ import './style.scss';
 
 injectTapEventPlugin();
 
-const store = createStore(
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
+
+const store = createStoreWithMiddleware(
     onkibotApp,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
