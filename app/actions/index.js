@@ -177,3 +177,13 @@ export const signupUser = (signupInfo) => {
         });
     }
 };
+
+let nextCourseId = 0
+export const addCourse = ({ name, description }) => {
+    return {
+        type: 'ADD_COURSE',
+        id: nextCourseId++,
+        name,
+        description
+    }
+};

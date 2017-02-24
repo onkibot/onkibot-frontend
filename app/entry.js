@@ -10,11 +10,13 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
 
 import App from './components/App';
-import Index from './components/Index';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import TheButton from './components/TheButton';
-import NotFound from './components/NotFound';
+import Index from './components/pages/Index';
+import Login from './components/pages/Login';
+import Signup from './components/pages/Signup';
+import TheButton from './components/pages/TheButton';
+import Courses from './components/pages/Courses';
+import CreateCourse from './components/pages/CreateCourse';
+import NotFound from './components/pages/NotFound';
 import { sessionUser } from './actions';
 
 import './style.scss';
@@ -41,6 +43,8 @@ render(
                     <Route path="signup" component={Signup} />
                     <Route path="button" component={TheButton} />
                     <Route path="*" component={NotFound}/>
+                    <Route path="courses" component={Courses} />
+                    <Route path="courses/create" component={CreateCourse} />
                 </Route>
             </Router>
         </MuiThemeProvider>

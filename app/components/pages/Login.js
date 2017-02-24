@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardActions } from 'material-ui';
 
-import LoginForm from '../forms/LoginForm';
+import LoginForm from '../../forms/LoginForm';
 
 const Login = () => (
     <div>

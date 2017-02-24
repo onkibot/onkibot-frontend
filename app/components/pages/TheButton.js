@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardActions } from 'material-ui';
-import OnOffButton from '../containers/OnOffButton';
+
+import OnOffButton from '../../containers/OnOffButton';
 
 const TheButton = () => (
     <Card>

@@ -1,3 +1,5 @@
+export default Index;
+
 import React from 'react';
 import { Link } from 'react-router';
 import { Menu, MenuItem, Card, CardActions, Divider } from 'material-ui';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardActions } from 'material-ui';
 
-import SignupForm from '../forms/SignupForm';
+import SignupForm from '../../forms/SignupForm';
 
 const Signup = () => (
   <div>
