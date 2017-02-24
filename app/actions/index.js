@@ -100,3 +100,55 @@ export const logoutUser = () => {
         });
     }
 };
+
+const requestSignup = () => {
+    return {
+        type: 'SIGNUP_REQUEST',
+        isFetching: true,
+        isAuthenticated: true
+    };
+};
+
+const receiveSignup = (session) => {
+    return {
+        type: 'SIGNUP_SUCCESS',
+        isFetching: false,
+        isAuthenticated: false,
+        session: session
+    };
+};
+
+const signupError = (message) => {
+    return {
+        type: 'SIGNUP_ERROR',
+        isFetching: false,
+        isAuthenticated: false,
+        message
+    }
+};
+
+export const signupUser = (signupInfo) => {
+    const config = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        credentials: 'same-origin',
+        body: JSON.stringify(signupInfo)
+    };
+
+    return (dispatch) => {
+        dispatch(requestSignup());
+
+        return fetch('/api/signup', config)
+        .then((response) => {
+            return response.json();
+        })
+        .then((json) => {
+            dispatch(receiveSignup(json));
+        })
+        .catch((err) => {
+            dispatch(signupError(err));
+        });
+    }
+};
