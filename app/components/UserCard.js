@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardHeader } from 'material-ui';
+import Person from 'material-ui/svg-icons/social/person';
 
 import OnOffButton from '../containers/OnOffButton';
 import SignupForm from '../forms/SignupForm';
@@ -10,7 +11,7 @@ const UserCard = ({ name }) => {
     }
     return (
         <Card>
-            <CardHeader title={`Hello, ${name}`} subtitle="Welcome to Onkibot" />
+            <CardHeader avatar={<Person />} title={`Hello, ${name}`} subtitle="Welcome to Onkibot" />
         </Card>
     );
 };
