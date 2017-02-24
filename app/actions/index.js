@@ -7,8 +7,6 @@ export const toggleOnOff = () => {
 const requestLogin = (credentials) => {
     return {
         type: 'LOGIN_REQUEST',
-        isFetching: true,
-        isAuthenticated: false,
         credentials
     };
 };
@@ -16,8 +14,6 @@ const requestLogin = (credentials) => {
 const receiveLogin = (session) => {
     return {
         type: 'LOGIN_SUCCESS',
-        isFetching: false,
-        isAuthenticated: true,
         session
     };
 };
@@ -25,8 +21,6 @@ const receiveLogin = (session) => {
 const loginError = (message) => {
     return {
         type: 'LOGIN_FAILURE',
-        isFetching: false,
-        isAuthenticated: false,
         message
     };
 };
@@ -57,27 +51,63 @@ export const loginUser = (credentials) => {
     };
 };
 
+const requestSession = () => {
+    return {
+        type: 'SESSION_REQUEST'
+    };
+};
+
+const receiveSession = (session) => {
+    return {
+        type: 'SESSION_SUCCESS',
+        session
+    };
+};
+
+const sessionError = (message) => {
+    return {
+        type: 'SESSION_ERROR',
+        message
+    };
+};
+
+export const sessionUser = () => {
+    const config = {
+        method: 'GET',
+        credentials: 'same-origin'
+    };
+
+    return (dispatch) => {
+        dispatch(requestSession())
+
+        return fetch('/api/session', config)
+        .then((response) => {
+            return response.json();
+        })
+        .then((json) => {
+            dispatch(receiveSession(json));
+        })
+        .catch((err) => {
+            dispatch(sessionError(err));
+        })
+    };
+};
+
 const requestLogout = () => {
     return {
-        type: 'LOGOUT_REQUEST',
-        isFetching: true,
-        isAuthenticated: true
+        type: 'LOGOUT_REQUEST'
     };
 };
 
 const receiveLogout = () => {
     return {
-        type: 'LOGOUT_SUCCESS',
-        isFetching: false,
-        isAuthenticated: false
+        type: 'LOGOUT_SUCCESS'
     };
 };
 
 const logoutError = (message) => {
     return {
         type: 'LOGOUT_ERROR',
-        isFetching: false,
-        isAuthenticated: false,
         message
     }
 };
@@ -101,28 +131,23 @@ export const logoutUser = () => {
     }
 };
 
-const requestSignup = () => {
+const requestSignup = (signupInfo) => {
     return {
         type: 'SIGNUP_REQUEST',
-        isFetching: true,
-        isAuthenticated: true
+        signupInfo
     };
 };
 
 const receiveSignup = (session) => {
     return {
         type: 'SIGNUP_SUCCESS',
-        isFetching: false,
-        isAuthenticated: false,
-        session: session
+        session
     };
 };
 
 const signupError = (message) => {
     return {
         type: 'SIGNUP_ERROR',
-        isFetching: false,
-        isAuthenticated: false,
         message
     }
 };

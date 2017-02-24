@@ -15,6 +15,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import TheButton from './components/TheButton';
 import NotFound from './components/NotFound';
+import { sessionUser } from './actions';
 
 import './style.scss';
 
@@ -26,11 +27,9 @@ const store = createStoreWithMiddleware(
     onkibotApp,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-const history = syncHistoryWithStore(hashHistory, store)
+const history = syncHistoryWithStore(hashHistory, store);
 
-const TestComponent = () => (
-    <div>Test</div>
-);
+store.dispatch(sessionUser());
 
 render(
     <Provider store={store}>
