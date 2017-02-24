@@ -1,4 +1,4 @@
-### ONKIBOT-FRONTEND ###
+### ONKIBOT-FRONTEND [![Build Status](https://ci.onkibot.com/api/badges/onkibot/onkibot-frontend/status.svg)](https://ci.onkibot.com/onkibot/onkibot-frontend) ###
 
 # How to install:
 1. Clone the repository.
