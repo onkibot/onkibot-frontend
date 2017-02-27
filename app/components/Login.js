@@ -4,12 +4,14 @@ import { Card, CardHeader, CardActions } from 'material-ui';
 
 const Login = () => (
     <div className="main-content">
-        <div className="page-title-container">
-          <h1>Login</h1>
-        </div>
-        <CardActions>
-            <LoginForm />
-        </CardActions>
+      <Card>
+          <div className="page-title-container page-title-container-index">
+            <h1>Login</h1>
+          </div>
+          <CardActions>
+              <LoginForm />
+          </CardActions>
+      </Card>
     </div>
 );
 

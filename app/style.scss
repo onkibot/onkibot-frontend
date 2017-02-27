@@ -12,8 +12,14 @@
 $primary-green:         #5FCF80;
 $primary-blue:          #49C4DB;
 $primary-dark:          #3E474F;
-$text-color:            #FFFFFF;
-$text-color-inactive:   #B2BBBD;
+$text-color-white:      #FFFFFF;
+$text-color:            #3E474F;
+$background:            #EDEFF0;
+
+/* =================================
+  MIXINS
+==================================== */
+
 
 /* =================================
   LAYOUT & PAGE STYLES
@@ -21,44 +27,77 @@ $text-color-inactive:   #B2BBBD;
 
 body {
   color: $primary-dark;
-  background: $primary-blue;
+  background: $background;
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
-
-.container {
-  width: 95%;
-  max-width: 1300px;
-  padding: 2em 0em;
-  margin: 0 auto 2em;
-  background: #fff;
-  box-shadow: 0 3px rgba(0,0,0, .1);
-  overflow: hidden;
-}
-
-/* Header -------- */
 
 h1,
 h2,
 h3 {
   font-family: 'Signika', sans-serif;
+  letter-spacing: 2px;
 }
 
+img {
+  width: auto;
+  height: auto;
+}
+/* Header -------- */
+
+
 header {
-  background-color: $primary-dark;
+  background-color: $primary-blue;
+  border-bottom: 1px solid darken($primary-blue, 10%);
   color: $text-color;
   font-family: 'Signika', sans-serif;
+  letter-spacing: 2px;
   font-weight: bold;
   display: flex;
   flex-wrap: wrap;
 
   .header-wrap {
     width: 95%;
-    max-width: 1300px;
+    max-width: 1000px;
     margin: 0 auto;
 
-    .onki-logo {
-      float: left;
+    .main-nav-icon {
+      display: flex;
+      flex-wrap: wrap;
+      float: left !important;
+      list-style-type: none;
+
+      li a {
+
+        color: $text-color-white;
+
+        &:hover {
+          color: $text-color !important;
+          path {
+            fill: $text-color;
+          }
+        }
+
+        #onki-icon {
+
+          float: left;
+          cursor: pointer;
+          height: 50px;
+          width: 50px;
+          margin-top: -10px;
+
+          path {
+            transition: .2s;
+            transition-timing-function: ease-in-out;
+            -webkit-transition: .2s;
+            -webkit-transition-timing-function: ease-in-out;
+          }
+        }
+
+        #icon-text {
+          padding-left: 10px;
+        }
+      }
     }
 
     .main-nav {
@@ -77,17 +116,17 @@ header {
       }
 
       a {
-        font-size: 24px;
+        font-size: 18px;
         text-align: center;
         text-transform: uppercase;
         text-decoration: none;
         list-style-type: none;
         display: block;
-        color: $text-color-inactive;
+        color: $text-color-white;
         transition: .2s;
         border-left: 3px solid transparent;
         border-right: 3px solid transparent;
-        padding: 1em 1.5em;
+        padding: 1em 1em;
 
         &:hover, &.active {
           color: $text-color;
@@ -108,17 +147,66 @@ header {
 
 }
 
-.main-content {
 
-  .page-title-container {
-    text-align: center;
-    width: 100%;
+
+.container {
+  background: $background;
+  //box-shadow: 0 3px rgba(0,0,0, .1);
+  overflow: hidden;
+
+  .main-content {
+    width: 95%;
+    max-width: 1300px;
+    padding: 2em 0em;
+    margin: 0 auto 2em;
+
+    &>div {
+      margin-top: 30px;
+      padding: 0 20px;
+    }
+
+    .page-title-container {
+      width: 100%;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    section {
+      height: 600px;
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+
+    .cardActions-wrap {
+
+      padding: 0px 5%;
+
+      .section-box {
+        height: auto;
+        min-height: 200px;
+        box-sizing: border-box;
+        padding: 20px;
+        text-align: center;
+        img {
+          max-width: 100%;
+          max-height: 300px;
+          margin: 20px auto 0 auto;
+        }
+      }
+
+      .section-box-split {
+        margin-bottom: 20px;
+        width: 46%;
+        text-align: left;
+      }
+
+    }
+
   }
 
 }
-
-
-
 
 /* Forms -------- */
 .form-style {
@@ -133,6 +221,26 @@ header {
 ==================================== */
 .place-mid {
   margin: 0 auto;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.clearfix {
+  clear: both;
+  overflow: auto;
+  zoom: 1;
+}
+.img-rounded {
+  border-radius: 10px;
 }
 
 /* =================================
