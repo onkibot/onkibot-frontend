@@ -3,12 +3,14 @@ import LoginForm from '../forms/LoginForm';
 import { Card, CardHeader, CardActions } from 'material-ui';
 
 const Login = () => (
-    <Card>
-        <CardHeader title="Onkibot" subtitle="The login form" />
+    <div className="main-content">
+        <div className="page-title-container">
+          <h1>Login</h1>
+        </div>
         <CardActions>
             <LoginForm />
         </CardActions>
-    </Card>
+    </div>
 );
 
 export default Login;

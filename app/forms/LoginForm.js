@@ -31,7 +31,8 @@ const LoginForm = (props) => {
                   style = {{
                     marginTop: '20px',
                     width: '150px',
-                    margin: '20px auto'
+                    margin: '20px auto',
+                    padding: '0px'
                   }}/>
             </div>
         </form>
