@@ -111,7 +111,24 @@ header {
 
 
 
+/* Forms -------- */
+.form-style {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
 
+  button {
+    margin-top : 10px !important;
+  }
+}
+
+
+/* =================================
+  TEMPLATE STYLES
+==================================== */
+.place-mid {
+  margin: 0 auto;
+}
 
 /* =================================
   MEDIA QUERIES
