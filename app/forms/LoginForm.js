@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-const LoginForm = (props) => {
+let LoginForm = (props) => {
     const { handleSubmit, onSubmit } = props;
     return (
         <form onSubmit={handleSubmit} className="form-style">

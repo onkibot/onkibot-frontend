@@ -1,4 +1,3 @@
-<<<<<<< 88abee8b07a4c279148b1ed8b6466251568e8473
 import React, { Component } from 'react';
 import OnOffButton from '../containers/OnOffButton';
 import SessionUserCard from '../containers/SessionUserCard';

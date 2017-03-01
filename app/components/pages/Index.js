@@ -1,11 +1,9 @@
-export default Index;
-
 import React from 'react';
 import { Link } from 'react-router';
 import { Menu, MenuItem, Card, CardActions, Divider } from 'material-ui';
-import OnOffButton from '../containers/OnOffButton';
+import OnOffButton from '../../containers/OnOffButton';
 import MediaQuery from 'react-responsive';
-import SignupForm from '../forms/SignupForm';
+import SignupForm from '../../forms/SignupForm';
 
 const Index = () => (
     <div>
