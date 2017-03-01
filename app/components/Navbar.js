@@ -5,7 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import LogoHeader from './svg/LogoHeader';
-import Hamburger from 'material-ui/svg-icons/Navigation/menu';
+import Hamburger from 'material-ui/svg-icons/navigation/menu';
 
 class Navbar extends Component {
 
