@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import SignupForm from '../forms/SignupForm';
 
 const Index = () => (
-    <div className="main-content main-content-index">
+    <div>
       <Card>
           <div className="page-title-container">
             <h1>Who needs OnkiBot?</h1>

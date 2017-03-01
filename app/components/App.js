@@ -11,7 +11,9 @@ class OnkibotApp extends Component {
       <div>
         <Navbar />
         <div className="container">
-          {this.props.children}
+          <div className="main-content">
+            {this.props.children}
+          </div>
         </div>
         <Footer />
       </div>
