@@ -12,7 +12,9 @@ import Index from './components/Index';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import TheButton from './components/TheButton';
+import NotFound from './components/NotFound';
 
+import './style.scss';
 
 injectTapEventPlugin();
 
@@ -35,6 +37,7 @@ render(
                     <Route path="login" component={Login} />
                     <Route path="signup" component={Signup} />
                     <Route path="button" component={TheButton} />
+                    <Route path="*" component={NotFound}/>
                 </Route>
             </Router>
         </MuiThemeProvider>

@@ -1,1 +1,322 @@
- 
+/* =================================
+  WEB FONTS
+==================================== */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Signika);
+
+/* =================================
+  BASE COLORS
+==================================== */
+
+$primary-green:         #5FCF80;
+$primary-blue:          #49C4DB;
+$primary-dark:          #3E474F;
+$text-color-white:      #FFFFFF;
+$text-color:            #3E474F;
+$background:            #EDEFF0;
+
+/* =================================
+  MIXINS
+==================================== */
+
+
+/* =================================
+  LAYOUT & PAGE STYLES
+==================================== */
+
+body {
+  color: $primary-dark;
+  background: $background;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Signika', sans-serif;
+  letter-spacing: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-dark;
+  transition: .2s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: .2s;
+  -webkit-transition-timing-function: ease-in-out;
+  &:hover {
+    color: darken($primary-green, 30%);
+  }
+}
+
+img {
+  width: auto;
+  height: auto;
+}
+
+/* Header -------- */
+
+header {
+  background-color: $primary-blue;
+  border-bottom: 1px solid darken($primary-blue, 10%);
+  color: $text-color;
+  font-family: 'Signika', sans-serif;
+  letter-spacing: 2px;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+
+  .header-wrap {
+    width: 95%;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .main-nav-icon {
+      display: flex;
+      flex-wrap: wrap;
+      float: left !important;
+      list-style-type: none;
+
+      li a {
+
+        color: $text-color-white;
+
+        &:hover {
+          color: $text-color !important;
+          path {
+            fill: $text-color;
+          }
+        }
+
+        #onki-icon {
+
+          float: left;
+          cursor: pointer;
+          height: 50px;
+          width: 50px;
+          margin-top: -10px;
+
+          path {
+            transition: .2s;
+            transition-timing-function: ease-in-out;
+            -webkit-transition: .2s;
+            -webkit-transition-timing-function: ease-in-out;
+          }
+        }
+
+        #icon-text {
+          padding-left: 10px;
+        }
+      }
+    }
+
+    .main-nav {
+      display: flex;
+      flex-wrap: wrap;
+      float: right;
+      list-style-type: none;
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      i {
+        cursor: pointer;
+      }
+
+      a {
+        font-size: 18px;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        list-style-type: none;
+        display: block;
+        color: $text-color-white;
+        transition: .2s;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        padding: 1em 1em;
+
+        &:hover, &.active {
+          color: $text-color;
+        }
+
+      }
+
+      svg {
+        fill: $text-color-white !important;
+        cursor: pointer;
+      }
+
+    }
+
+  }
+
+  .drawer {
+    a {
+      text-decoration: none !important;
+      color: $primary-dark;
+    }
+  }
+
+}
+
+/* Body -------- */
+
+.container {
+  background: $background;
+  //box-shadow: 0 3px rgba(0,0,0, .1);
+  overflow: hidden;
+  min-height: 580px;
+}
+
+.main-content {
+  width: 95%;
+  max-width: 1300px;
+  padding: 2em 0em;
+  margin: 0 auto 2em;
+
+  &>div>div {
+    margin-top: 30px;
+    padding: 0 20px;
+  }
+
+  .page-title-container {
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  section {
+    height: 600px;
+
+    h1 {
+      font-size: 30px;
+    }
+  }
+
+  .cardActions-wrap {
+
+    padding: 0px 5%;
+
+    .section-box {
+      height: auto;
+      min-height: 200px;
+      box-sizing: border-box;
+      padding: 20px;
+      text-align: center;
+      img {
+        max-width: 100%;
+        max-height: 300px;
+        margin: 20px auto 0 auto;
+      }
+    }
+
+    .section-box-split {
+      margin-bottom: 20px;
+      width: 46%;
+      text-align: left;
+    }
+
+  }
+
+}
+
+/* Forms -------- */
+.form-style {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Footer -------- */
+footer {
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: $primary-blue;
+  color: $text-color;
+  font-size: 9px;
+  text-align: center;
+
+  .footer-box {
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    text-align: center;
+
+    .footer-icon-wrap {
+      display: inline-block;
+      width: 100%;
+      height: 30px;
+      text-align: center;
+
+      &>h2 {
+        height: 1.5em;
+        margin: 10px 5px;
+        svg {
+          margin-top: -5px;
+          vertical-align: text-top;
+          path {
+            fill: $primary-dark;
+          }
+        }
+        .icon-text {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  .footer-box-split {
+    width: 30%;
+  }
+
+  #onki-icon {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+
+    path {
+      transition: .2s;
+      transition-timing-function: ease-in-out;
+      -webkit-transition: .2s;
+      -webkit-transition-timing-function: ease-in-out;
+    }
+  }
+
+}
+
+/* =================================
+  TEMPLATE STYLES
+==================================== */
+.place-mid {
+  margin: 0 auto;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.clearfix {
+  clear: both;
+  overflow: auto;
+  zoom: 1;
+}
+.img-rounded {
+  border-radius: 10px;
+}
+
+/* =================================
+  MEDIA QUERIES
+==================================== */

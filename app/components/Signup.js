@@ -3,12 +3,16 @@ import SignupForm from '../forms/SignupForm';
 import { Card, CardHeader, CardActions } from 'material-ui';
 
 const Signup = () => (
+  <div>
     <Card>
-        <CardHeader title="Onkibot" subtitle="The signup form" />
+        <div className="page-title-container">
+          <h1>Sign Up</h1>
+        </div>
         <CardActions>
             <SignupForm />
         </CardActions>
     </Card>
+  </div>
 );
 
 export default Signup;
