@@ -1,10 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { RaisedButton } from 'material-ui';
 import { TextField } from 'redux-form-material-ui';
 
-const LoginForm = (props) => {
-    const { handleSubmit } = props;
+import { loginUser } from '../actions';
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSubmit: (credentials) => {
+            dispatch(loginUser(credentials));
+        }
+    };
+}
+
+let LoginForm = (props) => {
+    const { handleSubmit, onSubmit } = props;
     return (
         <form onSubmit={handleSubmit} className="form-style">
           <Field
@@ -39,9 +50,11 @@ const LoginForm = (props) => {
     );
 };
 
-export default reduxForm({
-    form: 'login',
-    onSubmit: (values) => {
-        console.log(values);
-    }
-})(LoginForm);
+LoginForm = connect(
+    undefined,
+    mapDispatchToProps
+)(reduxForm({
+    form: 'login'
+})(LoginForm));
+
+export default LoginForm;

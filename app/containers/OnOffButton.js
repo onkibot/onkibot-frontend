@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleOnOff } from '../actions';
 import { FlatButton } from 'material-ui';
+
+import { toggleOnOff } from '../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -15,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(toggleOnOff());
         }
     };
-}
+};
 
 const OnOffButton = connect(
     mapStateToProps,
