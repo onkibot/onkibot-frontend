@@ -146,6 +146,11 @@ header {
 
       }
 
+      svg {
+        fill: $text-color-white !important;
+        cursor: pointer;
+      }
+
     }
 
   }
