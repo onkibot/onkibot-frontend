@@ -5,8 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const debug = process.env.NODE_ENV !== 'production';
 
-const cssArrUse = ['style-loader', 'css-loader'];
-
 const extractSass = new ExtractTextPlugin({
 	filename: '[name].css',
 	disable: debug
@@ -44,12 +42,15 @@ module.exports = {
 		rules: [{
 			test: /\.css$/,
 			loader: extractSass.extract({
-				use: cssArrUse
+				use: 'css-loader',
+				fallback: 'style-loader'
 			})
 		}, {
 			test: /\.scss$/,
 			loader: extractSass.extract({
-				use: cssArrUse.concat(['sass-loader'])
+				fallback: 'style-loader',
+				use: 'css-loader!sass-loader',
+				publicPath: 'dist'
 			}),
 			include: path.join(__dirname, 'app')
 		}, {
