@@ -1,12 +1,41 @@
 pipeline:
   tests:
     image: node:7.3
+    commands:
+      - npm install -g yarn
+      - yarn
+      - ./node_modules/.bin/webpack
     when:
-      event: push
+      branch:
+        exclude: [ master, development ]
+
+  development:
+    image: node:7.3
+    environment:
+      - NODE_ENV=development
+    commands:
+      - npm install -g yarn
+      - yarn
+      - ./node_modules/.bin/webpack
+      - cp -vr ./dist/. /web
+      - cp -vr ./public/. /web
+    volumes:
+      - /var/www/html/onkibot/development:/web
+    when:
+      branch: development
+
+  production:
+    image: node:7.3
     environment:
       - NODE_ENV=production
     commands:
       - npm install -g yarn
       - yarn
       - ./node_modules/.bin/webpack
+      - cp -vr ./dist/. /web
+      - cp -vr ./public/. /web
+    volumes:
+      - /var/www/html/onkibot/master:/web
+    when:
+      branch: master
 
