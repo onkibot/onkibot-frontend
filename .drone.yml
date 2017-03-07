@@ -18,6 +18,7 @@ pipeline:
       - yarn
       - ./node_modules/.bin/webpack
       - cp -vr ./dist/. /web
+      - cp -vr ./public/. /web
     volumes:
       - /var/www/html/onkibot/development:/web
     when:
@@ -32,6 +33,7 @@ pipeline:
       - yarn
       - ./node_modules/.bin/webpack
       - cp -vr ./dist/. /web
+      - cp -vr ./public/. /web
     volumes:
       - /var/www/html/onkibot/master:/web
     when:
