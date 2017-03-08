@@ -1,9 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { MenuItem, RaisedButton } from 'material-ui';
 import { TextField, SelectField } from 'redux-form-material-ui';
 
-const SignupForm = (props) => {
+import { signupUser } from '../actions';
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSubmit: (signupInfo) => {
+            dispatch(signupUser(signupInfo));
+        }
+    };
+}
+
+let SignupForm = (props) => {
     const { handleSubmit } = props;
     return (
         <form onSubmit={handleSubmit} className="form-style">
@@ -53,9 +64,11 @@ const SignupForm = (props) => {
     );
 };
 
-export default reduxForm({
-    form: 'signup',
-    onSubmit: (values) => {
-        console.log(values);
-    }
-})(SignupForm);
+SignupForm = connect(
+    undefined,
+    mapDispatchToProps
+)(reduxForm({
+    form: 'signup'
+})(SignupForm));
+
+export default SignupForm;

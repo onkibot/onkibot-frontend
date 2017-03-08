@@ -1,0 +1,12 @@
+pipeline:
+  tests:
+    image: node:7.3
+    when:
+      event: push
+    environment:
+      - NODE_ENV=production
+    commands:
+      - npm install -g yarn
+      - yarn
+      - ./node_modules/.bin/webpack
+
