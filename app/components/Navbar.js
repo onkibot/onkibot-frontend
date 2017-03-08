@@ -36,7 +36,7 @@ class Navbar extends Component {
               <ul className="main-nav">
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/signup">Sign Up</Link></li>
-                <li><Link to="/button">The Button</Link></li>
+                <li><Link to="/taskcontainer">Task</Link></li>
               </ul>
             </div>
           </header>
@@ -66,7 +66,7 @@ class Navbar extends Component {
               <Link to="/"><MenuItem onTouchTap={this.handleClose}>Home</MenuItem></Link>
               <Link to="/login"><MenuItem onTouchTap={this.handleClose}>Login</MenuItem></Link>
               <Link to="/signup"><MenuItem onTouchTap={this.handleClose}>Sign Up</MenuItem></Link>
-              <Link to="/button"><MenuItem onTouchTap={this.handleClose}>The Button</MenuItem></Link>
+              <Link to="/taskcontainer"><MenuItem onTouchTap={this.handleClose}>Task</MenuItem></Link>
             </Drawer>
           </div>
         </header>

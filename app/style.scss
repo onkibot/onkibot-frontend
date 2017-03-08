@@ -41,7 +41,7 @@ h3 {
 
 a {
   text-decoration: none;
-  color: $primary-dark;
+  color: darken($primary-blue, 20%);
   transition: .2s;
   transition-timing-function: ease-in-out;
   -webkit-transition: .2s;
@@ -232,6 +232,47 @@ header {
   margin: 0 auto;
 }
 
+/* Task Container -------- */
+.taskView {
+  width: 100%;
+  min-height: 150px;
+  margin-bottom: 10px;
+  text-align: center;
+  img {
+    max-height: 250px;
+  }
+}
+.teachersnotes {
+  width: 100%;
+  padding: 20px;
+}
+
+.task-navigation {
+  height: 50px;
+  margin-top: 20px;
+  a {
+    padding: 5px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $primary-dark;
+    svg {
+      vertical-align: text-top;
+      margin-top: -2px;
+    }
+    span {
+      margin: 0 5px;
+    }
+    &:hover {
+      span {
+        color: darken($primary-blue, 20%) !important;
+      }
+      svg {
+        fill: darken($primary-blue, 20%) !important;
+      }
+    }
+  }
+}
+
 /* Footer -------- */
 footer {
   width: 100%;
@@ -315,6 +356,15 @@ footer {
 }
 .img-rounded {
   border-radius: 10px;
+}
+.text-align-left {
+  text-align: left !important;
+}
+.text-align-center {
+  text-align: center !important;
+}
+.text-align-right {
+  text-align: right !important;
 }
 
 /* =================================

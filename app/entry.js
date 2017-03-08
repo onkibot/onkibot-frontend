@@ -12,6 +12,7 @@ import Index from './components/Index';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import TheButton from './components/TheButton';
+import TaskContainer from './components/TaskContainer';
 import NotFound from './components/NotFound';
 
 import './style.scss';
@@ -36,6 +37,7 @@ render(
                     <IndexRoute component={Index} />
                     <Route path="login" component={Login} />
                     <Route path="signup" component={Signup} />
+                    <Route path="taskcontainer" component={TaskContainer} />
                     <Route path="button" component={TheButton} />
                     <Route path="*" component={NotFound}/>
                 </Route>
