@@ -38,7 +38,7 @@ export const loginUser = (credentials) => {
     return (dispatch) => {
         dispatch(requestLogin(credentials));
 
-        return fetch('/api/session', config)
+        return fetch('/api/v1/session', config)
         .then((response) => {
             return response.json();
         })
@@ -80,7 +80,7 @@ export const sessionUser = () => {
     return (dispatch) => {
         dispatch(requestSession())
 
-        return fetch('/api/session', config)
+        return fetch('/api/v1/session', config)
         .then((response) => {
             return response.json();
         })
@@ -121,7 +121,7 @@ export const logoutUser = () => {
     return (dispatch) => {
         dispatch(requestLogout());
 
-        return fetch('/api/session', config)
+        return fetch('/api/v1/session', config)
         .then((response) => {
             dispatch(receiveLogout());
         })
@@ -165,7 +165,7 @@ export const signupUser = (signupInfo) => {
     return (dispatch) => {
         dispatch(requestSignup());
 
-        return fetch('/api/signup', config)
+        return fetch('/api/v1/signup', config)
         .then((response) => {
             return response.json();
         })
