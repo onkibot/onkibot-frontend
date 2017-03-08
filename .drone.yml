@@ -17,6 +17,7 @@ pipeline:
       - npm install -g yarn
       - yarn
       - ./node_modules/.bin/webpack
+      - rm -rf /web/*
       - cp -vr ./dist/. /web
       - cp -vr ./public/. /web
     volumes:
@@ -32,6 +33,7 @@ pipeline:
       - npm install -g yarn
       - yarn
       - ./node_modules/.bin/webpack
+      - rm -rf /web/*
       - cp -vr ./dist/. /web
       - cp -vr ./public/. /web
     volumes:
