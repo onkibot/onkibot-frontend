@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { RaisedButton, MenuItem, CardHeader, ListItem } from 'material-ui';
+import { RaisedButton, MenuItem, Card, CardHeader, ListItem } from 'material-ui';
 import { TextField, SelectField } from 'redux-form-material-ui';
 import CodeCell from 'material-ui/svg-icons/action/code';
 import Close from 'material-ui/svg-icons/navigation/close';
+
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { zenburn } from 'react-syntax-highlighter/dist/styles';
 
 class CreateTaskForm extends Component {
 
@@ -23,6 +26,8 @@ class CreateTaskForm extends Component {
       selectedCourse : '',
       currentCategories : [],
       selectedContent : '',
+      taskText : '',
+      taskCode : ``,
 
       addedResources : [],
       activeResourcefields : {
@@ -34,6 +39,9 @@ class CreateTaskForm extends Component {
     }
     this.handleCourseChange = this.handleCourseChange.bind(this);
     this.handleContentChange = this.handleContentChange.bind(this);
+    this.handleTaskTextChange = this.handleTaskTextChange.bind(this);
+    this.createContentElement = this.createContentElement.bind(this);
+    this.handleTaskCodeChange = this.handleTaskCodeChange.bind(this);
     this.handleAddNewResourceFieldChange = this.handleAddNewResourceFieldChange.bind(this);
     this.handleAddNewResource = this.handleAddNewResource.bind(this);
     this.handleRemoveAddedResource = this.handleRemoveAddedResource.bind(this);
@@ -52,6 +60,54 @@ class CreateTaskForm extends Component {
     this.setState({
       selectedContent : index
     });
+  }
+
+  handleTaskTextChange(e) {
+    this.setState({
+      taskText : e.target.value
+    });
+  }
+
+  handleTaskCodeChange(e) {
+    this.setState({
+      taskCode : `${e.target.value}`
+    });
+  }
+
+  createContentElement() {
+    let selectedContent = this.state.selectedContent;
+    if (selectedContent == 'text') {
+      return(
+        <TextField
+          floatingLabelText="Question / Task"
+          multiLine={true}
+          fullWidth={true}
+          onChange={this.handleTaskTextChange}
+          rows={1}/>
+      );
+    }else if (selectedContent == 'code') {
+      return(
+        <div>
+          <p className="italic">For indentation, add four spaces.</p>
+          <TextField
+            floatingLabelText="Code"
+            multiLine={true}
+            fullWidth={true}
+            onChange={this.handleTaskCodeChange}
+            rows={3}/>
+          <p className="italic">This is how your code will be shown.</p>
+          <SyntaxHighlighter language='javascript' style={zenburn} showLineNumbers="true" className="text-align-left">{this.state.taskCode}</SyntaxHighlighter>
+        </div>
+      );
+    } else if (selectedContent == 'image') {
+      return(
+        <RaisedButton
+           containerElement='label'
+           label='Upload Image'>
+           <input type="file" />
+        </RaisedButton>
+      );
+    }
   }
 
   handleAddNewResourceFieldChange(e) {
@@ -121,98 +177,105 @@ class CreateTaskForm extends Component {
       return <MenuItem key={key} value={item} primaryText={item}/>
     };
 
-    let createContentElement = function() {
-      let selectedContent = this.state.selectedContent;
-    }
-
     let resources = this.state.addedResources;
     let resourceElements = this.createResourceElements(resources);
+    let contentElement = this.createContentElement();
 
     const { handleSubmit, onSubmit } = this.props;
 
+    const cardStyle = {
+      padding: '30px',
+      marginBottom: '20px'
+    };
+
     return (
 
-      <form onSubmit={handleSubmit} className="form-style">
-        <h3>Where</h3>
-        <Field
-          component={SelectField}
-          name="course"
-          fullWidth={true}
-          floatingLabelText="Course"
-          onChange={this.handleCourseChange}>
-            {Object.keys(this.state.courses).map(createMenuItems)}
-        </Field>
-        <Field
-          component={SelectField}
-          name="category"
-          fullWidth={true}
-          floatingLabelText="Category">
-            {this.state.currentCategories.map(createMenuItems)}
-        </Field>
+      <form onSubmit={handleSubmit} className="form-style create-task">
+        <Card style={cardStyle}>
+          <h3>Where</h3>
+          <Field
+            component={SelectField}
+            name="course"
+            fullWidth={true}
+            floatingLabelText="Course"
+            onChange={this.handleCourseChange}>
+              {Object.keys(this.state.courses).map(createMenuItems)}
+          </Field>
+          <Field
+            component={SelectField}
+            name="category"
+            fullWidth={true}
+            floatingLabelText="Category">
+              {this.state.currentCategories.map(createMenuItems)}
+          </Field>
+        </Card>
 
-        <h3>Task information</h3>
+        <Card style={cardStyle}>
+          <h3>Task information</h3>
 
-        <Field
-          component={TextField}
-          name="taskTitle"
-          fullWidth={true}
-          floatingLabelText="Title"/>
-        <Field
-          component={SelectField}
-          name="content"
-          fullWidth={true}
-          floatingLabelText="Content"
-          onChange={this.handleContentChange}>
-            <MenuItem value="image" primaryText="Image" />
-            <MenuItem value="code" primaryText="Code" />
-            <MenuItem value="text" primaryText="Text" />
-        </Field>
-        <TextField
-          floatingLabelText="Comment to task"
-          multiLine={true}
-          fullWidth={true}
-          rows={1}/>
+          <Field
+            component={TextField}
+            name="taskTitle"
+            fullWidth={true}
+            floatingLabelText="Title"/>
+          <Field
+            component={SelectField}
+            name="content"
+            fullWidth={true}
+            floatingLabelText="Content"
+            onChange={this.handleContentChange}>
+              <MenuItem value="image" primaryText="Image" />
+              <MenuItem value="code" primaryText="Code" />
+              <MenuItem value="text" primaryText="Text" />
+          </Field>
+          {contentElement}
+          <TextField
+            floatingLabelText="Comment to task"
+            multiLine={true}
+            fullWidth={true}
+            rows={1}/>
+        </Card>
 
-        <h3>Resources</h3>
-        <p>To remove an added resource, click the resource.</p>
-        <Field
-          component={TextField}
-          name="resourceTitle"
-          fullWidth={true}
-          floatingLabelText="Resource title"
-          value={this.state.activeResourcefields.resourceTitle}
-          onChange={this.handleAddNewResourceFieldChange}/>
-        <Field
-          component={TextField}
-          name="resourceComment"
-          fullWidth={true}
-          floatingLabelText="Resource comment"
-          value={this.state.activeResourcefields.resourceComment}
-          onChange={this.handleAddNewResourceFieldChange}/>
-        <Field
-          component={TextField}
-          name="resourceUrl"
-          fullWidth={true}
-          floatingLabelText="Resource URL"
-          value={this.state.activeResourcefields.resourceUrl}
-          onChange={this.handleAddNewResourceFieldChange}/>
+        <Card style={cardStyle}>
+          <h3>Resources</h3>
+          <p className="italic">To remove an added resource, click the resource.</p>
+          <Field
+            component={TextField}
+            name="resourceTitle"
+            fullWidth={true}
+            floatingLabelText="Resource title"
+            value={this.state.activeResourcefields.resourceTitle}
+            onChange={this.handleAddNewResourceFieldChange}/>
+          <Field
+            component={TextField}
+            name="resourceComment"
+            fullWidth={true}
+            floatingLabelText="Resource comment"
+            value={this.state.activeResourcefields.resourceComment}
+            onChange={this.handleAddNewResourceFieldChange}/>
+          <Field
+            component={TextField}
+            name="resourceUrl"
+            fullWidth={true}
+            floatingLabelText="Resource URL"
+            value={this.state.activeResourcefields.resourceUrl}
+            onChange={this.handleAddNewResourceFieldChange}/>
 
-        {resourceElements}
+          {resourceElements}
 
-        <RaisedButton
-          label="Add Resource"
-          className="float-right"
-          style = {{
-            marginTop: '20px',
-            width: '150px',
-            margin: '20px auto',
-            padding: '0px'
-          }}
-          onClick={this.handleAddNewResource}/>
-        <p className="error-msg">{this.state.activeResourcefields.errorMsg}</p>
-        <div className="clearfix"></div>
-
-
+          <RaisedButton
+            label="Add Resource"
+            className="float-right"
+            style = {{
+              marginTop: '20px',
+              width: '150px',
+              margin: '20px auto',
+              padding: '0px'
+            }}
+            onClick={this.handleAddNewResource}/>
+          <p className="error-msg">{this.state.activeResourcefields.errorMsg}</p>
+          <div className="clearfix"></div>
+        </Card>
 
           <div>
               <RaisedButton
