@@ -8,6 +8,8 @@ import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { zenburn } from 'react-syntax-highlighter/dist/styles';
 
+import CreateTask from './pages/CreateTask';
+
 class TaskContainer extends Component {
 
   constructor(props) {
@@ -36,7 +38,7 @@ class TaskContainer extends Component {
     }
   }
 
-  getListElements(list) {
+  createListElements(list) {
     let listElements = list.map((element) => {
       return (
         <a
@@ -57,10 +59,10 @@ class TaskContainer extends Component {
   render() {
 
     let teachersLinks = this.state.teachersLinks;
-    let teachersLinkList = this.getListElements(teachersLinks);
+    let teachersLinkList = this.createListElements(teachersLinks);
 
     let studentsLinks = this.state.studentsLinks;
-    let studentsLinkList = this.getListElements(studentsLinks);
+    let studentsLinkList = this.createListElements(studentsLinks);
 
     let iconStyle = {
       fontSize: '48px'
@@ -91,6 +93,10 @@ class TaskContainer extends Component {
     return(
 
       <div>
+
+        {/* Task creation form */}
+        <CreateTask/>
+
         {/* Task ex. 1 */}
         <Card>
           <div className="page-title-container">
@@ -102,12 +108,12 @@ class TaskContainer extends Component {
                 <div className="taskView">
                   <img src="./images/for-loop.jpg" alt={this.state.taskName}/>
                 </div>
-                <CardHeader title="Teacher's Notes"/>
+                <CardHeader title="Intructor's Links"/>
                 <Divider inset={true}/>
                 <List>
                   {teachersLinkList}
                 </List>
-                <CardHeader title="Student's Notes"/>
+                <CardHeader title="Student's Links"/>
                 <Divider inset={true}/>
                 <List>
                   {studentsLinkList}
@@ -145,9 +151,7 @@ class TaskContainer extends Component {
           <CardActions>
               <div className="cardActions-wrap">
                 <div className="taskView">
-
                   <SyntaxHighlighter language='javascript' style={zenburn} showLineNumbers="true" className="text-align-left">{codeString}</SyntaxHighlighter>
-
                 </div>
                 <CardHeader title="Teacher's Notes"/>
                 <Divider inset={true}/>
@@ -182,6 +186,7 @@ class TaskContainer extends Component {
               </div>
           </CardActions>
         </Card>
+
       </div>
 
     );
