@@ -1,19 +1,19 @@
 import React from 'react';
 import { Card, CardHeader, CardActions } from 'material-ui';
 
-import CreateTaskForm from '../../forms/CreateTaskForm';
+import ResourceCreation from '../../containers/ResourceCreation';
 
-const CreateTask = () => (
+const CreateResource = () => (
     <div>
       <Card>
           <div className="page-title-container page-title-container-index">
             <h1>Create Task</h1>
           </div>
           <CardActions>
-              <CreateTaskForm />
+              <ResourceCreation />
           </CardActions>
       </Card>
     </div>
 );
 
-export default CreateTask;
+export default CreateResource;

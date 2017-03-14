@@ -8,7 +8,7 @@ import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { zenburn } from 'react-syntax-highlighter/dist/styles';
 
-import CreateTask from './pages/CreateTask';
+import CreateResource from './pages/CreateResource';
 
 class TaskContainer extends Component {
 
@@ -95,7 +95,7 @@ class TaskContainer extends Component {
       <div>
 
         {/* Task creation form */}
-        <CreateTask/>
+        <CreateResource/>
 
         {/* Task ex. 1 */}
         <Card>
