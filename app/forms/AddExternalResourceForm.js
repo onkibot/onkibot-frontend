@@ -38,16 +38,8 @@ let AddExternalResourceForm = ({handleSubmit, errorMsg}) => (
     </form>
 );
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-    };
-}
-
-AddExternalResourceForm = connect(
-    undefined,
-    mapDispatchToProps
-)(reduxForm({
+AddExternalResourceForm = reduxForm({
     form: 'addExternalResource'
-})(AddExternalResourceForm));
+})(AddExternalResourceForm);
 
 export default AddExternalResourceForm;
