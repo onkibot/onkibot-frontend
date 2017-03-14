@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch, { router }) => {
     return {
         onSubmit: (courseInfo) => {
             dispatch(addCourse(courseInfo));
-            router.push('/courses');
+            router.push("/courses");
         }
     };
 }

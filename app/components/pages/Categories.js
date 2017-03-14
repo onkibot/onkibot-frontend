@@ -9,7 +9,7 @@ const Categories = (props) => (
         <h1>Categories</h1>
         <Link to="courses"><FlatButton>Back to courses</FlatButton></Link>
         <br/>
-        <Link to={"categories/create/"+props.params.courseId}><FlatButton>Create category</FlatButton></Link>
+        <Link to={"courses/"+props.params.courseId+"/categories/create"}><FlatButton>Create category</FlatButton></Link>
         <UserCategoryList courseId={props.params.courseId} />
     </div>
 );
