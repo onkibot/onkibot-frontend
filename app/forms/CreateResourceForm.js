@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { RaisedButton, MenuItem, Card, CardHeader, ListItem } from 'material-ui';
-import { TextField, SelectField } from 'redux-form-material-ui';
-import CodeCell from 'material-ui/svg-icons/action/code';
-import Close from 'material-ui/svg-icons/navigation/close';
-
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { zenburn } from 'react-syntax-highlighter/dist/styles';
+import { RaisedButton  } from 'material-ui';
+import { TextField } from 'redux-form-material-ui';
 
 import AddExternalResourceForm from './AddExternalResourceForm';
 
@@ -39,19 +33,8 @@ let CreateResourceForm = ({handleSubmit}) => (
     </form>
 );
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSubmit: (resourceProps) => {
-            console.log(resourceProps);
-        }
-    };
-}
-
-CreateResourceForm = connect(
-    undefined,
-    mapDispatchToProps
-)(reduxForm({
+CreateResourceForm = reduxForm({
     form: 'createResource'
-})(CreateResourceForm));
+})(CreateResourceForm);
 
 export default CreateResourceForm;
