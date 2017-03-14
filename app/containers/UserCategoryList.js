@@ -11,15 +11,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onCategoryClick: () => {}
-  }
-};
-
 const UserCategoryList = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(CategoryList);
 
 export default UserCategoryList;

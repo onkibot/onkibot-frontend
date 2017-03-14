@@ -13,15 +13,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onResourceClick: () => {}
-  }
-};
-
 const UserResourceList = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ResourceList);
 
 export default UserResourceList;

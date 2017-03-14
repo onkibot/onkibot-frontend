@@ -15,17 +15,14 @@ const courses = (state = [], action) => {
 
         case 'ADD_CATEGORY':
             var newState = [...state]
-            for (var i = 0; i < newState.length; i++){
-                if (action.courseId == newState[i].id){
-                    newState[i].categories.push({
-                        id: action.id,
-                        name: action.name,
-                        description: action.description,
-                        resources: []
-                    })
-                }
-            }
-            return newState
+            var course = newState.find((course) => course.id == action.courseId);
+            course.categories.push({
+                id: action.id,
+                name: action.name,
+                description: action.description,
+                resources: []
+            });
+            return newState;
     }
 };
 
