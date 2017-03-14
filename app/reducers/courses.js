@@ -10,24 +10,29 @@ const courses = (state = [], action) => {
                     categories: []
                 }
             ];
-        default:
-            return state;
 
         case 'ADD_CATEGORY':
-            var newState = [...state]
-            console.log(state);
-            console.log(action.courseId);
-            for (var i = 0; i < newState.length; i++){
-                if (action.courseId == newState[i].id){
-                    newState[i].categories.push({
-                        id: action.id,
-                        name: action.name,
-                        description: action.description
-                    })
+            return state.map((course) => {
+                if (course.id == action.courseId) {
+                    return {
+                        ...course,
+                        categories: [
+                            ...course.categories,
+                            {
+                                id: action.id,
+                                name: action.name,
+                                description: action.description,
+                                resources: []
+                            }
+                        ]
+                    };
+                } else {
+                    return course;
                 }
-            }
-            console.log(newState);
-            return newState
+            });
+
+        default:
+            return state;
     }
 };
 

@@ -16,8 +16,9 @@ import Signup from './components/pages/Signup';
 import TheButton from './components/pages/TheButton';
 import Courses from './components/pages/Courses';
 import CreateCourse from './components/pages/CreateCourse';
-import Categories from './components/pages/Categories'
-import CreateCategory from './components/pages/CreateCategory'
+import Categories from './components/pages/Categories';
+import CreateCategory from './components/pages/CreateCategory';
+import Resources from './components/pages/Resources';
 import NotFound from './components/pages/NotFound';
 import TaskContainer from './components/TaskContainer';
 import { sessionUser } from './actions';
@@ -48,8 +49,9 @@ render(
                     <Route path="button" component={TheButton} />
                     <Route path="courses" component={Courses} />
                     <Route path="courses/create" component={CreateCourse} />
-                    <Route path="categories/create/:courseId" component={CreateCategory} />
-                    <Route path="categories/:courseId" component={Categories} />
+                    <Route path="courses/:courseId/categories" component={Categories} />
+                    <Route path="courses/:courseId/categories/create" component={CreateCategory} />
+                    <Route path="courses/:courseId/categories/:categoryId/resources" component = {Resources} />
                     <Route path="*" component={NotFound}/>
                 </Route>
             </Router>
