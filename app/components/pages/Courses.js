@@ -1,12 +1,13 @@
 import React from 'react';
-import { FlatButton } from 'material-ui'
+import { FlatButton } from 'material-ui';
+import { Link } from 'react-router';
 
 import UserCourseList from '../../containers/UserCourseList';
 
 const Courses = () => (
     <div>
         <h1>Courses</h1>
-        <a href="#/courses/create"><FlatButton>Create course</FlatButton></a>
+        <Link to="courses/create"><FlatButton>Create course</FlatButton></Link>
         <UserCourseList />
     </div>
 );
