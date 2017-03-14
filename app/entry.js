@@ -16,6 +16,8 @@ import Signup from './components/pages/Signup';
 import TheButton from './components/pages/TheButton';
 import Courses from './components/pages/Courses';
 import CreateCourse from './components/pages/CreateCourse';
+import Categories from './components/pages/Categories'
+import CreateCategory from './components/pages/CreateCategory'
 import NotFound from './components/pages/NotFound';
 import { sessionUser } from './actions';
 
@@ -42,9 +44,11 @@ render(
                     <Route path="login" component={Login} />
                     <Route path="signup" component={Signup} />
                     <Route path="button" component={TheButton} />
-                    <Route path="*" component={NotFound}/>
                     <Route path="courses" component={Courses} />
                     <Route path="courses/create" component={CreateCourse} />
+                    <Route path="categories/create/:courseId" component={CreateCategory} />
+                    <Route path="categories/:courseId" component={Categories} />
+                    <Route path="*" component={NotFound}/>
                 </Route>
             </Router>
         </MuiThemeProvider>

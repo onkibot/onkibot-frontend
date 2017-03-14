@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispactToProps = (dispatch) => {
+const mapDispactToProps = (dispatch, ownProps) => {
     return {
         onCourseClick: () => {}
     }

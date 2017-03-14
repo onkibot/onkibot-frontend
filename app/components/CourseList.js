@@ -6,7 +6,7 @@ import CourseListItem from './CourseListItem';
 const CourseList = ({ courses, onCourseClick }) => (
     <List>
         {courses.map(({id, name, description }) => (
-            <CourseListItem key={id} name={name} description={description} onClick={() => onCourseClick(id)} />
+            <a href={"#/categories/"+id} key={id}><CourseListItem name={name} description={description} onClick={() => onCourseClick(id)} /></a>
         ))}
     </List>
 );
