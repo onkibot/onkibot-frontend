@@ -4,15 +4,10 @@ import { connect } from 'react-redux';
 import CategoryList from '../components/CategoryList';
 
 const mapStateToProps = (state, ownProps) => {
-  var categories = [];
-  for (var i = 0; i < state.courses.length; i++)
-  {
-      if (state.courses[i].id == ownProps.courseId)
-          categories = state.courses[i].categories;
-  }
+  let course = state.courses.find((course) => course.id == ownProps.courseId);
   return {
       courseId: ownProps.courseId,
-      categories
+      categories: course.categories
   }
 };
 

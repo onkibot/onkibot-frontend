@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch, { courseId, router }) => {
         onSubmit: (categoryInfo) => {
             categoryInfo.courseId = courseId;
             dispatch(addCategory(categoryInfo));
-            router.push("/courses/"+courseId+"/categories");
+            router.push(`/courses/${courseId}/categories`);
         }
     };
 }
