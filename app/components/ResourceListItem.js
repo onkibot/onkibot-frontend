@@ -1,8 +1,8 @@
 import React from 'react';
 import { ListItem } from 'material-ui';
 
-const CourseListItem = ({ name, description }) => (
+const ResourceListItem = ({ name, description }) => (
     <ListItem primaryText={name} secondaryText={description} />
-);
+)
 
-export default CourseListItem;
+export default ResourceListItem

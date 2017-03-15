@@ -6,10 +6,11 @@ import { TextField, SelectField } from 'redux-form-material-ui';
 
 import { addCourse } from '../actions';
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { router }) => {
     return {
         onSubmit: (courseInfo) => {
             dispatch(addCourse(courseInfo));
+            router.push("/courses");
         }
     };
 }

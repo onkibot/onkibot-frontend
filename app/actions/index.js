@@ -207,3 +207,14 @@ export const addCourse = ({ name, description }) => {
         description
     }
 };
+
+let nextCategoryId = 0
+export const addCategory = ({ name, description, courseId }) => {
+    return {
+        type: 'ADD_CATEGORY',
+        id: nextCategoryId++,
+        name,
+        description,
+        courseId
+    }
+};

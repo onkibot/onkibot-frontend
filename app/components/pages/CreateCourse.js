@@ -3,11 +3,11 @@ import { Card, CardHeader, CardActions } from 'material-ui';
 
 import CreateCourseForm from '../../forms/CreateCourseForm';
 
-const Signup = () => (
+const Signup = (props) => (
     <Card>
         <CardHeader title="Onkibot" subtitle="The course creation form" />
         <CardActions>
-            <CreateCourseForm />
+            <CreateCourseForm router={props.router} />
         </CardActions>
     </Card>
 );

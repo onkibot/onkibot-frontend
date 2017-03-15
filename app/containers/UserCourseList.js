@@ -9,15 +9,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispactToProps = (dispatch) => {
-    return {
-        onCourseClick: () => {}
-    }
-};
-
 const UserCourseList = connect(
-    mapStateToProps,
-    mapDispactToProps
+    mapStateToProps
 )(CourseList);
 
 export default UserCourseList;
