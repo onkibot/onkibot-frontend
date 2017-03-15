@@ -14,7 +14,7 @@ let ResourceCreation = ({onSubmit, externalResources, onAddExternalResource, onD
     };
 
     return (
-        <div>
+        <div className="form-style">
             <Card style={cardStyle}>
                 <h3>Resource information</h3>
                 <CreateResourceForm onSubmit={onSubmit}/>
