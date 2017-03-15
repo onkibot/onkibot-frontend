@@ -18,33 +18,33 @@ let LoginForm = (props) => {
     const { handleSubmit, onSubmit } = props;
     return (
         <form onSubmit={handleSubmit} className="form-style">
-          <Field
-            component={TextField}
-            name="username"
-            fullWidth={true}
-            floatingLabelText="Username"/>
-          <Field
-            component={TextField}
-            name="email"
-            fullWidth={true}
-            floatingLabelText="E-mail"/>
-          <Field
-            component={TextField}
-            name="password"
-            fullWidth={true}
-            floatingLabelText="Password"
-            type="password"/>
+            <Field
+                component={TextField}
+                name="username"
+                fullWidth={true}
+                floatingLabelText="Username"/>
+            <Field
+                component={TextField}
+                name="email"
+                fullWidth={true}
+                floatingLabelText="E-mail"/>
+            <Field
+                component={TextField}
+                name="password"
+                fullWidth={true}
+                floatingLabelText="Password"
+                type="password"/>
             <div>
                 <RaisedButton
-                  label="Log in"
-                  type="submit"
-                  className="place-mid"
-                  style = {{
-                    marginTop: '20px',
-                    width: '150px',
-                    margin: '20px auto',
-                    padding: '0px'
-                  }}/>
+                    label="Log in"
+                    type="submit"
+                    className="place-mid"
+                    style = {{
+                        marginTop: '20px',
+                        width: '150px',
+                        margin: '20px auto',
+                        padding: '0px'
+                    }}/>
             </div>
         </form>
     );

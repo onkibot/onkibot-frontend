@@ -4,6 +4,26 @@ export const toggleOnOff = () => {
     };
 };
 
+export const createAddedExternalResource = (externalResource) => {
+    return {
+        type: 'ADDED_EXTERNAL_RESOURCES_CREATE',
+        externalResource
+    };
+};
+
+export const deleteAddedExternalResource = (url) => {
+    return {
+        type: 'ADDED_EXTERNAL_RESOURCES_DELETE',
+        url
+    };
+};
+
+export const clearAddedExternalResources = () => {
+    return {
+        type: 'ADDED_EXTERNAL_RESOURCES_CLEAR'
+    }
+}
+
 const requestLogin = (credentials) => {
     return {
         type: 'LOGIN_REQUEST',

@@ -11,6 +11,7 @@
 
 $primary-green:         #5FCF80;
 $primary-blue:          #49C4DB;
+$primary-red:           #F44336;
 $primary-dark:          #3E474F;
 $text-color-white:      #FFFFFF;
 $text-color:            #3E474F;
@@ -60,7 +61,6 @@ img {
 
 header {
   background-color: $primary-blue;
-  border-bottom: 1px solid darken($primary-blue, 10%);
   color: $text-color;
   font-family: 'Signika', sans-serif;
   letter-spacing: 2px;
@@ -231,6 +231,9 @@ header {
   max-width: 500px;
   margin: 0 auto;
 }
+.form-style.create-task {
+  max-width: 700px;
+}
 
 /* Task Container -------- */
 .taskView {
@@ -366,7 +369,12 @@ footer {
 .text-align-right {
   text-align: right !important;
 }
-
+.error-msg {
+  color: $primary-red;
+}
+.italic {
+  font-style: italic;
+}
 /* =================================
   MEDIA QUERIES
 ==================================== */
