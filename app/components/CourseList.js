@@ -6,9 +6,9 @@ import CourseListItem from './CourseListItem';
 
 const CourseList = ({ courses }) => (
   <List>
-    {courses.map(({ id, name, description }) => (
-      <Link to={`courses/${id}/categories`} key={id}><CourseListItem name={name} description={description} /></Link>
-        ))}
+    {courses.map(({ courseId, name, description }) => (
+      <Link to={`courses/${courseIdd}/categories`} key={id}><CourseListItem name={name} description={description} /></Link>
+    ))}
   </List>
 );
 

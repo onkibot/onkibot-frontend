@@ -2,16 +2,12 @@ import { connect } from 'react-redux';
 
 import CategoryList from '../components/CategoryList';
 
-const mapStateToProps = (state, ownProps) => {
-    const stateCourse = state.courses.find(course => course.id == ownProps.courseId);
-    return {
-        courseId: ownProps.courseId,
-        categories: stateCourse.categories
-    };
-};
+const mapStateToProps = (state, {courseId}) => ({
+    categories: state.categories.filter((category) => category.courseId == courseId)
+});
 
 const UserCategoryList = connect(
-  mapStateToProps
+    mapStateToProps
 )(CategoryList);
 
 export default UserCategoryList;

@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { RaisedButton } from 'material-ui';
 import { TextField } from 'redux-form-material-ui';
 
-import { addCourse } from '../actions';
+import { createCourse } from '../actions/courses';
 
 const mapDispatchToProps = (dispatch, { router }) => ({
     onSubmit: (courseInfo) => {
