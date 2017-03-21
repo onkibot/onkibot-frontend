@@ -19,16 +19,26 @@ const mapDispatchToProps = (dispatch, { courseId, router }) => {
 let CreateCategoryForm = (props) => {
     const { handleSubmit } = props;
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <Field name="name" component={TextField} floatingLabelText="Category name" />
-            </div>
-            <div>
-                <Field name="description" component={TextField} floatingLabelText="Category description" />
-            </div>
-            <div>
-                <RaisedButton label="Create Category" type="submit" />
-            </div>
+        <form onSubmit={handleSubmit} className="form-style">
+          <Field
+            name="name"
+            fullWidth={true}
+            component={TextField}
+            floatingLabelText="Category name" />
+          <Field
+            name="description"
+            fullWidth={true}
+            component={TextField}
+            floatingLabelText="Category description" />
+          <RaisedButton
+            label="Create Category"
+            type="submit"
+            fullWidth={true}
+            style = {{
+                marginTop: '20px',
+                margin: '20px auto',
+                padding: '0px'
+            }}/>
         </form>
     );
 };
