@@ -1,17 +1,36 @@
 import React from 'react';
-import { FlatButton } from 'material-ui';
+import { RaisedButton, Card, CardActions, CardHeader } from 'material-ui';
+import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import { Link } from 'react-router';
 
 import UserCategoryList from '../../containers/UserCategoryList'
 
 const Categories = (props) => (
-    <div>
+  <div>
+    <Card>
+      <CardHeader
+        title="Back"
+        subtitle="to courses"
+        avatar={<Link to="courses"><ArrowBackward/></Link>}
+      />
+      <div className="page-title-container page-title-container-index">
         <h1>Categories</h1>
-        <Link to="courses"><FlatButton>Back to courses</FlatButton></Link>
-        <br/>
-        <Link to={`courses/${props.params.courseId}/categories/create`}><FlatButton>Create category</FlatButton></Link>
+      </div>
+      <CardActions>
         <UserCategoryList courseId={props.params.courseId} />
-    </div>
+        <Link to={`courses/${props.params.courseId}/categories/create`}>
+          <RaisedButton
+              label="Create category"
+              fullWidth={true}
+              className="place-mid"
+              style = {{
+                  margin: '20px auto',
+                  padding: '0px'
+              }}/>
+        </Link>
+      </CardActions>
+    </Card>
+  </div>
 );
 
 export default Categories;

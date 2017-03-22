@@ -3,13 +3,17 @@ import { Card, CardHeader, CardActions } from 'material-ui';
 
 import CreateCourseForm from '../../forms/CreateCourseForm';
 
-const Signup = (props) => (
+const CreateCourse = (props) => (
+  <div>
     <Card>
-        <CardHeader title="Onkibot" subtitle="The course creation form" />
-        <CardActions>
-            <CreateCourseForm router={props.router} />
-        </CardActions>
+      <div className="page-title-container page-title-container-index">
+        <h1>Create Course</h1>
+      </div>
+      <CardActions>
+        <CreateCourseForm router={props.router} />
+      </CardActions>
     </Card>
+  </div>
 );
 
-export default Signup;
+export default CreateCourse;
