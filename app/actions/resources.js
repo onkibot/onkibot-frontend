@@ -1,11 +1,11 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
 
-export const actionCreators = reduxCrud.actionCreatorsFor('categories', {
-    key: 'categoryId'
+export const actionCreators = reduxCrud.actionCreatorsFor('resources', {
+    key: 'resourceId'
 });
 
-export const createCategory = (courseId, category) => {
+export const createResource = (courseId, categoryId, resource) => {
     return (dispatch) => {
         const config = {
             method: 'POST',
@@ -17,20 +17,19 @@ export const createCategory = (courseId, category) => {
         };
 
         const cid = cuid();
-        category = {
-            ...category,
-            courseId: courseId,
-            categoryId: cid
+        resource = {
+            ...resource,
+            resourceId: cid
         };
 
-        dispatch(actionCreators.createStart(category));
+        dispatch(actionCreators.createStart(resource));
 
-        return fetch(`/api/v1/courses/${courseId}/categories`, config)
+        return fetch(`/api/v1/courses/${courseId}/categories/${categoryId}/resources`, config)
         .then((response) => {
             return response.json();
         })
-        .then((returnedCategory) => {
-            dispatch(actionCreators.createSuccess(returnedCategory, cid));
+        .then((returnedResource) => {
+            dispatch(actionCreators.createSuccess(returnedResource, cid));
         })
         .catch((err) => {
             dispatch(actionCreators.createError(err, category));
@@ -38,7 +37,7 @@ export const createCategory = (courseId, category) => {
     };
 };
 
-export const fetchCategories = (courseId) => {
+export const fetchResources = (courseId, categoryId) => {
     return (dispatch) => {
         const config = {
             method: 'GET',
@@ -50,12 +49,12 @@ export const fetchCategories = (courseId) => {
 
         dispatch(actionCreators.fetchStart());
 
-        return fetch(`/api/v1/courses/${courseId}/categories`, config)
+        return fetch(`/api/v1/courses/${courseId}/categories/${categoryId}/resources`, config)
         .then((response) => {
             return response.json();
         })
-        .then((returnedCategories) => {
-            dispatch(actionCreators.fetchSuccess(returnedCategories))
+        .then((returnedResources) => {
+            dispatch(actionCreators.fetchSuccess(returnedResources))
         })
         .catch((err) => {
             dispatch(actionCreators.fetchError(err))

@@ -6,9 +6,9 @@ import ResourceListItem from './ResourceListItem';
 
 const ResourceList = ({ courseId, categoryId, resources }) => (
   <List>
-    {resources.map(({ id, title, comment }) => (
+    {resources.map(({ resourceId, title, comment }) => (
       <Link
-        to={`courses/${courseId}/categories/${categoryId}/resources/${id}/resourceView/`}
+        to={`courses/${courseId}/categories/${categoryId}/resources/${resourceId}/resourceView/`}
         key={id}
       >
         <ResourceListItem
@@ -16,7 +16,7 @@ const ResourceList = ({ courseId, categoryId, resources }) => (
           comment={comment}
         />
       </Link>
-        ))}
+    ))}
   </List>
 );
 

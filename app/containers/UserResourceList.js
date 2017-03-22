@@ -2,14 +2,11 @@ import { connect } from 'react-redux';
 
 import ResourceList from '../components/ResourceList';
 
-const mapStateToProps = (state, ownProps) => {
-    const stateCourse = state.courses.find(course => course.id == ownProps.courseId);
-    const stateCategory = stateCourse.categories.find(category => category.id == ownProps.categoryId);
-    return {
-        courseId: ownProps.courseId,
-        categoryId: ownProps.categoryId,
-        resources: stateCategory.resources
-    };
+const mapStateToProps = (state, {courseId, categoryId}) => {
+  const resources = state.resources.filter((resource) => resource.categoryId == categoryId);
+  return {
+      resources: resources
+  }
 };
 
 const UserResourceList = connect(

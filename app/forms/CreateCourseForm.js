@@ -8,7 +8,7 @@ import { createCourse } from '../actions/courses';
 
 const mapDispatchToProps = (dispatch, { router }) => ({
     onSubmit: (courseInfo) => {
-        dispatch(addCourse(courseInfo));
+        dispatch(createCourse(courseInfo));
         router.push('/courses');
     }
 });

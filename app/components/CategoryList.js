@@ -16,7 +16,7 @@ const CategoryList = ({ courseId, categories }) => (
           description={description}
         />
       </Link>
-        ))}
+    ))}
   </List>
 );
 

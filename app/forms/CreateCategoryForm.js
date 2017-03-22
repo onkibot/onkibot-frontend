@@ -8,7 +8,7 @@ import { createCategory } from '../actions/categories';
 
 const mapDispatchToProps = (dispatch, { courseId, router }) => ({
     onSubmit: (categoryInfo) => {
-        dispatch(addCategory(courseId, categoryInfo));
+        dispatch(createCategory(courseId, categoryInfo));
         router.push(`/courses/${courseId}/categories`);
     }
 });

@@ -1,7 +1,8 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
+import {actionCreators as categoriesActionCreators} from './categories';
 
-const actionCreators = reduxCrud.actionCreatorsFor('courses', {
+export const actionCreators = reduxCrud.actionCreatorsFor('courses', {
     key: 'courseId'
 });
 
@@ -55,9 +56,16 @@ export const fetchCourses = () => {
         })
         .then((courses) => {
             dispatch(actionCreators.fetchSuccess(courses))
+
+            const flatCategories = courses.map((course) => {
+                return course.categories;
+            }).reduce((acc, categories) => {
+                return [...acc, ...categories];
+            }, [])
+            dispatch(categoriesActionCreators.fetchSuccess(flatCategories));
         })
         .catch((err) => {
-            dispatch(actionCreators.createError(err))
+            dispatch(actionCreators.fetchError(err))
         });
     };
 };
