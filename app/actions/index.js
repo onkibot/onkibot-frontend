@@ -4,9 +4,11 @@ export const toggleOnOff = () => {
     };
 };
 
-export const createAddedExternalResource = (externalResource) => {
+export const createAddedExternalResource = (externalResource, courseId, categoryId) => {
     return {
         type: 'ADDED_EXTERNAL_RESOURCES_CREATE',
+        courseId,
+        categoryId,
         externalResource
     };
 };
@@ -216,5 +218,18 @@ export const addCategory = ({ name, description, courseId }) => {
         name,
         description,
         courseId
+    }
+};
+
+let nextResourceId = 0
+export const addResource = ({resourceTitle, resourceComment}, addedExternalResources, courseId, categoryId) => {
+    return {
+        type: 'ADD_RESOURCE',
+        id: nextCategoryId++,
+        categoryId,
+        comment: resourceComment,
+        courseId,
+        title: resourceTitle,
+        externalResources: addedExternalResources
     }
 };
