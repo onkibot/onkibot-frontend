@@ -3,7 +3,13 @@ const addedExternalResources = (state = [], action) => {
         case 'ADDED_EXTERNAL_RESOURCES_CREATE':
             return [
                 ...state,
-                action.externalResource
+                {
+                  categoryId: action.categoryId,
+                  comment: action.externalResource.comment,
+                  courseId: action.courseId,
+                  title: action.externalResource.title,
+                  url: action.externalResource.url
+                }
             ];
         case 'ADDED_EXTERNAL_RESOURCES_DELETE':
             return state.filter((externalResource) => externalResource.url != action.url)

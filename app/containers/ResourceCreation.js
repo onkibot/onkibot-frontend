@@ -5,7 +5,7 @@ import { Card } from 'material-ui';
 import CreateResourceForm from '../forms/CreateResourceForm'
 import AddExternalResourceForm from '../forms/AddExternalResourceForm';
 import ExternalResourceList from '../components/ExternalResourceList';
-import {createAddedExternalResource, deleteAddedExternalResource, clearAddedExternalResources} from '../actions/'
+import {addResource, createAddedExternalResource, deleteAddedExternalResource, clearAddedExternalResources} from '../actions/'
 
 let ResourceCreation = ({onSubmit, externalResources, onAddExternalResource, onDeleteExternalResource}) => {
     const cardStyle = {
@@ -23,7 +23,6 @@ let ResourceCreation = ({onSubmit, externalResources, onAddExternalResource, onD
                     externalResources={externalResources}
                     onRemove={onDeleteExternalResource}/>
             </Card>
-
             <Card style={cardStyle}>
                 <h3>External Resources</h3>
                 <AddExternalResourceForm onSubmit={onAddExternalResource}/>
@@ -38,13 +37,23 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+function handleOnSubmitAction(resourceInfo, courseId, categoryId) {
+    return (dispatch, getState) => {
+        let state = getState();
+        dispatch(addResource(resourceInfo, state.addedExternalResources, courseId, categoryId));
+    }
+}
+
+const mapDispatchToProps = (dispatch, { courseId, categoryId, router }, props) => {
     return {
-        onAddExternalResource: (externalResource) => dispatch(createAddedExternalResource(externalResource)),
+        onAddExternalResource: (externalResource) => dispatch(createAddedExternalResource(externalResource, courseId, categoryId)),
         onDeleteExternalResource: (url) => dispatch(deleteAddedExternalResource(url)),
-        onSubmit: () => {
+        onSubmit: (resourceInfo) => {
             //TODO
+            //dispatch(addResource(resourceInfo, props.addedExternalResources, courseId, categoryId));
+            dispatch(handleOnSubmitAction(resourceInfo, courseId, categoryId));
             dispatch(clearAddedExternalResources());
+            router.push(`/courses/${courseId}/categories/${categoryId}/resources/`);
         }
     };
 }
