@@ -6,13 +6,26 @@ import Close from 'material-ui/svg-icons/navigation/close';
 const ExternalResourceList = ({externalResources, onRemove}) => (
     <List>
         {externalResources.map((externalResource) => (
-            <ListItem
-                key={externalResource.url}
-                leftIcon={<CodeCell/>}
-                rightIcon={onRemove && <Close onClick={() => onRemove(externalResource.url)}/>}
-                primaryText={externalResource.comment}
-                secondaryText={externalResource.title}
-            />
+            <div key={externalResource.url}>
+              {onRemove ?
+                  <ListItem
+                      leftIcon={<CodeCell/>}
+                      rightIcon={onRemove && <Close onClick={() => onRemove(externalResource.url)}/>}
+                      primaryText={externalResource.comment}
+                      secondaryText={externalResource.title}
+                  />
+                :
+                (
+                  <a href={externalResource.url} target="_blank">
+                    <ListItem
+                        leftIcon={<CodeCell/>}
+                        primaryText={externalResource.comment}
+                        secondaryText={externalResource.title}
+                    />
+                  </a>
+                )
+              }
+            </div>
         ))}
     </List>
 );
