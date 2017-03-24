@@ -4,18 +4,19 @@ import { Field, reduxForm } from 'redux-form';
 import { MenuItem, RaisedButton } from 'material-ui';
 import { TextField, SelectField } from 'redux-form-material-ui';
 
-import { addCourse } from '../actions';
+import { addCategory } from '../actions';
 
-const mapDispatchToProps = (dispatch, { router }) => {
+const mapDispatchToProps = (dispatch, { courseId, router }) => {
     return {
-        onSubmit: (courseInfo) => {
-            dispatch(addCourse(courseInfo));
-            router.push("/courses");
+        onSubmit: (categoryInfo) => {
+            categoryInfo.courseId = courseId;
+            dispatch(addCategory(categoryInfo));
+            router.push(`/courses/${courseId}/categories`);
         }
     };
 }
 
-let CreateCourseForm = (props) => {
+let CreateCategoryForm = (props) => {
     const { handleSubmit } = props;
     return (
         <form onSubmit={handleSubmit} className="form-style">
@@ -23,14 +24,14 @@ let CreateCourseForm = (props) => {
             name="name"
             fullWidth={true}
             component={TextField}
-            floatingLabelText="Course name" />
+            floatingLabelText="Category name" />
           <Field
             name="description"
             fullWidth={true}
             component={TextField}
-            floatingLabelText="Course description" />
+            floatingLabelText="Category description" />
           <RaisedButton
-            label="Create Course"
+            label="Create Category"
             type="submit"
             fullWidth={true}
             style = {{
@@ -42,11 +43,11 @@ let CreateCourseForm = (props) => {
     );
 };
 
-CreateCourseForm = connect(
+CreateCategoryForm = connect(
     undefined,
     mapDispatchToProps
 )(reduxForm({
-    form: 'create_course'
-})(CreateCourseForm));
+    form: 'create_category'
+})(CreateCategoryForm));
 
-export default CreateCourseForm;
+export default CreateCategoryForm;

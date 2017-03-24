@@ -11,6 +11,7 @@
 
 $primary-green:         #5FCF80;
 $primary-blue:          #49C4DB;
+$primary-red:           #F44336;
 $primary-dark:          #3E474F;
 $text-color-white:      #FFFFFF;
 $text-color:            #3E474F;
@@ -41,7 +42,7 @@ h3 {
 
 a {
   text-decoration: none;
-  color: $primary-dark;
+  color: darken($primary-blue, 20%);
   transition: .2s;
   transition-timing-function: ease-in-out;
   -webkit-transition: .2s;
@@ -60,7 +61,6 @@ img {
 
 header {
   background-color: $primary-blue;
-  border-bottom: 1px solid darken($primary-blue, 10%);
   color: $text-color;
   font-family: 'Signika', sans-serif;
   letter-spacing: 2px;
@@ -231,6 +231,50 @@ header {
   max-width: 500px;
   margin: 0 auto;
 }
+.form-style.create-task {
+  max-width: 700px;
+}
+
+/* Task Container -------- */
+.resourceContentView {
+  width: 100%;
+  min-height: 150px;
+  margin-bottom: 10px;
+  text-align: center;
+  img {
+    max-height: 250px;
+  }
+}
+.teachersnotes {
+  width: 100%;
+  padding: 20px;
+}
+
+.task-navigation {
+  height: 50px;
+  margin-top: 20px;
+  a {
+    padding: 5px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $primary-dark;
+    svg {
+      vertical-align: text-top;
+      margin-top: -2px;
+    }
+    span {
+      margin: 0 5px;
+    }
+    &:hover {
+      span {
+        color: darken($primary-blue, 20%) !important;
+      }
+      svg {
+        fill: darken($primary-blue, 20%) !important;
+      }
+    }
+  }
+}
 
 /* Footer -------- */
 footer {
@@ -316,7 +360,21 @@ footer {
 .img-rounded {
   border-radius: 10px;
 }
-
+.text-align-left {
+  text-align: left !important;
+}
+.text-align-center {
+  text-align: center !important;
+}
+.text-align-right {
+  text-align: right !important;
+}
+.error-msg {
+  color: $primary-red;
+}
+.italic {
+  font-style: italic;
+}
 /* =================================
   MEDIA QUERIES
 ==================================== */

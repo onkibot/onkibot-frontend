@@ -1,12 +1,13 @@
 import React from 'react';
 import { List } from 'material-ui';
+import { Link } from 'react-router';
 
 import CourseListItem from './CourseListItem';
 
-const CourseList = ({ courses, onCourseClick }) => (
+const CourseList = ({ courses }) => (
     <List>
         {courses.map(({id, name, description }) => (
-            <CourseListItem key={id} name={name} description={description} onClick={() => onCourseClick(id)} />
+            <Link to={`courses/${id}/categories`} key={id}><CourseListItem name={name} description={description} /></Link>
         ))}
     </List>
 );

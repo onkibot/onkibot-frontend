@@ -4,6 +4,28 @@ export const toggleOnOff = () => {
     };
 };
 
+export const createAddedExternalResource = (externalResource, courseId, categoryId) => {
+    return {
+        type: 'ADDED_EXTERNAL_RESOURCES_CREATE',
+        courseId,
+        categoryId,
+        externalResource
+    };
+};
+
+export const deleteAddedExternalResource = (url) => {
+    return {
+        type: 'ADDED_EXTERNAL_RESOURCES_DELETE',
+        url
+    };
+};
+
+export const clearAddedExternalResources = () => {
+    return {
+        type: 'ADDED_EXTERNAL_RESOURCES_CLEAR'
+    }
+}
+
 const requestLogin = (credentials) => {
     return {
         type: 'LOGIN_REQUEST',
@@ -38,7 +60,7 @@ export const loginUser = (credentials) => {
     return (dispatch) => {
         dispatch(requestLogin(credentials));
 
-        return fetch('/api/session', config)
+        return fetch('/api/v1/session', config)
         .then((response) => {
             return response.json();
         })
@@ -80,7 +102,7 @@ export const sessionUser = () => {
     return (dispatch) => {
         dispatch(requestSession())
 
-        return fetch('/api/session', config)
+        return fetch('/api/v1/session', config)
         .then((response) => {
             return response.json();
         })
@@ -121,7 +143,7 @@ export const logoutUser = () => {
     return (dispatch) => {
         dispatch(requestLogout());
 
-        return fetch('/api/session', config)
+        return fetch('/api/v1/session', config)
         .then((response) => {
             dispatch(receiveLogout());
         })
@@ -165,7 +187,7 @@ export const signupUser = (signupInfo) => {
     return (dispatch) => {
         dispatch(requestSignup());
 
-        return fetch('/api/signup', config)
+        return fetch('/api/v1/signup', config)
         .then((response) => {
             return response.json();
         })
@@ -185,5 +207,29 @@ export const addCourse = ({ name, description }) => {
         id: nextCourseId++,
         name,
         description
+    }
+};
+
+let nextCategoryId = 0
+export const addCategory = ({ name, description, courseId }) => {
+    return {
+        type: 'ADD_CATEGORY',
+        id: nextCategoryId++,
+        name,
+        description,
+        courseId
+    }
+};
+
+let nextResourceId = 0
+export const addResource = ({resourceTitle, resourceComment}, addedExternalResources, courseId, categoryId) => {
+    return {
+        type: 'ADD_RESOURCE',
+        id: nextCategoryId++,
+        categoryId,
+        comment: resourceComment,
+        courseId,
+        title: resourceTitle,
+        externalResources: addedExternalResources
     }
 };
