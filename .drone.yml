@@ -24,6 +24,7 @@ pipeline:
       - /var/www/html/onkibot/development:/web
     when:
       branch: development
+      event: pull_request
 
   production:
     image: node:7.3
@@ -40,4 +41,6 @@ pipeline:
       - /var/www/html/onkibot/master:/web
     when:
       branch: master
+      event: tag
+
 
