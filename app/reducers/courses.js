@@ -1,16 +1,33 @@
 const initCourse =  [
   {
-    id: 0,
+    id: 1245,
     name: 'Java',
     description: 'This is Java',
     categories: [
-      {
-        id: 0,
-        name: 'JavaFX',
-        description: 'This is JavaFX',
-        resources: []
-      }
-    ]
+        {
+          id: 352,
+          name: 'JavaFX',
+          description: 'This is JavaFX',
+          resources: [
+            {
+              id: 556,
+              categoryId: '0',
+              comment: 'comment to for loop resource',
+              courseId: '0',
+              title: 'For-loop',
+              externalResources: [
+                {
+                  categoryId: '0',
+                  comment: 'stack comment',
+                  courseId: '0',
+                  title: 'For loop at stack',
+                  url: 'http://google.com'
+                }
+              ]
+            }
+          ]
+        }
+      ]
   }
 ];
 
