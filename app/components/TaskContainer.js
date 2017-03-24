@@ -93,10 +93,6 @@ class TaskContainer extends Component {
     return(
 
       <div>
-
-        {/* Task creation form */}
-        <CreateResource/>
-
         {/* Task ex. 1 */}
         <Card>
           <div className="page-title-container">
