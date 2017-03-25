@@ -6,6 +6,7 @@ pipeline:
       - yarn
       - ./node_modules/.bin/webpack
     when:
+      event: push
       branch:
         exclude: [ master, development ]
 
@@ -24,7 +25,7 @@ pipeline:
       - /var/www/html/onkibot/development:/web
     when:
       branch: development
-      event: pull_request
+      event: push
 
   production:
     image: node:7.3
