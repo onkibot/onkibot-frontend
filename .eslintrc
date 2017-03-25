@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react",
+    "flowtype",
+    "prettier"
+  ],
+  "globals": {
+    "log": true,
+    "expect": true,
+    "__DEV__": true,
+    "__CLIENT__": true
+  },
+  "rules": {
+    "react/prop-types": 1,
+    "react/display-name": 1
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  },
+  "env": {
+    "browser": true
+  }
+}

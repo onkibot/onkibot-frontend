@@ -4,7 +4,8 @@ pipeline:
     commands:
       - npm install -g yarn
       - yarn
-      - ./node_modules/.bin/webpack
+      - yarn run lint
+      - yarn run build
     when:
       event: push
       branch:

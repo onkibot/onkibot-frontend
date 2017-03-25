@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Optimalization. Nuclear. Knowledge. Intelligence.",
   "main": "index.js",
+  "author": "OnkiBOT Team",
+  "license": "MIT",
   "dependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -34,12 +36,29 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "^2.3.0",
+    "babel-eslint": "^7.0.0",
+    "eslint": "^3.17.1",
+    "eslint-config-prettier": "^1.5.0",
+    "eslint-config-react-app": "^0.6.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-plugin-flowtype": "^2.30.3",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prettier": "^2.0.1",
+    "eslint-plugin-react": "^6.10.0",
+    "prettier": "^0.11.0"
   },
   "scripts": {
     "start": "webpack-dev-server --progress --colors",
-    "test": "test"
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack",
+    "lint": "yarn run lint:js",
+    "lint:js": "eslint app --ignore-path .gitignore"
   },
-  "author": "79",
-  "license": "MIT"
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --single-quote",
+      "git add"
+    ]
+  }
 }
