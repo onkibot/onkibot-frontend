@@ -11,7 +11,7 @@ const Index = () => (
       <Divider />
       <MediaQuery query="(orientation: landscape)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box section-box-split float-left">
               <img src="./images/hallvard.jpg" alt="Hallvard Trætteberg" />
             </div>
@@ -30,7 +30,7 @@ const Index = () => (
       </MediaQuery>
       <MediaQuery query="(orientation: portrait)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box">
               <img src="./images/hallvard.jpg" alt="Hallvard Trætteberg" />
             </div>
@@ -51,7 +51,7 @@ const Index = () => (
     <Card>
       <MediaQuery query="(orientation: landscape)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box section-box-split float-left">
               <h2>Learn</h2>
               <p>
@@ -69,7 +69,7 @@ const Index = () => (
       </MediaQuery>
       <MediaQuery query="(orientation: portrait)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box">
               <img src="./images/fp-learn.png" alt="Book" />
             </div>
@@ -89,7 +89,7 @@ const Index = () => (
     <Card>
       <MediaQuery query="(orientation: landscape)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box section-box-split float-left">
               <img src="./images/fp-give-feedback.png" alt="Give Feedback" className="img-rounded" />
             </div>
@@ -107,7 +107,7 @@ const Index = () => (
       </MediaQuery>
       <MediaQuery query="(orientation: portrait)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box">
               <img src="./images/fp-give-feedback.png" alt="Give Feedback" />
             </div>
@@ -127,7 +127,7 @@ const Index = () => (
     <Card>
       <MediaQuery query="(orientation: landscape)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box section-box-split float-left">
               <h2>Improve OnkiBot</h2>
               <p>
@@ -145,7 +145,7 @@ const Index = () => (
       </MediaQuery>
       <MediaQuery query="(orientation: portrait)">
         <CardActions>
-          <div className="cardActions-wrap">
+          <div className="card-actions-wrap">
             <div className="section-box">
               <img src="./images/fp-improve.png" alt="Book" />
             </div>
