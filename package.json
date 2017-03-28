@@ -81,17 +81,6 @@
       "git add"
     ]
   },
-  "stylelint": {
-    "plugins": [
-      "stylelint-scss"
-    ],
-    "extends": "stylelint-config-sass-guidelines",
-    "rules": {
-      "color-hex-case": null,
-      "string-quotes": "single",
-      "indentation": 2
-    }
-  },
   "jest": {
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
