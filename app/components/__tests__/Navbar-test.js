@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars, max-len */
 
 import React from 'react';
 import { Link } from 'react-router';
@@ -15,34 +15,35 @@ TODO: MediaQuery depends on device width, pass it through window.width?
 render(<Navbar />) currently returns an empty div element:
 <div class="header-navbar"></div>
 */
-describe('Navbar Component', function() {
-  it('should render without throwing an error', function() {
-    expect(shallow(<Navbar />).contains(<ul className="main-nav main-nav-icon">
-      <li>
-        <Link to="/" id="icon-content-wrap">
-          <LogoHeader />
-          <span id="icon-text">OnkiBot</span>
-        </Link>
-      </li>
-    </ul>)).toBe(true);
-  });
+describe('Navbar Component', () => {
+    it('should render without throwing an error', () => {
+        expect(shallow(<Navbar />).contains(<ul className="main-nav main-nav-icon">
+          <li>
+            <Link to="/" id="icon-content-wrap">
+              <LogoHeader />
+              <span id="icon-text">OnkiBot</span>
+            </Link>
+          </li>
+        </ul>)).toBe(true);
+    });
 
-  it('should be selectable by class ".header-navbar"', function() {
-    expect(shallow(<Navbar />).is('.header-navbar')).toBe(true);
-  });
+    it('should be selectable by class ".header-navbar"', () => {
+        expect(shallow(<Navbar />).is('.header-navbar')).toBe(true);
+    });
 
-  it('should mount in a full DOM', function() {
-    expect(mount(<Navbar />).find('.header-navbar').length).toBe(1);
-  });
+    it('should mount in a full DOM', () => {
+        expect(mount(<Navbar />).find('.header-navbar').length).toBe(1);
+    });
 
-  it('should contain LogoHeader', function() {
-    expect(shallow(<Navbar />).contains(<LogoHeader />)).toBe(true);
-  });
+    it('should contain LogoHeader', () => {
+        expect(shallow(<Navbar />).contains(<LogoHeader />)).toBe(true);
+    });
 
-  it('should render LogoHeader without throwing an error', function() {
-    expect(shallow(<Navbar />).equals(<svg id="onki-icon">
-      <g>
-        <path fill="#FFFFFF" d="M26.604,25.705l-0.142-0.04c-0.44-0.214-0.72-0.657-0.72-1.15V15.34c0-0.047-0.004-0.096-0.014-0.142
+    it('should render LogoHeader without throwing an error', () => {
+        expect(shallow(<Navbar />).equals(<svg id="onki-icon">
+          <g>
+            <path
+              fill="#FFFFFF" d="M26.604,25.705l-0.142-0.04c-0.44-0.214-0.72-0.657-0.72-1.15V15.34c0-0.047-0.004-0.096-0.014-0.142
           c0.999-0.347,1.722-1.303,1.722-2.42c0-1.111-0.724-2.117-1.718-2.468V0.523c-0.254-0.002-0.886,0-0.886,0s-0.218,0-0.811,0v9.842
           c-0.995,0.353-1.709,1.302-1.709,2.413c0,1.117,0.72,2.073,1.721,2.42c-0.008,0.046-0.012,0.096-0.012,0.142v2.659
           c-0.786,0.178-1.279,0.603-1.694,0.958c-0.458,0.394-0.757,0.647-1.438,0.647c-0.68,0-0.98-0.253-1.435-0.647
@@ -74,8 +75,10 @@ describe('Navbar Component', function() {
           c-0.005,0.009-0.012,0.019-0.017,0.022c-0.013,0.017-0.023,0.034-0.031,0.05c-0.005,0-0.005,0-0.007,0.004
           c-1.206,1.913-1.845,4.113-1.845,6.386c0,6.58,5.361,11.943,11.951,11.943c6.587,0,11.941-5.363,11.941-11.943
           c0-2.901-1.052-5.703-2.96-7.885C31.991,27.514,29.412,26.107,26.604,25.705z M24.892,11.929c0.47,0,0.852,0.38,0.852,0.849
-          c0,0.474-0.381,0.853-0.852,0.853c-0.472,0-0.855-0.379-0.855-0.853C24.037,12.309,24.419,11.929,24.892,11.929z"/>
-        <path fill="#FFFFFF" d="M49.045,17.885c-1.315,0-1.998,0.588-2.55,1.061c-0.45,0.386-0.754,0.644-1.435,0.644
+          c0,0.474-0.381,0.853-0.852,0.853c-0.472,0-0.855-0.379-0.855-0.853C24.037,12.309,24.419,11.929,24.892,11.929z"
+            />
+            <path
+              fill="#FFFFFF" d="M49.045,17.885c-1.315,0-1.998,0.588-2.55,1.061c-0.45,0.386-0.754,0.644-1.435,0.644
           c-0.683,0-0.982-0.257-1.436-0.644c-0.555-0.473-1.234-1.061-2.55-1.061c-1.307,0-1.992,0.588-2.537,1.061
           c-0.458,0.386-0.767,0.644-1.44,0.644c-0.675,0-0.986-0.257-1.442-0.644c-0.543-0.473-1.23-1.061-2.54-1.061
           c-1.313,0-1.994,0.588-2.554,1.061c-0.454,0.386-0.749,0.644-1.431,0.644c-0.205,0-0.377-0.023-0.537-0.069
@@ -83,15 +86,16 @@ describe('Navbar Component', function() {
           c1.31,0,1.991-0.582,2.544-1.057c0.459-0.393,0.759-0.652,1.439-0.652s0.98,0.258,1.438,0.652c0.544,0.474,1.229,1.057,2.544,1.057
           c1.308,0,1.991-0.582,2.548-1.057c0.453-0.393,0.748-0.652,1.431-0.652c0.686,0,0.986,0.258,1.437,0.652
           c0.552,0.474,1.241,1.057,2.549,1.057c1.313,0,1.998-0.582,2.55-1.057c0.458-0.393,0.756-0.652,1.435-0.652
-          c0.473,0,0.855-0.379,0.855-0.85C49.9,18.266,49.518,17.885,49.045,17.885z"/>
-      </g>
-    </svg>));
+          c0.473,0,0.855-0.379,0.855-0.85C49.9,18.266,49.518,17.885,49.045,17.885z"
+            />
+          </g>
+        </svg>));
 
-    it('should include correct Links', function() {
-      expect(shallow(<Navbar />).contains(<Link to="/"><MenuItem onTouchTap={this.handleClose}>Home</MenuItem></Link>)).toBe(true);
-      expect(shallow(<Navbar />).contains(<Link to="/login"><MenuItem onTouchTap={this.handleClose}>Login</MenuItem></Link>)).toBe(true);
-      expect(shallow(<Navbar />).contains(<Link to="/signup"><MenuItem onTouchTap={this.handleClose}>Sign up</MenuItem></Link>)).toBe(true);
-      expect(shallow(<Navbar />).contains(<Link to="/taskcontainer"><MenuItem onTouchTap={this.handleClose}>Courses</MenuItem></Link>)).toBe(true);
+        it('should include correct Links', function () {
+            expect(shallow(<Navbar />).contains(<Link to="/"><MenuItem onTouchTap={this.handleClose}>Home</MenuItem></Link>)).toBe(true);
+            expect(shallow(<Navbar />).contains(<Link to="/login"><MenuItem onTouchTap={this.handleClose}>Login</MenuItem></Link>)).toBe(true);
+            expect(shallow(<Navbar />).contains(<Link to="/signup"><MenuItem onTouchTap={this.handleClose}>Sign up</MenuItem></Link>)).toBe(true);
+            expect(shallow(<Navbar />).contains(<Link to="/taskcontainer"><MenuItem onTouchTap={this.handleClose}>Courses</MenuItem></Link>)).toBe(true);
+        });
     });
-  });
 });

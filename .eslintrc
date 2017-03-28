@@ -24,17 +24,21 @@
     "react/prop-types": "warn",
     "react/display-name": "warn",
   	"immutable/no-let": "off",
-  	"immutable/no-this": "error",
+  	"immutable/no-this": "off",
   	"immutable/no-mutation": "off",
     "import/no-mutable-exports": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js"] }],
     "react/jsx-boolean-value": "off",
+    "react/prefer-stateless-function": ["error", { "ignorePureComponents": true }],
     "indent": ["error", 4, {"SwitchCase": 1}],
     "comma-dangle": ["error", "never"],
     "no-else-return": "off",
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "eqeqeq": "off",
-    "max-len": ["error", 120]
+    "max-len": ["error", 120],
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }]
   },
   "settings": {
     "import/resolver": {

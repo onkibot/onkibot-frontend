@@ -5,13 +5,13 @@ import { Link } from 'react-router';
 
 import CreateCategoryForm from '../../forms/CreateCategoryForm';
 
-const CreateCategory = (props) => (
+const CreateCategory = props => (
   <div>
     <Card>
       <CardHeader
         title="Back"
         subtitle="to categories"
-        avatar={<Link to={`courses/${props.params.courseId}/categories`}><ArrowBackward/></Link>}
+        avatar={<Link to={`courses/${props.params.courseId}/categories`}><ArrowBackward /></Link>}
       />
       <div className="page-title-container page-title-container-index">
         <h1>Create Category</h1>

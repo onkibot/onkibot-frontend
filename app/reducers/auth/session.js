@@ -7,7 +7,7 @@ const session = (state = null, action) => {
 
         case 'LOGOUT_SUCCESS':
             return null;
-        
+
         default:
             return state;
     }
