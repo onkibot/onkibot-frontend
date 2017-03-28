@@ -1,14 +1,27 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 import { shallow, mount, render } from 'enzyme';
+
 import Footer from '../Footer';
 import LogoSmall from '../svg/LogoSmall';
 
 describe('Footer Component', function() {
   it('should render without throwing an error', function() {
     expect(shallow(<Footer />).contains(<span className="icon-text">Copyright © 2017 Onkibot - <a href="mailto:onki@onkibot.com">onki@onkibot.com</a></span>)).toBe(true);
+  });
+
+  it('should be selectable by tag "footer"', function() {
+    expect(shallow(<Footer />).is('footer')).toBe(true);
+  });
+
+  it('should mount in a full DOM', function() {
+    expect(mount(<Footer />).find('footer').length).toBe(1);
+  });
+
+  it('should render to static HTML', function() {
+    expect(render(<Footer />).text()).toContain('Copyright © 2017 Onkibot - onki@onkibot.com');
   });
 
   it('should contain LogoSmall', function() {

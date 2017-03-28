@@ -20,7 +20,7 @@ class Navbar extends Component {
 
   render(){
     return(
-      <div>
+      <div className='header-navbar'>
       <MediaQuery query='(min-device-width: 1224px)'>
         <MediaQuery query='(orientation: landscape)'>
           <header>
