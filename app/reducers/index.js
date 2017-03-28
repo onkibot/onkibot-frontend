@@ -14,6 +14,6 @@ const onkibotApp = combineReducers({
     addedExternalResources,
     form: formReducer,
     routing: routerReducer
-})
+});
 
 export default onkibotApp;

@@ -43,10 +43,13 @@
     "eslint-config-react-app": "^0.6.1",
     "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-plugin-flowtype": "^2.30.3",
-    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
     "prettier": "^0.11.0",
     "jest": "^19.0.2",
     "identity-obj-proxy": "^3.0.0",
@@ -77,17 +80,6 @@
       "prettier --write --single-quote",
       "git add"
     ]
-  },
-  "stylelint": {
-    "plugins": [
-      "stylelint-scss"
-    ],
-    "extends": "stylelint-config-sass-guidelines",
-    "rules": {
-      "color-hex-case": null,
-      "string-quotes": "single",
-      "indentation": 2
-    }
   },
   "jest": {
     "coverageDirectory": "./coverage/",

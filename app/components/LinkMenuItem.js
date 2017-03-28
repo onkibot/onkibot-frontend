@@ -7,8 +7,8 @@ const LoginLinkMenuItem = ({ disable, to, primaryText }) => {
         return null;
     }
     return (
-        <Link to={to}><MenuItem primaryText={primaryText} /></Link>
+      <Link to={to}><MenuItem primaryText={primaryText} /></Link>
     );
-}
+};
 
 export default LoginLinkMenuItem;

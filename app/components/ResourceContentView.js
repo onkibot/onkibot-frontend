@@ -1,6 +1,4 @@
 import React from 'react';
-import { List } from 'material-ui';
-import { Link } from 'react-router';
 
 const ResourceContentView = () => (
   <div className="resourceContentView">

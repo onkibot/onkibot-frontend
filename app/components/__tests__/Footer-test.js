@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars, max-len */
 
 import React from 'react';
 
@@ -7,31 +7,32 @@ import { shallow, mount, render } from 'enzyme';
 import Footer from '../Footer';
 import LogoSmall from '../svg/LogoSmall';
 
-describe('Footer Component', function() {
-  it('should render without throwing an error', function() {
-    expect(shallow(<Footer />).contains(<span className="icon-text">Copyright © 2017 Onkibot - <a href="mailto:onki@onkibot.com">onki@onkibot.com</a></span>)).toBe(true);
-  });
+describe('Footer Component', () => {
+    it('should render without throwing an error', () => {
+        expect(shallow(<Footer />).contains(<span className="icon-text">Copyright © 2017 Onkibot - <a href="mailto:onki@onkibot.com">onki@onkibot.com</a></span>)).toBe(true);
+    });
 
-  it('should be selectable by tag "footer"', function() {
-    expect(shallow(<Footer />).is('footer')).toBe(true);
-  });
+    it('should be selectable by tag "footer"', () => {
+        expect(shallow(<Footer />).is('footer')).toBe(true);
+    });
 
-  it('should mount in a full DOM', function() {
-    expect(mount(<Footer />).find('footer').length).toBe(1);
-  });
+    it('should mount in a full DOM', () => {
+        expect(mount(<Footer />).find('footer').length).toBe(1);
+    });
 
-  it('should render to static HTML', function() {
-    expect(render(<Footer />).text()).toContain('Copyright © 2017 Onkibot - onki@onkibot.com');
-  });
+    it('should render to static HTML', () => {
+        expect(render(<Footer />).text()).toContain('Copyright © 2017 Onkibot - onki@onkibot.com');
+    });
 
-  it('should contain LogoSmall', function() {
-    expect(shallow(<Footer />).contains(<LogoSmall />)).toBe(true);
-  });
+    it('should contain LogoSmall', () => {
+        expect(shallow(<Footer />).contains(<LogoSmall />)).toBe(true);
+    });
 
-  it('should render LogoSmall without throwing an error', function() {
-    expect(shallow(<LogoSmall />).equals(<svg id="onki-icon">
-      <g>
-        <path fill="#FFFFFF" d="M15.966,15.421l-0.085-0.024c-0.263-0.128-0.43-0.393-0.43-0.688V9.227c0-0.028-0.002-0.057-0.008-0.085
+    it('should render LogoSmall without throwing an error', () => {
+        expect(shallow(<LogoSmall />).equals(<svg id="onki-icon">
+          <g>
+            <path
+              fill="#FFFFFF" d="M15.966,15.421l-0.085-0.024c-0.263-0.128-0.43-0.393-0.43-0.688V9.227c0-0.028-0.002-0.057-0.008-0.085
           c0.597-0.208,1.028-0.778,1.028-1.446c0-0.664-0.432-1.265-1.026-1.475V0.372c-0.152-0.001-0.53,0-0.53,0s-0.13,0-0.485,0v5.882
           c-0.594,0.21-1.021,0.778-1.021,1.441c0,0.668,0.431,1.239,1.028,1.446c-0.004,0.028-0.007,0.058-0.007,0.085v1.589
           c-0.47,0.106-0.764,0.36-1.012,0.572c-0.273,0.235-0.452,0.386-0.859,0.386c-0.406,0-0.585-0.151-0.857-0.386
@@ -63,8 +64,10 @@ describe('Footer Component', function() {
           c-0.003,0.005-0.006,0.011-0.01,0.013c-0.008,0.01-0.014,0.021-0.019,0.031c-0.003,0-0.003,0-0.004,0.001
           c-0.721,1.143-1.103,2.458-1.103,3.816c0,3.933,3.204,7.137,7.142,7.137c3.936,0,7.136-3.204,7.136-7.137
           c0-1.733-0.629-3.407-1.77-4.712C19.186,16.502,17.645,15.662,15.966,15.421z M14.944,7.189c0.281,0,0.509,0.227,0.509,0.506
-          c0,0.284-0.229,0.51-0.509,0.51c-0.283,0-0.511-0.227-0.511-0.51C14.433,7.416,14.661,7.189,14.944,7.189z"/>
-        <path fill="#FFFFFF" d="M29.377,10.748c-0.786,0-1.194,0.352-1.523,0.634c-0.27,0.231-0.451,0.385-0.856,0.385
+          c0,0.284-0.229,0.51-0.509,0.51c-0.283,0-0.511-0.227-0.511-0.51C14.433,7.416,14.661,7.189,14.944,7.189z"
+            />
+            <path
+              fill="#FFFFFF" d="M29.377,10.748c-0.786,0-1.194,0.352-1.523,0.634c-0.27,0.231-0.451,0.385-0.856,0.385
           c-0.409,0-0.588-0.153-0.859-0.385c-0.333-0.282-0.737-0.634-1.524-0.634c-0.78,0-1.19,0.352-1.517,0.634
           c-0.273,0.231-0.458,0.385-0.859,0.385c-0.404,0-0.589-0.153-0.862-0.385c-0.325-0.282-0.735-0.634-1.518-0.634
           c-0.785,0-1.192,0.352-1.525,0.634c-0.272,0.231-0.448,0.385-0.855,0.385c-0.123,0-0.226-0.013-0.321-0.041
@@ -72,8 +75,9 @@ describe('Footer Component', function() {
           c0.782,0,1.189-0.348,1.521-0.631c0.273-0.235,0.454-0.39,0.859-0.39c0.407,0,0.586,0.155,0.859,0.39
           c0.325,0.283,0.735,0.631,1.521,0.631c0.781,0,1.188-0.348,1.522-0.631c0.271-0.235,0.447-0.39,0.854-0.39
           c0.41,0,0.589,0.155,0.858,0.39c0.33,0.283,0.742,0.631,1.523,0.631c0.785,0,1.193-0.348,1.524-0.631
-          c0.273-0.235,0.452-0.39,0.857-0.39c0.283,0,0.51-0.226,0.51-0.508C29.889,10.975,29.66,10.748,29.377,10.748z"/>
-      </g>
-    </svg>)).toBe(true);
-  });
+          c0.273-0.235,0.452-0.39,0.857-0.39c0.283,0,0.51-0.226,0.51-0.508C29.889,10.975,29.66,10.748,29.377,10.748z"
+            />
+          </g>
+        </svg>)).toBe(true);
+    });
 });

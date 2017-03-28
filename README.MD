@@ -4,6 +4,7 @@
 1. Clone the repository.
 2. Open command line in local repository.
 3. Run `npm install`.
+4. (For developers) Install Atom plugins: `apm install nuclide pigments linter-eslint linter-stylelint prettier-atom`
 
 # How to run local development server:
 1. Run `npm start`.
