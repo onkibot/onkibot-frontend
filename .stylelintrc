@@ -6,6 +6,10 @@
   "rules": {
     "color-hex-case": null,
     "string-quotes": "single",
-    "indentation": 2
+    "indentation": 2,
+    "max-nesting-depth": 5,
+    "selector-no-id": null,
+    "property-no-vendor-prefix": null,
+    "selector-max-compound-selectors": 7
   }
 }
