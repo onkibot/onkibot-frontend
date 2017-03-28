@@ -2,20 +2,20 @@
   WEB FONTS
 ==================================== */
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
-@import url(https://fonts.googleapis.com/css?family=Signika);
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Signika');
 
 /* =================================
   BASE COLORS
 ==================================== */
 
-$primary-green:         #5FCF80;
-$primary-blue:          #49C4DB;
-$primary-red:           #F44336;
-$primary-dark:          #3E474F;
-$text-color-white:      #FFFFFF;
-$text-color:            #3E474F;
-$background:            #EDEFF0;
+$primary-green: #5FCF80;
+$primary-blue: #49C4DB;
+$primary-red: #F44336;
+$primary-dark: #3E474F;
+$text-color-white: #FFF;
+$text-color: #3E474F;
+$background: #EDEFF0;
 
 /* =================================
   MIXINS
@@ -27,10 +27,10 @@ $background:            #EDEFF0;
 ==================================== */
 
 body {
-  color: $primary-dark;
   background: $background;
-  margin: 0;
+  color: $primary-dark;
   font-family: 'Roboto', sans-serif;
+  margin: 0;
 }
 
 h1,
@@ -41,20 +41,21 @@ h3 {
 }
 
 a {
-  text-decoration: none;
   color: darken($primary-blue, 20%);
-  transition: .2s;
+  text-decoration: none;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
   transition-timing-function: ease-in-out;
-  -webkit-transition: .2s;
   -webkit-transition-timing-function: ease-in-out;
+
   &:hover {
     color: darken($primary-green, 30%);
   }
 }
 
 img {
-  width: auto;
   height: auto;
+  width: auto;
 }
 
 /* Header -------- */
@@ -62,10 +63,10 @@ img {
 header {
   background-color: $primary-blue;
   color: $text-color;
-  font-family: 'Signika', sans-serif;
-  letter-spacing: 2px;
-  font-weight: bold;
   display: flex;
+  font-family: 'Signika', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
   flex-wrap: wrap;
 
   .header-wrap {
