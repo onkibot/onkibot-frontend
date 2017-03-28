@@ -5,6 +5,8 @@ pipeline:
       - npm install -g yarn
       - yarn
       - yarn run lint
+      - yarn run test
+      - curl -s https://codecov.io/bash | bash -s - -t $CODECOV_TOKEN
       - yarn run build
     when:
       event: push
@@ -44,5 +46,3 @@ pipeline:
     when:
       branch: master
       event: tag
-
-

@@ -1,0 +1,17 @@
+[ignore]
+.*/__tests__/.*
+.*\.ignore\.js
+.*/node_modules/babel.*
+.*/node_modules/fbjs*
+.*/node_modules/stylelint*
+
+[include]
+
+[options]
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FlowTODO
+
