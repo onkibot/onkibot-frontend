@@ -8,9 +8,6 @@
   "dependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
-    "babel-preset-stage-0": "^6.22.0",
     "bootstrap": "^4.0.0-alpha.6",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-beta",
@@ -38,6 +35,9 @@
   "devDependencies": {
     "webpack-dev-server": "^2.3.0",
     "babel-eslint": "^7.0.0",
+    "babel-cli": "^6.24.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.42.0",
     "eslint": "^3.17.1",
     "eslint-config-prettier": "^1.5.0",
     "eslint-config-react-app": "^0.6.1",
@@ -47,18 +47,61 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.0",
-    "prettier": "^0.11.0"
+    "prettier": "^0.11.0",
+    "jest": "^19.0.2",
+    "identity-obj-proxy": "^3.0.0",
+    "enzyme": "^2.8.0",
+    "jest-enzyme": "^2.1.2",
+    "babel-jest": "^19.0.0",
+    "react-addons-test-utils": "~15.4.2",
+    "codecov": "^2.1.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "stylelint": "^7.9.0",
+    "stylelint-scss": "^1.4.3",
+    "stylelint-config-sass-guidelines": "^2.0.0"
   },
   "scripts": {
     "start": "webpack-dev-server --progress --colors",
     "build": "NODE_ENV=production ./node_modules/.bin/webpack",
-    "lint": "yarn run lint:js",
-    "lint:js": "eslint app --ignore-path .gitignore"
+    "test": "jest",
+    "test:coverage": "yarn run test -- --coverage",
+    "test:watch": "npm test -- --watch",
+    "lint": "yarn run lint:js && yarn run lint:scss",
+    "lint:js": "eslint app --ignore-path .gitignore",
+    "lint:scss": "stylelint ./app/style.scss"
   },
   "lint-staged": {
     "*.js": [
       "prettier --write --single-quote",
       "git add"
+    ]
+  },
+  "stylelint": {
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "extends": "stylelint-config-sass-guidelines",
+    "rules": {
+      "color-hex-case": null,
+      "string-quotes": "single",
+      "indentation": 2
+    }
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom" : ["app/**/*.js"],
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jasmine-enzyme"
     ]
   }
 }
