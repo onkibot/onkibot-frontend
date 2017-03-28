@@ -27,7 +27,7 @@ const ResourceView = props => (
         <h1>Resource</h1>
       </div>
       <CardActions>
-        <div className="cardActions-wrap">
+        <div className="card-actions-wrap">
           <ResourceContentView
             courseId={props.params.courseId}
             categoryId={props.params.categoryId}

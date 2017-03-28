@@ -93,7 +93,7 @@ class TaskContainer extends Component {
               </div>
               <Divider />
               <CardActions>
-                <div className="cardActions-wrap">
+                <div className="card-actions-wrap">
                   <div className="taskView">
                     <img src="./images/for-loop.jpg" alt={this.state.taskName} />
                   </div>
@@ -140,7 +140,7 @@ class TaskContainer extends Component {
               </div>
               <Divider />
               <CardActions>
-                <div className="cardActions-wrap">
+                <div className="card-actions-wrap">
                   <div className="taskView">
                     <SyntaxHighlighter
                       language="javascript"

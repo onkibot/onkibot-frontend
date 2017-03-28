@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ResourceContentView = () => (
-  <div className="resourceContentView">
+  <div className="resource-content-view">
     <p>Her kommer koden/kommentaren.</p>
   </div>
 );
