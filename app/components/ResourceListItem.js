@@ -6,4 +6,9 @@ const ResourceListItem = ({ name, body }) => (
   <ListItem primaryText={name} secondaryText={body} leftIcon={<LightBulb />} />
 );
 
+ResourceListItem.propTypes = {
+    name: React.PropTypes.string.isRequired,
+    body: React.PropTypes.string.isRequired
+};
+
 export default ResourceListItem;

@@ -43,6 +43,10 @@ let CreateCourseForm = (props) => {
     );
 };
 
+CreateCourseForm.propTypes = {
+    handleSubmit: React.PropTypes.func.isRequired
+};
+
 CreateCourseForm = connect(
     undefined,
     mapDispatchToProps

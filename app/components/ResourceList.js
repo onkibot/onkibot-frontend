@@ -20,4 +20,10 @@ const ResourceList = ({ courseId, categoryId, resources }) => (
   </List>
 );
 
+ResourceList.propTypes = {
+    courseId: React.PropTypes.number.isRequired,
+    categoryId: React.PropTypes.number.isRequired,
+    resources: React.PropTypes.array.isRequired
+};
+
 export default ResourceList;

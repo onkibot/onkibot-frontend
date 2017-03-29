@@ -39,6 +39,13 @@ let ResourceCreation = ({ onSubmit, externalResources, onAddExternalResource, on
     );
 };
 
+ResourceCreation.propTypes = {
+    onSubmit: React.PropTypes.func.isRequired,
+    externalResources: React.PropTypes.func.isRequired,
+    onAddExternalResource: React.PropTypes.func.isRequired,
+    onDeleteExternalResource: React.PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
     externalResources: state.addedExternalResources
 });

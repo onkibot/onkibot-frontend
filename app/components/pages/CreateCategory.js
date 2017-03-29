@@ -23,4 +23,9 @@ const CreateCategory = props => (
   </div>
 );
 
+CreateCategory.propTypes = {
+    params: React.PropTypes.array.isRequired,
+    router: React.PropTypes.object.isRequired
+};
+
 export default CreateCategory;

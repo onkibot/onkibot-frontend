@@ -20,4 +20,9 @@ const CategoryList = ({ courseId, categories }) => (
   </List>
 );
 
+CategoryList.propTypes = {
+    courseId: React.PropTypes.number.isRequired,
+    categories: React.PropTypes.array.isRequired
+};
+
 export default CategoryList;
