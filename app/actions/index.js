@@ -1,51 +1,39 @@
-export const toggleOnOff = () => {
-    return {
-        type: 'TOGGLE_BOOL'
-    };
-};
+import { fetchCourses } from './courses';
 
-export const createAddedExternalResource = (externalResource, courseId, categoryId) => {
-    return {
-        type: 'ADDED_EXTERNAL_RESOURCES_CREATE',
-        courseId,
-        categoryId,
-        externalResource
-    };
-};
+export const toggleOnOff = () => ({
+    type: 'TOGGLE_BOOL'
+});
 
-export const deleteAddedExternalResource = (url) => {
-    return {
-        type: 'ADDED_EXTERNAL_RESOURCES_DELETE',
-        url
-    };
-};
+export const createAddedExternalResource = (externalResource, courseId, categoryId) => ({
+    type: 'ADDED_EXTERNAL_RESOURCES_CREATE',
+    courseId,
+    categoryId,
+    externalResource
+});
 
-export const clearAddedExternalResources = () => {
-    return {
-        type: 'ADDED_EXTERNAL_RESOURCES_CLEAR'
-    }
-}
+export const deleteAddedExternalResource = url => ({
+    type: 'ADDED_EXTERNAL_RESOURCES_DELETE',
+    url
+});
 
-const requestLogin = (credentials) => {
-    return {
-        type: 'LOGIN_REQUEST',
-        credentials
-    };
-};
+export const clearAddedExternalResources = () => ({
+    type: 'ADDED_EXTERNAL_RESOURCES_CLEAR'
+});
 
-const receiveLogin = (session) => {
-    return {
-        type: 'LOGIN_SUCCESS',
-        session
-    };
-};
+const requestLogin = credentials => ({
+    type: 'LOGIN_REQUEST',
+    credentials
+});
 
-const loginError = (message) => {
-    return {
-        type: 'LOGIN_FAILURE',
-        message
-    };
-};
+const receiveLogin = session => ({
+    type: 'LOGIN_SUCCESS',
+    session
+});
+
+const loginError = message => ({
+    type: 'LOGIN_FAILURE',
+    message
+});
 
 export const loginUser = (credentials) => {
     const config = {
@@ -61,37 +49,30 @@ export const loginUser = (credentials) => {
         dispatch(requestLogin(credentials));
 
         return fetch('/api/v1/session', config)
-        .then((response) => {
-            return response.json();
-        })
+        .then(response => response.json())
         .then((json) => {
-            dispatch(receiveLogin(json))
+            dispatch(receiveLogin(json));
+            return dispatch(fetchCourses());
         })
         .catch((err) => {
-            dispatch(loginError(err))
+            dispatch(loginError(err));
         });
     };
 };
 
-const requestSession = () => {
-    return {
-        type: 'SESSION_REQUEST'
-    };
-};
+const requestSession = () => ({
+    type: 'SESSION_REQUEST'
+});
 
-const receiveSession = (session) => {
-    return {
-        type: 'SESSION_SUCCESS',
-        session
-    };
-};
+const receiveSession = session => ({
+    type: 'SESSION_SUCCESS',
+    session
+});
 
-const sessionError = (message) => {
-    return {
-        type: 'SESSION_ERROR',
-        message
-    };
-};
+const sessionError = message => ({
+    type: 'SESSION_ERROR',
+    message
+});
 
 export const sessionUser = () => {
     const config = {
@@ -100,39 +81,32 @@ export const sessionUser = () => {
     };
 
     return (dispatch) => {
-        dispatch(requestSession())
+        dispatch(requestSession());
 
         return fetch('/api/v1/session', config)
-        .then((response) => {
-            return response.json();
-        })
+        .then(response => response.json())
         .then((json) => {
             dispatch(receiveSession(json));
+            return dispatch(fetchCourses());
         })
         .catch((err) => {
             dispatch(sessionError(err));
-        })
+        });
     };
 };
 
-const requestLogout = () => {
-    return {
-        type: 'LOGOUT_REQUEST'
-    };
-};
+const requestLogout = () => ({
+    type: 'LOGOUT_REQUEST'
+});
 
-const receiveLogout = () => {
-    return {
-        type: 'LOGOUT_SUCCESS'
-    };
-};
+const receiveLogout = () => ({
+    type: 'LOGOUT_SUCCESS'
+});
 
-const logoutError = (message) => {
-    return {
-        type: 'LOGOUT_ERROR',
-        message
-    }
-};
+const logoutError = message => ({
+    type: 'LOGOUT_ERROR',
+    message
+});
 
 export const logoutUser = () => {
     const config = {
@@ -144,35 +118,29 @@ export const logoutUser = () => {
         dispatch(requestLogout());
 
         return fetch('/api/v1/session', config)
-        .then((response) => {
+        .then(() => {
             dispatch(receiveLogout());
         })
         .catch((err) => {
             dispatch(logoutError(err));
         });
-    }
-};
-
-const requestSignup = (signupInfo) => {
-    return {
-        type: 'SIGNUP_REQUEST',
-        signupInfo
     };
 };
 
-const receiveSignup = (session) => {
-    return {
-        type: 'SIGNUP_SUCCESS',
-        session
-    };
-};
+const requestSignup = signupInfo => ({
+    type: 'SIGNUP_REQUEST',
+    signupInfo
+});
 
-const signupError = (message) => {
-    return {
-        type: 'SIGNUP_ERROR',
-        message
-    }
-};
+const receiveSignup = session => ({
+    type: 'SIGNUP_SUCCESS',
+    session
+});
+
+const signupError = message => ({
+    type: 'SIGNUP_ERROR',
+    message
+});
 
 export const signupUser = (signupInfo) => {
     const config = {
@@ -188,48 +156,13 @@ export const signupUser = (signupInfo) => {
         dispatch(requestSignup());
 
         return fetch('/api/v1/signup', config)
-        .then((response) => {
-            return response.json();
-        })
+        .then(response => response.json())
         .then((json) => {
             dispatch(receiveSignup(json));
+            return dispatch(fetchCourses());
         })
         .catch((err) => {
             dispatch(signupError(err));
         });
-    }
-};
-
-let nextCourseId = 0
-export const addCourse = ({ name, description }) => {
-    return {
-        type: 'ADD_COURSE',
-        id: nextCourseId++,
-        name,
-        description
-    }
-};
-
-let nextCategoryId = 0
-export const addCategory = ({ name, description, courseId }) => {
-    return {
-        type: 'ADD_CATEGORY',
-        id: nextCategoryId++,
-        name,
-        description,
-        courseId
-    }
-};
-
-let nextResourceId = 0
-export const addResource = ({resourceTitle, resourceComment}, addedExternalResources, courseId, categoryId) => {
-    return {
-        type: 'ADD_RESOURCE',
-        id: nextCategoryId++,
-        categoryId,
-        comment: resourceComment,
-        courseId,
-        title: resourceTitle,
-        externalResources: addedExternalResources
-    }
+    };
 };

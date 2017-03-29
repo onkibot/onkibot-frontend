@@ -1,9 +1,7 @@
 import React from 'react';
-import { List } from 'material-ui';
-import { Link } from 'react-router';
 
 const ResourceContentView = () => (
-  <div className="resourceContentView">
+  <div className="resource-content-view">
     <p>Her kommer koden/kommentaren.</p>
   </div>
 );

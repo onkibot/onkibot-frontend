@@ -4,8 +4,12 @@ pipeline:
     commands:
       - npm install -g yarn
       - yarn
-      - ./node_modules/.bin/webpack
+      - yarn run lint
+      - yarn run test
+      - curl -s https://codecov.io/bash | bash -s - -t $CODECOV_TOKEN
+      - yarn run build
     when:
+      event: push
       branch:
         exclude: [ master, development ]
 
@@ -24,7 +28,7 @@ pipeline:
       - /var/www/html/onkibot/development:/web
     when:
       branch: development
-      event: pull_request
+      event: push
 
   production:
     image: node:7.3
@@ -42,5 +46,3 @@ pipeline:
     when:
       branch: master
       event: tag
-
-

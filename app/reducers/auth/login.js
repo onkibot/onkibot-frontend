@@ -22,7 +22,7 @@ const login = (state = {
                 isFetching: false,
                 errorMessage: action.message
             };
-        
+
         default:
             return state;
     }

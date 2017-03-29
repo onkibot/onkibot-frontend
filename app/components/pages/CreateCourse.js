@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, CardHeader, CardActions } from 'material-ui';
+import { Card, CardActions } from 'material-ui';
 
 import CreateCourseForm from '../../forms/CreateCourseForm';
 
-const CreateCourse = (props) => (
+const CreateCourse = props => (
   <div>
     <Card>
       <div className="page-title-container page-title-container-index">

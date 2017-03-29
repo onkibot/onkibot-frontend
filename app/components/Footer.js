@@ -7,7 +7,9 @@ const Footer = () => (
       <div className="footer-icon-wrap">
         <h2>
           <LogoSmall />
-          <span className="icon-text">Copyright © 2017 Onkibot - <a href="mailto:onki@onkibot.com">onki@onkibot.com</a></span>
+          <span className="icon-text">
+          Copyright © 2017 Onkibot - <a href="mailto:onki@onkibot.com">onki@onkibot.com</a>
+          </span>
         </h2>
       </div>
     </div>

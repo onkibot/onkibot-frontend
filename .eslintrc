@@ -1,0 +1,54 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react",
+    "airbnb"
+  ],
+  "plugins": [
+    "react",
+    "flowtype",
+    "prettier",
+    "immutable"
+  ],
+  "globals": {
+    "log": true,
+    "expect": true,
+    "__DEV__": true,
+    "__CLIENT__": true
+  },
+  "rules": {
+    "react/prop-types": "warn",
+    "react/display-name": "warn",
+  	"immutable/no-let": "off",
+  	"immutable/no-this": "off",
+  	"immutable/no-mutation": "off",
+    "import/no-mutable-exports": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js"] }],
+    "react/jsx-boolean-value": "off",
+    "react/prefer-stateless-function": ["error", { "ignorePureComponents": true }],
+    "indent": ["error", 4, {"SwitchCase": 1}],
+    "comma-dangle": ["error", "never"],
+    "no-else-return": "off",
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "eqeqeq": "off",
+    "max-len": ["error", 120],
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }],
+    "linebreak-style": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  },
+  "env": {
+    "browser": true
+  }
+}

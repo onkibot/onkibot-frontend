@@ -4,26 +4,22 @@ import { MenuItem } from 'material-ui';
 
 import { logoutUser } from '../actions';
 
-const mapStateToProps = (state) => {
-    return {
-        disable: !state.auth.session
-    };
-};
+const mapStateToProps = state => ({
+    disable: !state.auth.session
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onClick: () => {
-            dispatch(logoutUser())
-        }
-    };
-};
+const mapDispatchToProps = dispatch => ({
+    onClick: () => {
+        dispatch(logoutUser());
+    }
+});
 
 let LogoutMenuItem = ({ disable, onClick, primaryText }) => {
     if (disable) {
         return null;
     }
     return (
-        <MenuItem primaryText={primaryText} onClick={onClick} />
+      <MenuItem primaryText={primaryText} onClick={onClick} />
     );
 };
 

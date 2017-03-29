@@ -5,11 +5,19 @@ import { Link } from 'react-router';
 import CategoryListItem from './CategoryListItem';
 
 const CategoryList = ({ courseId, categories }) => (
-    <List>
-        {categories.map(({ id, name, description }) => (
-            <Link to={`courses/${courseId}/categories/${id}/resources`} key={id}><CategoryListItem name={name} description={description} /></Link>
-        ))}
-    </List>
+  <List>
+    {categories.map(({ categoryId, name, description }) => (
+      <Link
+        to={`courses/${courseId}/categories/${categoryId}/resources`}
+        key={categoryId}
+      >
+        <CategoryListItem
+          name={name}
+          description={description}
+        />
+      </Link>
+    ))}
+  </List>
 );
 
 export default CategoryList;

@@ -1,9 +1,10 @@
-### ONKIBOT-FRONTEND [![Build Status](https://ci.onkibot.com/api/badges/onkibot/onkibot-frontend/status.svg)](https://ci.onkibot.com/onkibot/onkibot-frontend) ###
+### ONKIBOT-FRONTEND [![Build Status](https://ci.onkibot.com/api/badges/onkibot/onkibot-frontend/status.svg)](https://ci.onkibot.com/onkibot/onkibot-frontend) [![codecov](https://codecov.io/gh/onkibot/onkibot-frontend/branch/master/graph/badge.svg)](https://codecov.io/gh/onkibot/onkibot-frontend) ###
 
 # How to install:
 1. Clone the repository.
 2. Open command line in local repository.
 3. Run `npm install`.
+4. (For developers) Install Atom plugins: `apm install nuclide pigments linter-eslint linter-stylelint prettier-atom`
 
 # How to run local development server:
 1. Run `npm start`.

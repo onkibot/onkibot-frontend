@@ -22,7 +22,7 @@ const logout = (state = {
                 isFetching: false,
                 errorMessage: action.message
             };
-        
+
         default:
             return state;
     }
