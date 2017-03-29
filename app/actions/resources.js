@@ -1,9 +1,13 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
 
-export const actionCreators = reduxCrud.actionCreatorsFor('resources', {
+const actionCreators = reduxCrud.actionCreatorsFor('resources', {
     key: 'resourceId'
 });
+
+export const fetchSuccess = (dispatch, resources) => {
+    dispatch(actionCreators.fetchSuccess(resources));
+};
 
 export const createResource = (courseId, categoryId, resource) => {
     return (dispatch) => {
@@ -13,7 +17,7 @@ export const createResource = (courseId, categoryId, resource) => {
                 'Content-type': 'application/json'
             },
             credentials: 'same-origin',
-            body: JSON.stringify(category)
+            body: JSON.stringify(resource)
         };
 
         const cid = cuid();
@@ -53,8 +57,8 @@ export const fetchResources = (courseId, categoryId) => {
         .then((response) => {
             return response.json();
         })
-        .then((returnedResources) => {
-            dispatch(actionCreators.fetchSuccess(returnedResources))
+        .then((resources) => {
+            fetchSuccess(dispatch, resources);
         })
         .catch((err) => {
             dispatch(actionCreators.fetchError(err))

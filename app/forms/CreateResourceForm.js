@@ -8,14 +8,14 @@ let CreateResourceForm = ({ handleSubmit }) => (
 
     <Field
       component={TextField}
-      name="resourceTitle"
+      name="name"
       fullWidth={true}
-      floatingLabelText="Title"
+      floatingLabelText="Resource Name"
     />
     <Field
       component={TextField}
-      name="resourceComment"
-      floatingLabelText="Comment to resource"
+      name="body"
+      floatingLabelText="Resource body"
       multiLine={true}
       fullWidth={true}
       rows={1}

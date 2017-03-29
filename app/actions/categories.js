@@ -1,9 +1,17 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
+import {fetchSuccess as resourcesFetchSuccess} from './resources';
 
-export const actionCreators = reduxCrud.actionCreatorsFor('categories', {
+const actionCreators = reduxCrud.actionCreatorsFor('categories', {
     key: 'categoryId'
 });
+
+export const fetchSuccess = (dispatch, categories) => {
+    dispatch(actionCreators.fetchSuccess(categories));
+    categories.forEach((category) => {
+        resourcesFetchSuccess(dispatch, category.resources);
+    });
+};
 
 export const createCategory = (courseId, category) => {
     return (dispatch) => {
@@ -19,7 +27,6 @@ export const createCategory = (courseId, category) => {
         const cid = cuid();
         category = {
             ...category,
-            courseId: courseId,
             categoryId: cid
         };
 
@@ -56,9 +63,16 @@ export const fetchCategories = (courseId) => {
         })
         .then((returnedCategories) => {
             dispatch(actionCreators.fetchSuccess(returnedCategories))
+
+            const flatResources = returnedCategories.map((category) => {
+                return category.resources;
+            }).reduce((acc, resources) => {
+                return [...acc, ...resources];
+            }, [])
+            dispatch(resourcesActionCreators.fetchSuccess(flatResources));
         })
         .catch((err) => {
-            dispatch(actionCreators.fetchError(err))
+            dispatch(actionCreators.createError(err))
         });
     };
 };
