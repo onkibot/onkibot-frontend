@@ -38,7 +38,8 @@
     "max-len": ["error", 120],
     "class-methods-use-this": "off",
     "no-plusplus": "off",
-    "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }]
+    "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }],
+    "linebreak-style": "off"
   },
   "settings": {
     "import/resolver": {
