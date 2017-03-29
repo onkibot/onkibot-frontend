@@ -4,13 +4,11 @@ import { Field, reduxForm } from 'redux-form';
 import { RaisedButton } from 'material-ui';
 import { TextField } from 'redux-form-material-ui';
 
-import { addCategory } from '../actions';
+import { createCategory } from '../actions/categories';
 
 const mapDispatchToProps = (dispatch, { courseId, router }) => ({
     onSubmit: (categoryInfo) => {
-        const categoryInfoClone = categoryInfo;
-        categoryInfoClone.courseId = courseId;
-        dispatch(addCategory(categoryInfoClone));
+        dispatch(createCategory(courseId, categoryInfo));
         router.push(`/courses/${courseId}/categories`);
     }
 });

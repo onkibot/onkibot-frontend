@@ -6,17 +6,17 @@ import CategoryListItem from './CategoryListItem';
 
 const CategoryList = ({ courseId, categories }) => (
   <List>
-    {categories.map(({ id, name, description }) => (
+    {categories.map(({ categoryId, name, description }) => (
       <Link
-        to={`courses/${courseId}/categories/${id}/resources`}
-        key={id}
+        to={`courses/${courseId}/categories/${categoryId}/resources`}
+        key={categoryId}
       >
         <CategoryListItem
           name={name}
           description={description}
         />
       </Link>
-        ))}
+    ))}
   </List>
 );
 

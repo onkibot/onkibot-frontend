@@ -1,3 +1,5 @@
+import { fetchCourses } from './courses';
+
 export const toggleOnOff = () => ({
     type: 'TOGGLE_BOOL'
 });
@@ -50,6 +52,7 @@ export const loginUser = (credentials) => {
         .then(response => response.json())
         .then((json) => {
             dispatch(receiveLogin(json));
+            return dispatch(fetchCourses());
         })
         .catch((err) => {
             dispatch(loginError(err));
@@ -84,6 +87,7 @@ export const sessionUser = () => {
         .then(response => response.json())
         .then((json) => {
             dispatch(receiveSession(json));
+            return dispatch(fetchCourses());
         })
         .catch((err) => {
             dispatch(sessionError(err));
@@ -155,36 +159,10 @@ export const signupUser = (signupInfo) => {
         .then(response => response.json())
         .then((json) => {
             dispatch(receiveSignup(json));
+            return dispatch(fetchCourses());
         })
         .catch((err) => {
             dispatch(signupError(err));
         });
     };
 };
-
-let nextCourseId = 0;
-export const addCourse = ({ name, description }) => ({
-    type: 'ADD_COURSE',
-    id: nextCourseId++,
-    name,
-    description
-});
-
-let nextCategoryId = 0;
-export const addCategory = ({ name, description, courseId }) => ({
-    type: 'ADD_CATEGORY',
-    id: nextCategoryId++,
-    name,
-    description,
-    courseId
-});
-
-export const addResource = ({ resourceTitle, resourceComment }, addedExternalResources, courseId, categoryId) => ({
-    type: 'ADD_RESOURCE',
-    id: nextCategoryId++,
-    categoryId,
-    comment: resourceComment,
-    courseId,
-    title: resourceTitle,
-    externalResources: addedExternalResources
-});

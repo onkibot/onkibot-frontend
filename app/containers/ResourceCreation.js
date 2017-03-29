@@ -6,9 +6,9 @@ import CreateResourceForm from '../forms/CreateResourceForm';
 import AddExternalResourceForm from '../forms/AddExternalResourceForm';
 import ExternalResourceList from '../components/ExternalResourceList';
 import {
-  addResource, createAddedExternalResource,
-  deleteAddedExternalResource, clearAddedExternalResources
+  createAddedExternalResource, deleteAddedExternalResource, clearAddedExternalResources
 } from '../actions/';
+import { createResource } from '../actions/resources';
 
 let ResourceCreation = ({ onSubmit, externalResources, onAddExternalResource, onDeleteExternalResource }) => {
     const cardStyle = {
@@ -43,24 +43,16 @@ const mapStateToProps = state => ({
     externalResources: state.addedExternalResources
 });
 
-function handleOnSubmitAction(resourceInfo, courseId, categoryId) {
-    return (dispatch, getState) => {
-        const state = getState();
-        dispatch(addResource(resourceInfo, state.addedExternalResources, courseId, categoryId));
-    };
-}
-
 const mapDispatchToProps = (dispatch, { courseId, categoryId, router }) => ({
     onAddExternalResource: externalResource => dispatch(createAddedExternalResource(
-      externalResource,
-      courseId,
-      categoryId
+        externalResource,
+        courseId,
+        categoryId
     )),
     onDeleteExternalResource: url => dispatch(deleteAddedExternalResource(url)),
     onSubmit: (resourceInfo) => {
-        // TODO
-        // dispatch(addResource(resourceInfo, props.addedExternalResources, courseId, categoryId));
-        dispatch(handleOnSubmitAction(resourceInfo, courseId, categoryId));
+        // resourceInfo.externalResources = addedExternalResources;
+        dispatch(createResource(courseId, categoryId, resourceInfo));
         dispatch(clearAddedExternalResources());
         router.push(`/courses/${courseId}/categories/${categoryId}/resources/`);
     }
