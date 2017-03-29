@@ -1,4 +1,4 @@
-import {fetchCourses} from './courses';
+import { fetchCourses } from './courses';
 
 export const toggleOnOff = () => ({
     type: 'TOGGLE_BOOL'

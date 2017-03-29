@@ -8,7 +8,7 @@ import ExternalResourceList from '../components/ExternalResourceList';
 import {
   createAddedExternalResource, deleteAddedExternalResource, clearAddedExternalResources
 } from '../actions/';
-import {createResource} from '../actions/resources';
+import { createResource } from '../actions/resources';
 
 let ResourceCreation = ({ onSubmit, externalResources, onAddExternalResource, onDeleteExternalResource }) => {
     const cardStyle = {
@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch, { courseId, categoryId, router }) => ({
     )),
     onDeleteExternalResource: url => dispatch(deleteAddedExternalResource(url)),
     onSubmit: (resourceInfo) => {
-        //resourceInfo.externalResources = addedExternalResources;
+        // resourceInfo.externalResources = addedExternalResources;
         dispatch(createResource(courseId, categoryId, resourceInfo));
         dispatch(clearAddedExternalResources());
         router.push(`/courses/${courseId}/categories/${categoryId}/resources/`);
