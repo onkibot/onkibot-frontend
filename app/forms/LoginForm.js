@@ -18,12 +18,6 @@ let LoginForm = (props) => {
       <form onSubmit={handleSubmit} className="form-style">
         <Field
           component={TextField}
-          name="username"
-          fullWidth={true}
-          floatingLabelText="Username"
-        />
-        <Field
-          component={TextField}
           name="email"
           fullWidth={true}
           floatingLabelText="E-mail"
