@@ -1,4 +1,4 @@
-import { fetchCourses } from './courses';
+import { fetchSuccess as coursesFetchSuccess } from './courses';
 
 export const toggleOnOff = () => ({
     type: 'TOGGLE_BOOL'
@@ -52,7 +52,7 @@ export const loginUser = (credentials) => {
         .then(response => response.json())
         .then((json) => {
             dispatch(receiveLogin(json));
-            return dispatch(fetchCourses());
+            coursesFetchSuccess(dispatch, json.attending);
         })
         .catch((err) => {
             dispatch(loginError(err));
@@ -87,7 +87,7 @@ export const sessionUser = () => {
         .then(response => response.json())
         .then((json) => {
             dispatch(receiveSession(json));
-            return dispatch(fetchCourses());
+            coursesFetchSuccess(dispatch, json.attending);
         })
         .catch((err) => {
             dispatch(sessionError(err));
@@ -159,7 +159,7 @@ export const signupUser = (signupInfo) => {
         .then(response => response.json())
         .then((json) => {
             dispatch(receiveSignup(json));
-            return dispatch(fetchCourses());
+            coursesFetchSuccess(dispatch, json.attending);
         })
         .catch((err) => {
             dispatch(signupError(err));
