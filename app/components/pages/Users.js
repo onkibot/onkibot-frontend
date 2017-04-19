@@ -23,4 +23,8 @@ const Users = props => (
   </div>
 );
 
+Users.propTypes = {
+    params: React.PropTypes.object.isRequired
+};
+
 export default Users;

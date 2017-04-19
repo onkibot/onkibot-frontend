@@ -41,6 +41,11 @@ let AddExternalResourceForm = ({ handleSubmit, errorMsg }) => (
   </form>
 );
 
+AddExternalResourceForm.propTypes = {
+    handleSubmit: React.PropTypes.func.isRequired,
+    errorMsg: React.PropTypes.string.isRequired
+};
+
 AddExternalResourceForm = reduxForm({
     form: 'addExternalResource'
 })(AddExternalResourceForm);

@@ -34,6 +34,10 @@ let CreateResourceForm = ({ handleSubmit }) => (
   </form>
 );
 
+CreateResourceForm.propTypes = {
+    handleSubmit: React.PropTypes.func.isRequired
+};
+
 CreateResourceForm = reduxForm({
     form: 'createResource'
 })(CreateResourceForm);

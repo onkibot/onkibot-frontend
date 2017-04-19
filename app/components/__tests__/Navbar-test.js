@@ -91,7 +91,7 @@ describe('Navbar Component', () => {
           </g>
         </svg>));
 
-        it('should include correct Links', function () {
+        it('should include correct Links', () => {
             expect(shallow(<Navbar />).contains(<Link to="/"><MenuItem onTouchTap={this.handleClose}>Home</MenuItem></Link>)).toBe(true);
             expect(shallow(<Navbar />).contains(<Link to="/login"><MenuItem onTouchTap={this.handleClose}>Login</MenuItem></Link>)).toBe(true);
             expect(shallow(<Navbar />).contains(<Link to="/signup"><MenuItem onTouchTap={this.handleClose}>Sign up</MenuItem></Link>)).toBe(true);

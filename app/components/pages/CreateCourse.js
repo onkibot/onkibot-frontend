@@ -16,4 +16,8 @@ const CreateCourse = props => (
   </div>
 );
 
+CreateCourse.propTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
 export default CreateCourse;

@@ -20,4 +20,8 @@ class OnkibotApp extends PureComponent {
     }
 }
 
+OnkibotApp.propTypes = {
+    children: React.PropTypes.node.isRequired
+};
+
 export default OnkibotApp;

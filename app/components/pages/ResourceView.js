@@ -75,4 +75,8 @@ const ResourceView = props => (
   </div>
 );
 
+ResourceView.propTypes = {
+    params: React.PropTypes.array.isRequired
+};
+
 export default ResourceView;

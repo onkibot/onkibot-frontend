@@ -45,4 +45,8 @@ const Categories = props => (
   </div>
 );
 
+Categories.propTypes = {
+    params: React.PropTypes.array.isRequired
+};
+
 export default Categories;

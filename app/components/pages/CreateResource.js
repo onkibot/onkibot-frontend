@@ -16,4 +16,9 @@ const CreateResource = props => (
   </div>
 );
 
+CreateResource.propTypes = {
+    params: React.PropTypes.array.isRequired,
+    router: React.PropTypes.object.isRequired
+};
+
 export default CreateResource;

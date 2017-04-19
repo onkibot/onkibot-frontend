@@ -68,6 +68,10 @@ let SignupForm = (props) => {
     );
 };
 
+SignupForm.propTypes = {
+    handleSubmit: React.PropTypes.func.isRequired
+};
+
 SignupForm = connect(
     undefined,
     mapDispatchToProps
