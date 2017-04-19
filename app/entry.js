@@ -22,6 +22,7 @@ import CreateCategory from './components/pages/CreateCategory';
 import Resources from './components/pages/Resources';
 import CreateResource from './components/pages/CreateResource';
 import ResourceView from './components/pages/ResourceView';
+import Users from './components/pages/Users';
 import NotFound from './components/pages/NotFound';
 import TaskContainer from './components/TaskContainer';
 import { sessionUser } from './actions';
@@ -57,6 +58,7 @@ render(
           <Route path="courses/:courseId/categories/:categoryId/resources" component={Resources} />
           <Route path="courses/:courseId/categories/:categoryId/resources/create" component={CreateResource} />
           <Route path="courses/:courseId/categories/:categoryId/resources/:resourceId/resourceView" component={ResourceView} />
+          <Route path="courses/:courseId/users" component={Users} />
           <Route path="*" component={NotFound} />
         </Route>
       </Router>

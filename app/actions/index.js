@@ -1,7 +1,13 @@
 import { fetchSuccess as coursesFetchSuccess } from './courses';
+import { fetchUsers } from '../actions/users';
 
 export const toggleOnOff = () => ({
     type: 'TOGGLE_BOOL'
+});
+
+export const setUserSearch = searchWord => ({
+    type: 'SET_USER_SEARCH',
+    searchWord
 });
 
 export const createAddedExternalResource = (externalResource, courseId, categoryId) => ({
@@ -53,6 +59,7 @@ export const loginUser = (credentials) => {
         .then((json) => {
             dispatch(receiveLogin(json));
             coursesFetchSuccess(dispatch, json.attending);
+            dispatch(fetchUsers());
         })
         .catch((err) => {
             dispatch(loginError(err));
@@ -88,6 +95,7 @@ export const sessionUser = () => {
         .then((json) => {
             dispatch(receiveSession(json));
             coursesFetchSuccess(dispatch, json.attending);
+            dispatch(fetchUsers());
         })
         .catch((err) => {
             dispatch(sessionError(err));
@@ -160,6 +168,7 @@ export const signupUser = (signupInfo) => {
         .then((json) => {
             dispatch(receiveSignup(json));
             coursesFetchSuccess(dispatch, json.attending);
+            dispatch(fetchUsers());
         })
         .catch((err) => {
             dispatch(signupError(err));
