@@ -8,6 +8,8 @@ import courses from './courses';
 import categories from './categories';
 import resources from './resources';
 import addedExternalResources from './addedExternalResources';
+import users from './users';
+import userSearch from './userSearch';
 
 const onkibotApp = combineReducers({
     onOff,
@@ -16,6 +18,8 @@ const onkibotApp = combineReducers({
     categories,
     resources,
     addedExternalResources,
+    users,
+    userSearch,
     form: formReducer,
     routing: routerReducer
 });

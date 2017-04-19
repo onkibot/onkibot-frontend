@@ -29,6 +29,17 @@ const Categories = props => (
             }}
           />
         </Link>
+        <Link to={`courses/${props.params.courseId}/users`}>
+          <RaisedButton
+            label="Administrate attending users"
+            fullWidth={true}
+            className="place-mid"
+            style={{
+                margin: '20px auto',
+                padding: '0px'
+            }}
+          />
+        </Link>
       </CardActions>
     </Card>
   </div>
