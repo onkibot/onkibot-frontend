@@ -8,7 +8,7 @@ export const toggleOnOff = () => ({
 export const setUserSearch = searchWord => ({
     type: 'SET_USER_SEARCH',
     searchWord
-})
+});
 
 export const createAddedExternalResource = (externalResource, courseId, categoryId) => ({
     type: 'ADDED_EXTERNAL_RESOURCES_CREATE',

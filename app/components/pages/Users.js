@@ -1,11 +1,9 @@
 import React from 'react';
-import { RaisedButton, Card, CardActions, CardHeader } from 'material-ui';
+import { Card, CardActions, CardHeader } from 'material-ui';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import { Link } from 'react-router';
 
 import UserUserList from '../../containers/UserUserList';
-
-let searchWord = "test";
 
 const Users = props => (
   <div>
@@ -24,10 +22,5 @@ const Users = props => (
     </Card>
   </div>
 );
-
-const updateSearch = () => {
-  searchWord += "test"
-  console.log(searchWord)
-}
 
 export default Users;

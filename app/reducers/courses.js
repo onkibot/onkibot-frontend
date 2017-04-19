@@ -22,7 +22,7 @@ const actualCourses = (state, action) => {
                         return {
                             ...course,
                             attendees: course.attendees.filter(userId => userId != action.userId)
-                        }
+                        };
                     }
                 } else {
                     return course;
@@ -31,6 +31,6 @@ const actualCourses = (state, action) => {
         default:
             return result;
     }
-}
+};
 
 export default actualCourses;

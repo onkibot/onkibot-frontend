@@ -1,13 +1,11 @@
-const doSetCourseAttendance = (userId, courseId, attending) => {
-    return {
-        type: 'SET_COURSE_ATTENDANCE',
-        userId,
-        courseId,
-        attending
-    }
-};
+const doSetCourseAttendance = (userId, courseId, attending) => ({
+    type: 'SET_COURSE_ATTENDANCE',
+    userId,
+    courseId,
+    attending
+});
 
-export const setCourseAttendance = (userId, courseId, attending) => ((dispatch) => {
+const setCourseAttendance = (userId, courseId, attending) => ((dispatch) => {
     const config = {
         method: attending ? 'PUT' : 'DELETE',
         headers: {
@@ -19,5 +17,9 @@ export const setCourseAttendance = (userId, courseId, attending) => ((dispatch) 
     return fetch(`/api/v1/courses/${courseId}/attendees/${userId}`, config)
     .then(() => {
         dispatch(doSetCourseAttendance(userId, courseId, attending));
-    })
+    });
 });
+
+export default {
+    setCourseAttendance
+};
