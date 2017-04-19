@@ -26,4 +26,12 @@ const UserList = ({ userSearch, users, onAddClick, onRemoveClick, onSearchChange
   </div>
 );
 
+UserList.propTypes = {
+    userSearch: React.PropTypes.string.isRequired,
+    users: React.PropTypes.array.isRequired,
+    onAddClick: React.PropTypes.func.isRequired,
+    onRemoveClick: React.PropTypes.func.isRequired,
+    onSearchChange: React.PropTypes.func.isRequired
+};
+
 export default UserList;
