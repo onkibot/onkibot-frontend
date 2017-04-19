@@ -167,8 +167,8 @@ export const signupUser = (signupInfo) => {
         .then(response => response.json())
         .then((json) => {
             dispatch(receiveSignup(json));
-            dispatch()
             coursesFetchSuccess(dispatch, json.attending);
+            dispatch(fetchUsers());
         })
         .catch((err) => {
             dispatch(signupError(err));

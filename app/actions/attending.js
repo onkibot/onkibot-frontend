@@ -1,9 +1,9 @@
 const doSetCourseAttendance = (userId, courseId, attending) => {
     return {
-      type: 'SET_COURSE_ATTENDANCE',
-      userId,
-      courseId,
-      attending
+        type: 'SET_COURSE_ATTENDANCE',
+        userId,
+        courseId,
+        attending
     }
 };
 

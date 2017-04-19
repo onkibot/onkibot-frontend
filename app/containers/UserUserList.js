@@ -6,7 +6,7 @@ import { setCourseAttendance } from '../actions/attending';
 import UserList from '../components/UserList';
 
 const mapStateToProps = (state, { courseId }) => {
-    let attendees = state.courses.find(course => course.courseId == courseId).attendees;
+    const attendees = state.courses.find(course => course.courseId == courseId).attendees;
     return {
         userSearch: state.userSearch,
         users: state.users.filter(user =>
