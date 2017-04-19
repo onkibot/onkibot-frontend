@@ -11,4 +11,10 @@ const LoginLinkMenuItem = ({ disable, to, primaryText }) => {
     );
 };
 
+LoginLinkMenuItem.propTypes = {
+    disable: React.PropTypes.boolean.isRequired,
+    to: React.PropTypes.string.isRequired,
+    primaryText: React.PropTypes.string.isRequired
+};
+
 export default LoginLinkMenuItem;

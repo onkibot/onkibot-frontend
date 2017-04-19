@@ -1,16 +1,21 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
 import { fetchSuccess as categoriesFetchSuccess } from './categories';
+import { fetchSuccess as usersFetchSuccess } from './users';
 
 const actionCreators = reduxCrud.actionCreatorsFor('courses', {
     key: 'courseId'
 });
 
 export const fetchSuccess = (dispatch, courses) => {
-    dispatch(actionCreators.fetchSuccess(courses));
-    courses.forEach((course) => {
+    dispatch(actionCreators.fetchSuccess(courses.map((course) => {
         categoriesFetchSuccess(dispatch, course.categories);
-    });
+        usersFetchSuccess(dispatch, course.attendees);
+        return {
+            ...course,
+            attendees: course.attendees.map(user => user.userId)
+        };
+    })));
 };
 
 export const createCourse = courseInfo => ((dispatch) => {

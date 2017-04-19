@@ -43,6 +43,10 @@ let CreateCategoryForm = (props) => {
     );
 };
 
+CreateCategoryForm.propTypes = {
+    handleSubmit: React.PropTypes.func.isRequired
+};
+
 CreateCategoryForm = connect(
     undefined,
     mapDispatchToProps

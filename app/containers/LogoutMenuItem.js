@@ -23,6 +23,12 @@ let LogoutMenuItem = ({ disable, onClick, primaryText }) => {
     );
 };
 
+LogoutMenuItem.propTypes = {
+    disable: React.PropTypes.boolean.isRequired,
+    onClick: React.PropTypes.func.isRequired,
+    primaryText: React.PropTypes.string.isRequired
+};
+
 LogoutMenuItem = connect(
     mapStateToProps,
     mapDispatchToProps

@@ -10,7 +10,7 @@ class OnkibotApp extends PureComponent {
             <Navbar />
             <div className="container">
               <div className="main-content">
-                <SessionUserCard username="lel" />
+                <SessionUserCard />
                 {this.props.children}
               </div>
             </div>
@@ -19,5 +19,9 @@ class OnkibotApp extends PureComponent {
         );
     }
 }
+
+OnkibotApp.propTypes = {
+    children: React.PropTypes.node.isRequired
+};
 
 export default OnkibotApp;
