@@ -10,7 +10,7 @@ class OnkibotApp extends PureComponent {
             <Navbar />
             <div className="container">
               <div className="main-content">
-                <SessionUserCard username="lel" />
+                <SessionUserCard />
                 {this.props.children}
               </div>
             </div>
