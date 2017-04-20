@@ -1,5 +1,6 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
+import { fetchSuccess as externalResourcesFetchSuccess } from './externalResources';
 
 const actionCreators = reduxCrud.actionCreatorsFor('resources', {
     key: 'resourceId'
@@ -7,6 +8,9 @@ const actionCreators = reduxCrud.actionCreatorsFor('resources', {
 
 export const fetchSuccess = (dispatch, resources) => {
     dispatch(actionCreators.fetchSuccess(resources));
+    resources.forEach((resource) => {
+        externalResourcesFetchSuccess(dispatch, resource.externalResources);
+    });
 };
 
 export const createResource = (courseId, categoryId, resourceInfo) => ((dispatch) => {
