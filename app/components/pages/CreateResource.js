@@ -17,7 +17,7 @@ const CreateResource = props => (
 );
 
 CreateResource.propTypes = {
-    params: React.PropTypes.array.isRequired,
+    params: React.PropTypes.object.isRequired,
     router: React.PropTypes.object.isRequired
 };
 

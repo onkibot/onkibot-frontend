@@ -21,8 +21,8 @@ const ResourceList = ({ courseId, categoryId, resources }) => (
 );
 
 ResourceList.propTypes = {
-    courseId: React.PropTypes.number.isRequired,
-    categoryId: React.PropTypes.number.isRequired,
+    courseId: React.PropTypes.string.isRequired,
+    categoryId: React.PropTypes.string.isRequired,
     resources: React.PropTypes.array.isRequired
 };
 
