@@ -238,6 +238,21 @@ header {
   max-width: 700px;
 }
 
+.feedback-label {
+  font-size: 18px;
+}
+
+.icon-text {
+  background-color: white;
+  display: inline-block;
+  font-size: 2em;
+  width: 26px;
+}
+
+.feedback-label {
+  margin-right: 10px;
+}
+
 /* Task Container -------- */
 .resource-content-view {
   margin-bottom: 10px;
