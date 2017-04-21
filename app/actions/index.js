@@ -1,8 +1,9 @@
 import { fetchSuccess as coursesFetchSuccess } from './courses';
 import { fetchUsers } from '../actions/users';
 
-export const toggleOnOff = () => ({
-    type: 'TOGGLE_BOOL'
+export const setNavbarOpen = open => ({
+    type: 'SET_NAVBAR_OPEN',
+    open
 });
 
 export const setUserSearch = searchWord => ({
