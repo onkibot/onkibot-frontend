@@ -5,19 +5,23 @@ import { Link } from 'react-router';
 import CategoryListItem from './CategoryListItem';
 
 const CategoryList = ({ courseId, categories }) => (
-  <List>
-    {categories.map(({ categoryId, name, description }) => (
-      <Link
-        to={`courses/${courseId}/categories/${categoryId}/resources`}
-        key={categoryId}
-      >
-        <CategoryListItem
-          name={name}
-          description={description}
-        />
-      </Link>
-    ))}
-  </List>
+  categories.length > 0 ? (
+    <List>
+      {categories.map(({ categoryId, name, description }) => (
+        <Link
+          to={`courses/${courseId}/categories/${categoryId}/resources`}
+          key={categoryId}
+        >
+          <CategoryListItem
+            name={name}
+            description={description}
+          />
+        </Link>
+      ))}
+    </List>
+  ) : (
+    <p>Looks like there are no categories yet.</p>
+  )
 );
 
 CategoryList.propTypes = {

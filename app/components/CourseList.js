@@ -5,19 +5,23 @@ import { Link } from 'react-router';
 import CourseListItem from './CourseListItem';
 
 const CourseList = ({ courses }) => (
-  <List>
-    {courses.map(({ courseId, name, description }) => (
-      <Link
-        to={`courses/${courseId}/categories`}
-        key={courseId}
-      >
-        <CourseListItem
-          name={name}
-          description={description}
-        />
-      </Link>
-    ))}
-  </List>
+  courses.length > 0 ? (
+    <List>
+      {courses.map(({ courseId, name, description }) => (
+        <Link
+          to={`courses/${courseId}/categories`}
+          key={courseId}
+        >
+          <CourseListItem
+            name={name}
+            description={description}
+          />
+        </Link>
+      ))}
+    </List>
+  ) : (
+    <p>Looks like you are not attending any courses yet.</p>
+  )
 );
 
 CourseList.propTypes = {

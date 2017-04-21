@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
 
-import onOff from './onOff';
+import navbarOpen from './navbarOpen';
 import auth from './auth/';
 import courses from './courses';
 import categories from './categories';
@@ -13,7 +13,7 @@ import users from './users';
 import userSearch from './userSearch';
 
 const onkibotApp = combineReducers({
-    onOff,
+    navbarOpen,
     auth,
     courses,
     categories,
