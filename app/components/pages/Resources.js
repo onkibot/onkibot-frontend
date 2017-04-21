@@ -35,7 +35,7 @@ const Resources = props => (
 );
 
 Resources.propTypes = {
-    params: React.PropTypes.array.isRequired
+    params: React.PropTypes.object.isRequired
 };
 
 export default Resources;
