@@ -21,7 +21,7 @@ const CategoryList = ({ courseId, categories }) => (
 );
 
 CategoryList.propTypes = {
-    courseId: React.PropTypes.number.isRequired,
+    courseId: React.PropTypes.string.isRequired,
     categories: React.PropTypes.array.isRequired
 };
 
