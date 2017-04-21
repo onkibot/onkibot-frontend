@@ -56,7 +56,15 @@ export const loginUser = (credentials) => {
         dispatch(requestLogin(credentials));
 
         return fetch('/api/v1/session', config)
-        .then(response => response.json())
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response.json();
+            } else {
+                return response.json().then((json) => {
+                    throw json;
+                });
+            }
+        })
         .then((json) => {
             dispatch(receiveLogin(json));
             coursesFetchSuccess(dispatch, json.attending);
