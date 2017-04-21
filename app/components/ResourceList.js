@@ -5,19 +5,23 @@ import { Link } from 'react-router';
 import ResourceListItem from './ResourceListItem';
 
 const ResourceList = ({ courseId, categoryId, resources }) => (
-  <List>
-    {resources.map(({ resourceId, name, body }) => (
-      <Link
-        to={`courses/${courseId}/categories/${categoryId}/resources/${resourceId}/resourceView/`}
-        key={resourceId}
-      >
-        <ResourceListItem
-          name={name}
-          body={body}
-        />
-      </Link>
-    ))}
-  </List>
+  resources.length > 0 ? (
+    <List>
+      {resources.map(({ resourceId, name, body }) => (
+        <Link
+          to={`courses/${courseId}/categories/${categoryId}/resources/${resourceId}/resourceView/`}
+          key={resourceId}
+        >
+          <ResourceListItem
+            name={name}
+            body={body}
+          />
+        </Link>
+      ))}
+    </List>
+  ) : (
+    <p>Looks like there are no resources yet.</p>
+  )
 );
 
 ResourceList.propTypes = {

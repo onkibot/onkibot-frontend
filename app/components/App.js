@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
+import SessionNavbar from '../containers/SessionNavbar';
 import SessionUserCard from '../containers/SessionUserCard';
 import Footer from './Footer';
-import Navbar from './Navbar';
 
 class OnkibotApp extends PureComponent {
     render() {
         return (
           <div>
-            <Navbar />
+            <SessionNavbar />
             <div className="container">
               <div className="main-content">
                 <SessionUserCard />
