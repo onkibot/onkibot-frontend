@@ -18,7 +18,7 @@ const UserCard = ({ name }) => {
 };
 
 UserCard.propTypes = {
-    name: React.PropTypes.string.isRequired
+    name: React.PropTypes.string
 };
 
 export default UserCard;
