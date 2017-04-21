@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { setUserSearch } from '../actions';
-import { setCourseAttendance } from '../actions/attending';
+import setCourseAttendance from '../actions/attending';
 
 import UserList from '../components/UserList';
 
