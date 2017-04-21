@@ -20,6 +20,4 @@ const setCourseAttendance = (userId, courseId, attending) => ((dispatch) => {
     });
 });
 
-export default {
-    setCourseAttendance
-};
+export default setCourseAttendance;
