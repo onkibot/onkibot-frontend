@@ -80,6 +80,15 @@ class FeedbackForm extends Component {
     }
 }
 
+FeedbackForm.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    handleSubmit: React.PropTypes.func.isRequired,
+    handleCancel: React.PropTypes.func.isRequired,
+    difficulty: React.PropTypes.number.isRequired,
+    externalResources: React.PropTypes.array.isRequired,
+    onApproval: React.PropTypes.func.isRequired
+};
+
 FeedbackForm = reduxForm({
     form: 'feedback'
 })(FeedbackForm);

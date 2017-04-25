@@ -86,13 +86,12 @@ class ResourceView extends Component {
               </CardActions>
             </Card>
             { /* om dialogOpen = true, vis feedback-form og send med handleClose-funksjon slik at man kan lukke skjemaet om man trykker på cancel-knapp */ }
-            {this.state.dialogOpen &&
-              <Feedback
-                handleClose={this.handleClose}
-                courseId={this.props.params.courseId}
-                categoryId={this.props.params.categoryId}
-                resourceId={this.props.params.resourceId}
-                /> }
+            {this.state.dialogOpen && <Feedback
+              handleClose={this.handleClose}
+              courseId={this.props.params.courseId}
+              categoryId={this.props.params.categoryId}
+              resourceId={this.props.params.resourceId}
+            />}
           </div>
         );
     }

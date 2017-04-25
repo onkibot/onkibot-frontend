@@ -26,6 +26,16 @@ let Feedback = ({ onSubmit, handleClose, externalResources, onApproval, courseId
   </Dialog>
 );
 
+Feedback.propTypes = {
+    onSubmit: React.PropTypes.func.isRequired,
+    handleClose: React.PropTypes.func.isRequired,
+    externalResources: React.PropTypes.array.isRequired,
+    onApproval: React.PropTypes.func.isRequired,
+    courseId: React.PropTypes.number.isRequired,
+    categoryId: React.PropTypes.number.isRequired,
+    resourceId: React.PropTypes.number.isRequired
+};
+
 const mapStateToProps = (state, { resourceId }) => {
     const resource = state.resources.find(it => it.resourceId == resourceId);
     return {

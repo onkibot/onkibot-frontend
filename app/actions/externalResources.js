@@ -36,17 +36,19 @@ const doSetExternalResourceApproval = (externalResourceId, approval) => ({
     approval
 });
 
-export const setExternalResourceApproval = (courseId, categoryId, resourceId, externalResourceId, approval) => ((dispatch) => {
-    const config = {
-        method: approval ? 'PUT' : 'DELETE',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        credentials: 'same-origin'
-    };
-    const resource = `/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}`;
-    return fetch(`${resource}/externals/${externalResourceId}/approve`, config)
-    .then(() => {
-        dispatch(doSetExternalResourceApproval(externalResourceId, approval));
-    });
-});
+export const setExternalResourceApproval = (courseId, categoryId, resourceId, externalResourceId, approval) => (
+    (dispatch) => {
+        const config = {
+            method: approval ? 'PUT' : 'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            credentials: 'same-origin'
+        };
+        const resource = `/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}`;
+        return fetch(`${resource}/externals/${externalResourceId}/approve`, config)
+        .then(() => {
+            dispatch(doSetExternalResourceApproval(externalResourceId, approval));
+        });
+    }
+);

@@ -33,6 +33,12 @@ let ResourceContentView = ({ title, body, externalResources }) => (
   </div>
 );
 
+ResourceContentView.propTypes = {
+    title: React.PropTypes.string.isRequired,
+    body: React.PropTypes.string.isRequired,
+    externalResources: React.PropTypes.array.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
     const stateCourse = state.courses.find(course => course.courseId == ownProps.courseId);
     const stateCategory = stateCourse.categories.find(category => category.categoryId == ownProps.categoryId);

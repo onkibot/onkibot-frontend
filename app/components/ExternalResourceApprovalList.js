@@ -20,4 +20,9 @@ const ExternalResourceApprovalList = ({ externalResources, onApproval }) => (
   </List>
 );
 
+ExternalResourceApprovalList.propTypes = {
+    externalResources: React.PropTypes.array.isRequired,
+    onApproval: React.PropTypes.func.isRequired
+};
+
 export default ExternalResourceApprovalList;
