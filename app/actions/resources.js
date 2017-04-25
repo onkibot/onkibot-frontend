@@ -61,3 +61,26 @@ export const fetchResources = (courseId, categoryId) => ((dispatch) => {
         dispatch(actionCreators.fetchError(err));
     });
 });
+
+const doSetResourceFeedback = (resourceId, feedback) => ({
+    type: 'SET_RESOURCE_FEEDBACK',
+    resourceId,
+    feedback
+});
+
+export const setResourceFeedback = (courseId, categoryId, resourceId, feedbackInfo) => ((dispatch) => {
+    const config = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        credentials: 'same-origin',
+        body: JSON.stringify(feedbackInfo)
+    };
+
+    return fetch(`/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}/feedback`, config)
+    .then(response => response.json())
+    .then((returnedFeedback) => {
+        dispatch(doSetResourceFeedback(resourceId, returnedFeedback));
+    });
+});

@@ -16,13 +16,9 @@ class FeedbackForm extends Component {
         this.props.dispatch(change('feedback', 'difficulty', value)); // Dette er redux-form prop funksjoner/dispatches
     }
 
-    handleApproval = (externalResourceId) => {
-        // Sender med alle nødvendige ID'er for å registrere approval
-        this.props.onApproval(externalResourceId, this.props.courseId, this.props.categoryId, this.props.resourceId);
-    }
-
     render() {
         const { handleSubmit, handleCancel, difficulty, externalResources, onApproval } = this.props;
+
         const hiddenFieldsStyle = {
             display: 'none'
         };
@@ -42,10 +38,12 @@ class FeedbackForm extends Component {
               style={hiddenFieldsStyle}
               value={difficulty}
             />
-            <label className="feedback-label" htmlFor="Difficulty">Approve links </label>
+            <label className="feedback-label" htmlFor="Difficulty">
+              Please select the external resources you found useful
+            </label>
             <ExternalResourceApprovalList
               externalResources={externalResources}
-              onApproval={this.handleApproval}
+              onApproval={onApproval}
             />
             <br />
             <Field
