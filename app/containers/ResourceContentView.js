@@ -24,7 +24,6 @@ let ResourceContentView = ({ title, body, externalResources }) => (
     <Divider inset={true} />
     <ExternalResourceList
       externalResources={externalResources}
-      has
     />
     <CardHeader title="Student's Notes" />
     <Divider inset={true} />
