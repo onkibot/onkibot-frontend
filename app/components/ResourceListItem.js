@@ -6,7 +6,7 @@ import Done from 'material-ui/svg-icons/action/done';
 const ResourceListItem = ({ name, body, hasMyFeedback }) => (
   <ListItem
     primaryText={name}
-    secondaryText={body}
+    secondaryText={body.length > 100 ? `${body.substring(0, 97)}...` : body}
     leftIcon={<LightBulb />}
     rightIcon={hasMyFeedback ? <Done /> : null}
   />
