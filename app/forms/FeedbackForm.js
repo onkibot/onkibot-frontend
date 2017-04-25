@@ -10,7 +10,15 @@ import ExternalResourceApprovalList from '../components/ExternalResourceApproval
 class FeedbackForm extends Component {
 
     updateDifficultyRating = (value) => {
-        this.props.dispatch(change('feedback', 'difficulty', value));
+        // Endrer verdien i reduxform-feedback skjemaet for difficulty
+        // Dette er fordi Rating-componenten ikke er en 'input' så redux teller det ikke som et felt
+        // Derfor er det et felt som er 'hidden' som verdien sin oppdateres når rating endres
+        this.props.dispatch(change('feedback', 'difficulty', value)); // Dette er redux-form prop funksjoner/dispatches
+    }
+
+    handleApproval = (externalResourceId) => {
+        // Sender med alle nødvendige ID'er for å registrere approval
+        this.props.onApproval(externalResourceId, this.props.courseId, this.props.categoryId, this.props.resourceId);
     }
 
     render() {
@@ -37,7 +45,7 @@ class FeedbackForm extends Component {
             <label className="feedback-label" htmlFor="Difficulty">Approve links </label>
             <ExternalResourceApprovalList
               externalResources={externalResources}
-              onApproval={onApproval}
+              onApproval={this.handleApproval}
             />
             <br />
             <Field
@@ -46,6 +54,9 @@ class FeedbackForm extends Component {
               fullWidth={true}
               floatingLabelText="Comment"
             />
+            { /*
+              Her må "Suggest External Resource" skjema legges inn for at en skal kunne foreslå extenral resources selv.
+              */ }
             <RaisedButton
               label="Send"
               type="submit"

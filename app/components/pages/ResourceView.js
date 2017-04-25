@@ -11,6 +11,7 @@ class ResourceView extends Component {
 
     constructor(props) {
         super(props);
+        /* state for å håndtere dialog (åpne/lukke) */
         this.state = {
             dialogOpen: false
         };
@@ -49,6 +50,7 @@ class ResourceView extends Component {
               />
               <CardActions>
                 <div className="card-actions-wrap">
+                  { /* Laget et view for innholdet i resourcen, sender med alle ID'er */ }
                   <ResourceContentView
                     courseId={this.props.params.courseId}
                     categoryId={this.props.params.categoryId}
@@ -83,6 +85,7 @@ class ResourceView extends Component {
                 </div>
               </CardActions>
             </Card>
+            { /* om dialogOpen = true, vis feedback-form og send med handleClose-funksjon slik at man kan lukke skjemaet om man trykker på cancel-knapp */ }
             {this.state.dialogOpen &&
               <Feedback
                 handleClose={this.handleClose}
