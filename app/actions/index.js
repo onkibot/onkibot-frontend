@@ -11,22 +11,6 @@ export const setUserSearch = searchWord => ({
     searchWord
 });
 
-export const createAddedExternalResource = (externalResource, courseId, categoryId) => ({
-    type: 'ADDED_EXTERNAL_RESOURCES_CREATE',
-    courseId,
-    categoryId,
-    externalResource
-});
-
-export const deleteAddedExternalResource = url => ({
-    type: 'ADDED_EXTERNAL_RESOURCES_DELETE',
-    url
-});
-
-export const clearAddedExternalResources = () => ({
-    type: 'ADDED_EXTERNAL_RESOURCES_CLEAR'
-});
-
 const requestLogin = credentials => ({
     type: 'LOGIN_REQUEST',
     credentials
