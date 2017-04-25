@@ -3,7 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dialog } from 'material-ui';
 
-import { sendFeedback, externalResourceApproval } from '../actions/feedback';
+import { setResourceFeedback } from '../actions/resources';
+import { setExternalResourceApproval } from '../actions/externalResources';
 import FeedbackForm from '../forms/FeedbackForm';
 
 let Feedback = ({ onSubmit, handleClose, externalResources, onApproval, courseId, categoryId, resourceId }) => (
@@ -25,22 +26,19 @@ let Feedback = ({ onSubmit, handleClose, externalResources, onApproval, courseId
   </Dialog>
 );
 
-/* Finner externalResources for å sende inn i FeedbackForm slik at en kan lage approval list */
-const mapStateToProps = (state, ownProps) => {
-    const stateCourse = state.courses.find(course => course.courseId == ownProps.courseId);
-    const stateCategory = stateCourse.categories.find(category => category.categoryId == ownProps.categoryId);
-    const stateResource = stateCategory.resources.find(resource => resource.resourceId == ownProps.resourceId);
+const mapStateToProps = (state, { resourceId }) => {
+    const resource = state.resources.find(it => it.resourceId == resourceId);
     return {
-        externalResources: stateResource.externalResources
+        externalResources: resource.externalResources
     };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, { courseId, categoryId, resourceId }) => ({
     onSubmit: (feedback) => {
-        dispatch(sendFeedback(feedback));
+        dispatch(setResourceFeedback(courseId, categoryId, resourceId, feedback));
     },
-    onApproval: (externalResourceId, courseId, categoryId, resourceId) => {
-        dispatch(externalResourceApproval(externalResourceId, courseId, categoryId, resourceId));
+    onApproval: (externalResourceId, approval) => {
+        dispatch(setExternalResourceApproval(courseId, categoryId, resourceId, externalResourceId, approval));
     }
 });
 

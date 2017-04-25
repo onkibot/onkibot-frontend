@@ -8,7 +8,10 @@ const ExternalResourceApprovalList = ({ externalResources, onApproval }) => (
       <div key={externalResource.url}>
         <ListItem
           leftIcon={<CodeCell />}
-          rightToggle={<Toggle onToggle={() => onApproval(externalResource.externalResourceId)} />}
+          rightToggle={<Toggle
+            defaultToggled={externalResource.myApproval}
+            onToggle={(e, checked) => onApproval(externalResource.externalResourceId, checked)}
+          />}
           primaryText={externalResource.comment}
           secondaryText={externalResource.title}
         />
