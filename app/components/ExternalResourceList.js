@@ -32,7 +32,7 @@ const ExternalResourceList = ({ externalResources, onRemove }) => (
 
 ExternalResourceList.propTypes = {
     externalResources: React.PropTypes.array.isRequired,
-    onRemove: React.PropTypes.func.isRequired
+    onRemove: React.PropTypes.func
 };
 
 export default ExternalResourceList;
