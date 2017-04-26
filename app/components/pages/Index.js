@@ -5,6 +5,12 @@ import MediaQuery from 'react-responsive';
 /** The index page, the websites landing page */
 const Index = () => (
   <div>
+    <div className="fp-video-wrap">
+      <video height="500" autoPlay controls>
+        <source src="./video/Group079-Onkibot.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
     <Card>
       <div className="page-title-container">
         <h1>Who needs OnkiBot?</h1>
@@ -21,8 +27,9 @@ const Index = () => (
               <p>
                 Hallvard has lectured in Object Oriented programming
                 for over 10 years. He experiences many students who don’t know where to start when
-                looking for contextual resources. Students often end up beeing too dependent on the
-                lecturer rather than getting used to using external resources.
+                looking for contextual resources, so they end up e-mailing their lecturer.
+                Students often end up beeing too dependent on the lecturer rather than getting used
+                to using external resources.
               </p>
             </div>
             <div className="clearfix" />
@@ -38,11 +45,12 @@ const Index = () => (
             <div className="section-box">
               <h2>Hallvard Trætteberg</h2>
               <p>
-                      Hallvard has lectured in Object Oriented programming
-                      for over 10 years. He experiences many students who don’t know where to start when
-                      looking for contextual resources. Students often end up beeing too dependent on the
-                      lecturer rather than getting used to using external resources.
-                    </p>
+                Hallvard has lectured in Object Oriented programming
+                for over 10 years. He experiences many students who don’t know where to start when
+                looking for contextual resources, so they end up e-mailing their lecturer.
+                Students often end up beeing too dependent on the lecturer rather than getting
+                used to using external resources.
+              </p>
             </div>
             <div className="clearfix" />
           </div>
