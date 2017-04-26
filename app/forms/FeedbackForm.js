@@ -9,6 +9,17 @@ import FullStar from 'material-ui/svg-icons/toggle/star';
 import EmptyStar from 'material-ui/svg-icons/toggle/star-border';
 import ExternalResourceApprovalList from '../components/ExternalResourceApprovalList';
 
+const validate = ({ difficulty, comment }) => {
+    const errors = {};
+    if (!difficulty) {
+        errors.difficulty = 'Required';
+    }
+    if (!comment) {
+        errors.comment = 'Required';
+    }
+    return errors;
+};
+
 class FeedbackForm extends Component {
 
     updateDifficultyRating = (value) => {
@@ -93,7 +104,8 @@ FeedbackForm.propTypes = {
 };
 
 FeedbackForm = reduxForm({
-    form: 'feedback'
+    form: 'feedback',
+    validate
 })(FeedbackForm);
 
 const selector = formValueSelector('feedback');
