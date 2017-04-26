@@ -3,6 +3,7 @@ pipeline:
     image: node:7.3
     commands:
       - npm install -g yarn
+      - yarn --version
       - yarn
       - yarn run lint
       - yarn run test
@@ -19,6 +20,7 @@ pipeline:
       - NODE_ENV=development
     commands:
       - npm install -g yarn
+      - yarn --version
       - yarn
       - ./node_modules/.bin/webpack
       - rm -rf /web/*
@@ -36,6 +38,7 @@ pipeline:
       - NODE_ENV=production
     commands:
       - npm install -g yarn
+      - yarn --version
       - yarn
       - ./node_modules/.bin/webpack
       - rm -rf /web/*
@@ -44,5 +47,5 @@ pipeline:
     volumes:
       - /var/www/html/onkibot/master:/web
     when:
-      branch: master
+      branch: refs/tags/*
       event: tag
