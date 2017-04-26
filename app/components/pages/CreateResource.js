@@ -23,6 +23,15 @@ const CreateResource = props => (
       <div className="page-title-container page-title-container-index">
         <h1>Create Resource</h1>
       </div>
+      <div className="callout">
+        <h4>Need help create a resource?</h4>
+        <p>
+          To create a resource, add a title, a body, a
+           comment to the resource and external resources. To add external resources, just click
+          {" 'ATTACH EXTERNAL RESOURCE'"} and a resource card will show up for you to fill in. If you want to
+          add another one, just click the button one more time!
+        </p>
+      </div>
       <CreateResourceForm
         courseId={props.params.courseId}
         categoryId={props.params.categoryId}
