@@ -1,6 +1,8 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
 
+import { setError } from './error';
+
 const actionCreators = reduxCrud.actionCreatorsFor('externalResources', {
     key: 'externalResourceId'
 });
@@ -28,12 +30,21 @@ export const createExternalResource = (courseId, categoryId, resourceId, externa
     dispatch(actionCreators.createStart(externalResource));
 
     return fetch(`/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}/externals`, config)
-    .then(response => response.json())
+    .then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+            return response.json();
+        } else {
+            return response.json().then((json) => {
+                throw json;
+            });
+        }
+    })
     .then((returnedExternalResource) => {
         dispatch(actionCreators.createSuccess(returnedExternalResource, cid));
     })
     .catch((err) => {
         dispatch(actionCreators.createError(err, externalResource));
+        dispatch(setError(err));
     });
 });
 
@@ -76,8 +87,18 @@ export const setExternalResourceApproval = (courseId, categoryId, resourceId, ex
         };
         const resource = `/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}`;
         return fetch(`${resource}/externals/${externalResourceId}/approve`, config)
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return Promise.resolve();
+            } else {
+                return response.json().then((json) => {
+                    throw json;
+                });
+            }
+        })
         .then(() => {
             dispatch(doSetExternalResourceApproval(externalResourceId, approval));
-        });
+        })
+        .catch(err => dispatch(setError(err)));
     }
 );
