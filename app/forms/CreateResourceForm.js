@@ -94,7 +94,10 @@ CreateResourceForm.propTypes = {
 
 const mapDispatchToProps = (dispatch, { courseId, categoryId, router }) => ({
     onSubmit: (resourceInfo) => {
-        dispatch(createResource(courseId, categoryId, resourceInfo));
+        dispatch(createResource(courseId, categoryId, {
+            ...resourceInfo,
+            externalResources: resourceInfo.externalResources || []
+        }));
         router.push(`/courses/${courseId}/categories/${categoryId}/resources/`);
     }
 });
