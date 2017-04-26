@@ -20,7 +20,7 @@ const CourseList = ({ courses }) => (
       ))}
     </List>
   ) : (
-    <p>Looks like you are not attending any courses yet.</p>
+    <p className="text-align-center">Looks like you are not attending any courses yet.</p>
   )
 );
 
