@@ -1,7 +1,6 @@
 import React from 'react';
 import { List, ListItem } from 'material-ui';
 import CodeCell from 'material-ui/svg-icons/action/code';
-import Add from 'material-ui/svg-icons/content/add';
 
 /** The external resource list component, displaying all external resources of a resource */
 const ExternalResourceList = ({ externalResources }) => (
