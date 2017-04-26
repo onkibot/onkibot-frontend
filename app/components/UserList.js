@@ -3,6 +3,9 @@ import { List, TextField } from 'material-ui';
 
 import UserListItem from './UserListItem';
 
+/** The user list component, displaying all users and a button for adding or removing a user from a specific course.
+/*  Also contains a search field which filters the displayed users.
+*/
 const UserList = ({ userSearch, users, onAddClick, onRemoveClick, onSearchChange }) => (
   <div>
     <TextField
@@ -27,10 +30,15 @@ const UserList = ({ userSearch, users, onAddClick, onRemoveClick, onSearchChange
 );
 
 UserList.propTypes = {
+    /** The current search word typed by the user */
     userSearch: React.PropTypes.string.isRequired,
+    /** An array of user objects, each containing a userId, name, isInstructor bool and attending bool */
     users: React.PropTypes.array.isRequired,
+    /** A function called when adding a user to the course */
     onAddClick: React.PropTypes.func.isRequired,
+    /** A function called when removing a user from the course */
     onRemoveClick: React.PropTypes.func.isRequired,
+    /** A function called whenever the user edits the search */
     onSearchChange: React.PropTypes.func.isRequired
 };
 

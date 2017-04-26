@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardActions, Divider } from 'material-ui';
 import MediaQuery from 'react-responsive';
 
+/** The index page, the websites landing page */
 const Index = () => (
   <div>
     <Card>

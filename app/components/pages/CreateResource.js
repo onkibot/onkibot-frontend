@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 
 import CreateResourceForm from '../../forms/CreateResourceForm';
 
+/** The resource creation page, used to create a new resource in a specific category in a specific course */
 const CreateResource = props => (
   <div>
     <Card>
@@ -32,7 +33,9 @@ const CreateResource = props => (
 );
 
 CreateResource.propTypes = {
+    /** Params from URL passed as props, contains courseId and categoryId */
     params: React.PropTypes.object.isRequired,
+    /** The react router passed as props, used to programmatically navigate to different pages */
     router: React.PropTypes.object.isRequired
 };
 
