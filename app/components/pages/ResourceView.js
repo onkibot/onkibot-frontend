@@ -1,9 +1,9 @@
 /* eslint max-len: ["error", 255] */
 import React, { Component } from 'react';
-import { Card, CardActions, CardHeader, Divider } from 'material-ui';
-import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+import { Card, CardHeader } from 'material-ui';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import { Link } from 'react-router';
+
 import Feedback from '../../containers/Feedback';
 import ResourceContentView from '../../containers/ResourceContentView';
 
@@ -31,10 +31,9 @@ class ResourceView extends Component {
     };
 
     render() {
-        const iconStyle = {
-            fontSize: '48px'
-        };
-
+        const courseId = parseInt(this.props.params.courseId, 10);
+        const categoryId = parseInt(this.props.params.categoryId, 10);
+        const resourceId = parseInt(this.props.params.resourceId, 10);
         return (
           <div>
             <Card>
@@ -49,54 +48,23 @@ class ResourceView extends Component {
                   </Link>
                 }
               />
-              <CardActions>
-                <div className="card-actions-wrap">
-                  { /* Laget et view for innholdet i resourcen, sender med alle ID'er */ }
-                  <ResourceContentView
-                    courseId={this.props.params.courseId}
-                    categoryId={this.props.params.categoryId}
-                    resourceId={this.props.params.resourceId}
-                  />
-                </div>
-              </CardActions>
-              <CardActions>
-                <div className="card-actions-wrap">
-                  <Divider />
-                  <div className="task-navigation">
-
-                    <Link to="/taskcontainer" className="float-left">
-                      <ArrowBackward
-                        style={iconStyle}
-                        viewBox="0 0 20 20"
-                      />
-                      <span>Previous Task</span>
-                    </Link>
-
-                    <Link onClick={this.handleOpen} className="float-right">
-
-                      <span>Next Task</span>
-                      <ArrowForward
-                        style={iconStyle}
-                        viewBox="0 0 20 20"
-                      />
-                    </Link>
-
-                    <div className="clearfix" />
-                  </div>
-                </div>
-              </CardActions>
+              <ResourceContentView
+                provideFeedback={this.handleOpen}
+                courseId={courseId}
+                categoryId={categoryId}
+                resourceId={resourceId}
+              />
             </Card>
             { /* om dialogOpen = true, vis feedback-form og send med handleClose-funksjon slik at man kan lukke skjemaet om man trykker på cancel-knapp */ }
             {this.state.dialogOpen && <Feedback
               handleClose={this.handleClose}
-              courseId={this.props.params.courseId}
-              categoryId={this.props.params.categoryId}
-              resourceId={this.props.params.resourceId}
+              courseId={courseId}
+              categoryId={categoryId}
+              resourceId={resourceId}
             />}
           </div>
         );
     }
-
 }
 
 ResourceView.propTypes = {

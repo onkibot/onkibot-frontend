@@ -21,7 +21,7 @@ const CategoryList = ({ courseId, categories }) => (
       ))}
     </List>
   ) : (
-    <p>Looks like there are no categories yet.</p>
+    <p className="text-align-center">Looks like there are no categories yet.</p>
   )
 );
 

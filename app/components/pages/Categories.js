@@ -31,7 +31,7 @@ let Categories = ({ params, canAdministrate }) => (
               fullWidth={true}
               className="place-mid"
               style={{
-                  margin: '20px auto',
+                  margin: '5px auto',
                   padding: '0px'
               }}
             />
@@ -44,7 +44,7 @@ let Categories = ({ params, canAdministrate }) => (
               fullWidth={true}
               className="place-mid"
               style={{
-                  margin: '20px auto',
+                  margin: '5px auto',
                   padding: '0px'
               }}
             />

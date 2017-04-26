@@ -1,59 +1,147 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CardHeader, Divider } from 'material-ui';
+import { CardHeader, CardActions, CardText, Divider } from 'material-ui';
+import { Link } from 'react-router';
+import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { zenburn } from 'react-syntax-highlighter/dist/styles';
+
+import UserFeedbackList from '../components/UserFeedbackList';
 import ExternalResourceList from '../components/ExternalResourceList';
 
-let ResourceContentView = ({ title, body, externalResources }) => (
-  <div className="resource-content-view">
-    <div className="page-title-container page-title-container-index">
-      <h1>{title}</h1>
+let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, feedback,
+  averageFeedbackDifficulty, previousResourceId, nextResourceId, courseId, categoryId }) => (
+    <div className="resource-content-view">
+      <div className="page-title-container page-title-container-index">
+        <h1>{title}</h1>
+      </div>
+      {body && (
+        <div className="task-view">
+          <SyntaxHighlighter
+            language="javascript"
+            style={zenburn}
+            showLineNumbers="true"
+            className="text-align-left"
+          >
+            {body}
+          </SyntaxHighlighter>
+        </div>
+      )}
+      {comment && (
+        <div>
+          <CardHeader title="Instructor's comment" />
+          <Divider />
+          <CardText>{comment}</CardText>
+        </div>
+      )}
+      {externalResources.length > 0 && (
+        <div className="external-resource-wrap">
+          <CardHeader
+            title="External resources"
+            subtitle="Links suggested by instructors and students"
+          />
+          <Divider />
+          <ExternalResourceList
+            externalResources={externalResources}
+          />
+        </div>
+      )}
+      {feedback.length > 0 && (
+        <div>
+          <CardHeader
+            title="User feedback"
+            subtitle={`Average difficulty rating: ${averageFeedbackDifficulty}`}
+          />
+          <Divider />
+          <UserFeedbackList
+            feedback={feedback}
+          />
+        </div>
+      )}
+      <CardActions>
+        <div className="card-actions-wrap">
+          <Divider />
+          <div className="task-navigation">
+            {previousResourceId !== null && (
+              <Link
+                to={`courses/${courseId}/categories/${categoryId}/resources/${previousResourceId}/resourceView/`}
+              >
+                <ArrowBackward
+                  style={{ fontSize: '48px' }}
+                  viewBox="0 0 20 20"
+                />
+                <span>Previous Task</span>
+              </Link>
+            )}
+            <Link onClick={provideFeedback}>
+              Provide feedback
+            </Link>
+            {nextResourceId !== null && (
+              <Link
+                to={`courses/${courseId}/categories/${categoryId}/resources/${nextResourceId}/resourceView/`}
+              >
+                <span>Next Task</span>
+                <ArrowForward
+                  style={{ fontSize: '48px' }}
+                  viewBox="0 0 20 20"
+                />
+              </Link>
+            )}
+            <div className="clearfix" />
+          </div>
+        </div>
+      </CardActions>
     </div>
-    <div className="taskView">
-      <SyntaxHighlighter
-        language="javascript"
-        style={zenburn}
-        showLineNumbers="true"
-        className="text-align-left"
-      >
-        {body}
-      </SyntaxHighlighter>
-    </div>
-    <CardHeader title="Teacher's Notes" />
-    <Divider inset={true} />
-    <ExternalResourceList
-      externalResources={externalResources}
-    />
-    <CardHeader title="Student's Notes" />
-    <Divider inset={true} />
-    <ExternalResourceList
-      externalResources={externalResources}
-    />
-  </div>
 );
 
 ResourceContentView.propTypes = {
+    provideFeedback: React.PropTypes.func.isRequired,
     title: React.PropTypes.string.isRequired,
     body: React.PropTypes.string.isRequired,
-    externalResources: React.PropTypes.array.isRequired
+    comment: React.PropTypes.string,
+    feedback: React.PropTypes.array.isRequired,
+    averageFeedbackDifficulty: React.PropTypes.number.isRequired,
+    externalResources: React.PropTypes.array.isRequired,
+    previousResourceId: React.PropTypes.number,
+    nextResourceId: React.PropTypes.number,
+    courseId: React.PropTypes.number.isRequired,
+    categoryId: React.PropTypes.number.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
-    const stateCourse = state.courses.find(course => course.courseId == ownProps.courseId);
-    const stateCategory = stateCourse.categories.find(category => category.categoryId == ownProps.categoryId);
-    const stateResource = stateCategory.resources.find(resource => resource.resourceId == ownProps.resourceId);
+const mapStateToProps = (state, { categoryId, resourceId }) => {
+    const resources = state.resources.filter(it => it.categoryId == categoryId);
+    const resource = resources.find(it => it.resourceId == resourceId);
+    const resourceIndex = state.resources.indexOf(resource);
+    let previousResourceId = null;
+    let nextResourceId = null;
+    if (resourceIndex !== -1) {
+        if (resourceIndex - 1 >= 0) {
+            previousResourceId = resources[resourceIndex - 1].resourceId;
+        }
+        if (resourceIndex + 1 < resources.length) {
+            nextResourceId = resources[resourceIndex + 1].resourceId;
+        }
+    }
+
+    const externalResources = state.externalResources
+    .filter(it => it.resourceId == resourceId)
+    .sort((a, b) => b.approvalCount - a.approvalCount);
+
     return {
-        comment: stateResource.comment,
-        body: stateResource.body,
-        title: stateResource.name,
-        externalResources: stateResource.externalResources
+        body: resource.body,
+        title: resource.name,
+        comment: resource.comment,
+        feedback: resource.feedback,
+        averageFeedbackDifficulty: resource.averageFeedbackDifficulty,
+        externalResources,
+        previousResourceId,
+        nextResourceId
     };
 };
 
 ResourceContentView = connect(
-  mapStateToProps,
-  null
+  mapStateToProps
 )(ResourceContentView);
 
 export default ResourceContentView;
