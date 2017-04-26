@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
     return {
         open: state.error != null,
         message: error.toString()
-    }
+    };
 };
 
 const mapDispatchToProps = dispatch => ({
