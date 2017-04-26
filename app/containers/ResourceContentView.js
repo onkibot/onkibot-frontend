@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CardHeader, CardActions, CardText, Divider } from 'material-ui';
+import { CardHeader, CardActions, CardText, Divider, RaisedButton } from 'material-ui';
 import { Link } from 'react-router';
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
@@ -73,7 +73,9 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
               </Link>
             )}
             <Link className="feedback-btn" onClick={provideFeedback}>
-              Provide feedback
+              <RaisedButton
+                label="Provide feedback"
+              />
             </Link>
             {nextResourceId !== null && (
               <Link
