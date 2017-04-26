@@ -74,6 +74,13 @@ let CreateResourceForm = ({ handleSubmit }) => (
       fullWidth={true}
       rows={5}
     />
+    <Field
+      component={TextField}
+      name="comment"
+      hintText="Instructors' comment"
+      multiLine={true}
+      fullWidth={true}
+    />
     <FieldArray
       name="externalResources"
       component={ExternalResources}
