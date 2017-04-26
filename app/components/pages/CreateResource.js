@@ -1,6 +1,6 @@
 import React from 'react';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
-import { Card, CardHeader } from 'material-ui';
+import { Card, CardHeader, CardText } from 'material-ui';
 import { Link } from 'react-router';
 
 import CreateResourceForm from '../../forms/CreateResourceForm';
@@ -22,6 +22,15 @@ const CreateResource = props => (
       />
       <div className="page-title-container page-title-container-index">
         <h1>Create Resource</h1>
+      </div>
+      <div className="callout">
+        <h4>Need help create a resource?</h4>
+        <p>
+          To create a resource, add a title, a body, a
+           comment to the resource and external resources. To add external resources, just click
+          ' ATTACH EXTERNAL RESOURCE' and a resource card will show up for you to fill in. If you want to
+          add another one, just click the button one more time!
+        </p>
       </div>
       <CreateResourceForm
         courseId={props.params.courseId}

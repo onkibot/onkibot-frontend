@@ -10,6 +10,12 @@ const CreateCourse = props => (
       <div className="page-title-container page-title-container-index">
         <h1>Create Course</h1>
       </div>
+      <div className="callout">
+        <h4>What is this?</h4>
+        <p>
+          A course is a collection of categories containing resources for the students to learn from!
+        </p>
+      </div>
       <CardActions>
         <CreateCourseForm router={props.router} />
       </CardActions>
