@@ -16,11 +16,6 @@ const requestLogin = credentials => ({
     credentials
 });
 
-const receiveLogin = session => ({
-    type: 'LOGIN_SUCCESS',
-    session
-});
-
 const loginError = message => ({
     type: 'LOGIN_FAILURE',
     message
@@ -42,17 +37,15 @@ export const loginUser = (credentials) => {
         return fetch('/api/v1/session', config)
         .then((response) => {
             if (response.status >= 200 && response.status < 300) {
-                return response.json();
+                return response;
             } else {
                 return response.json().then((json) => {
                     throw json;
                 });
             }
         })
-        .then((json) => {
-            dispatch(receiveLogin(json));
-            coursesFetchSuccess(dispatch, json.attending);
-            dispatch(fetchUsers());
+        .then(() => {
+            location.href = '/';
         })
         .catch((err) => {
             dispatch(loginError(err));
@@ -100,10 +93,6 @@ const requestLogout = () => ({
     type: 'LOGOUT_REQUEST'
 });
 
-const receiveLogout = () => ({
-    type: 'LOGOUT_SUCCESS'
-});
-
 const logoutError = message => ({
     type: 'LOGOUT_ERROR',
     message
@@ -120,7 +109,7 @@ export const logoutUser = () => {
 
         return fetch('/api/v1/session', config)
         .then(() => {
-            dispatch(receiveLogout());
+            location.href = '/';
         })
         .catch((err) => {
             dispatch(logoutError(err));
@@ -131,11 +120,6 @@ export const logoutUser = () => {
 const requestSignup = signupInfo => ({
     type: 'SIGNUP_REQUEST',
     signupInfo
-});
-
-const receiveSignup = session => ({
-    type: 'SIGNUP_SUCCESS',
-    session
 });
 
 const signupError = message => ({
@@ -158,10 +142,17 @@ export const signupUser = (signupInfo) => {
 
         return fetch('/api/v1/signup', config)
         .then(response => response.json())
-        .then((json) => {
-            dispatch(receiveSignup(json));
-            coursesFetchSuccess(dispatch, json.attending);
-            dispatch(fetchUsers());
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                return response.json().then((json) => {
+                    throw json;
+                });
+            }
+        })
+        .then(() => {
+            location.href = '/';
         })
         .catch((err) => {
             dispatch(signupError(err));
