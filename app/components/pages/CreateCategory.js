@@ -17,6 +17,12 @@ const CreateCategory = props => (
       <div className="page-title-container page-title-container-index">
         <h1>Create Category</h1>
       </div>
+      <div className="callout">
+        <h4>What is this?</h4>
+        <p>
+          A category is a collection of resources where you can add questions, learning topics or tasks!
+        </p>
+      </div>
       <CardActions>
         <CreateCategoryForm courseId={props.params.courseId} router={props.router} />
       </CardActions>
