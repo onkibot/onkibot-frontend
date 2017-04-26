@@ -7,10 +7,12 @@ import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monoBlue } from 'react-syntax-highlighter/dist/styles';
 
+import SuggestExternalResourceForm from '../forms/SuggestExternalResourceForm';
+import UserFeedbackList from '../components/UserFeedbackList';
 import ExternalResourceList from '../components/ExternalResourceList';
 
-let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, feedback,
-  averageFeedbackDifficulty, previousResourceId, nextResourceId, courseId, categoryId }) => (
+let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, myFeedback, feedback,
+  averageFeedbackDifficulty, previousResourceId, nextResourceId, courseId, categoryId, resourceId }) => (
     <div className="resource-content-view">
       <div className="page-title-container page-title-container-index">
         <h1>{title}</h1>
@@ -33,16 +35,31 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
           <CardText>{comment}</CardText>
         </div>
       )}
-      {externalResources.length > 0 && (
-        <div className="external-resource-wrap">
+      <div className="external-resource-wrap">
+        <CardHeader
+          title="External resources"
+          subtitle="Links suggested by instructors and students"
+        />
+        <Divider />
+        <ExternalResourceList
+          externalResources={externalResources}
+        />
+        <SuggestExternalResourceForm
+          courseId={courseId}
+          categoryId={categoryId}
+          resourceId={resourceId}
+        />
+      </div>
+      {myFeedback && (
+        <div>
           <CardHeader
-            title="External resources"
-            subtitle="Links suggested by instructors and students"
+            title="My feedback"
+            subtitle={`Difficulty rating: ${myFeedback.difficulty}`}
           />
           <Divider />
-          <ExternalResourceList
-            externalResources={externalResources}
-          />
+          <CardText>
+            {myFeedback.comment}
+          </CardText>
         </div>
       )}
       {feedback.length > 0 && (
@@ -72,11 +89,13 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
                 <span>Previous Task</span>
               </Link>
             )}
-            <Link className="feedback-btn" onClick={provideFeedback}>
-              <RaisedButton
-                label="Provide feedback"
-              />
-            </Link>
+            {!myFeedback && (
+              <Link className="feedback-btn" onClick={provideFeedback}>
+                <RaisedButton
+                  label="Provide feedback"
+                />
+              </Link>
+            )}
             {nextResourceId !== null && (
               <Link
                 to={`courses/${courseId}/categories/${categoryId}/resources/${nextResourceId}/resourceView/`}
@@ -100,13 +119,15 @@ ResourceContentView.propTypes = {
     title: React.PropTypes.string.isRequired,
     body: React.PropTypes.string.isRequired,
     comment: React.PropTypes.string,
+    myFeedback: React.PropTypes.object,
     feedback: React.PropTypes.array.isRequired,
     averageFeedbackDifficulty: React.PropTypes.number.isRequired,
     externalResources: React.PropTypes.array.isRequired,
     previousResourceId: React.PropTypes.number,
     nextResourceId: React.PropTypes.number,
     courseId: React.PropTypes.number.isRequired,
-    categoryId: React.PropTypes.number.isRequired
+    categoryId: React.PropTypes.number.isRequired,
+    resourceId: React.PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state, { categoryId, resourceId }) => {
@@ -128,12 +149,19 @@ const mapStateToProps = (state, { categoryId, resourceId }) => {
     .filter(it => it.resourceId == resourceId)
     .sort((a, b) => b.approvalCount - a.approvalCount);
 
+    const myFeedback = state.resourceFeedback
+    .find(it => it.resourceFeedbackId == resource.myFeedback);
+
+    const feedback = state.resourceFeedback
+    .filter(it => it.resourceId == resourceId);
+
     return {
         body: resource.body,
         title: resource.name,
         comment: resource.comment,
-        feedback: resource.feedback,
         averageFeedbackDifficulty: resource.averageFeedbackDifficulty,
+        myFeedback,
+        feedback,
         externalResources,
         previousResourceId,
         nextResourceId
