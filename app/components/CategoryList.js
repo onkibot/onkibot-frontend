@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 
 import CategoryListItem from './CategoryListItem';
 
+/** The category list component, displaying all categories in a specific course */
 const CategoryList = ({ courseId, categories }) => (
   categories.length > 0 ? (
     <List>
@@ -25,7 +26,9 @@ const CategoryList = ({ courseId, categories }) => (
 );
 
 CategoryList.propTypes = {
+    /** The courseId of the course containing the displayed categories */
     courseId: React.PropTypes.string.isRequired,
+    /** An array of category objects, each containing a name and a description */
     categories: React.PropTypes.array.isRequired
 };
 

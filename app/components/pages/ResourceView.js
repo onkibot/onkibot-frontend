@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import Feedback from '../../containers/Feedback';
 import ResourceContentView from '../../containers/ResourceContentView';
 
+/** The resource view page, displaying a specific resource */
 class ResourceView extends Component {
 
     constructor(props) {
@@ -99,6 +100,7 @@ class ResourceView extends Component {
 }
 
 ResourceView.propTypes = {
+    /** Params from URL passed as props, contains courseId, categoryId and resourceId */
     params: React.PropTypes.object.isRequired
 };
 

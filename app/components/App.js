@@ -3,6 +3,7 @@ import SessionNavbar from '../containers/SessionNavbar';
 import SessionUserCard from '../containers/SessionUserCard';
 import Footer from './Footer';
 
+/** The main app component, contains navbar and the viewed page */
 class OnkibotApp extends PureComponent {
     render() {
         return (
@@ -21,6 +22,7 @@ class OnkibotApp extends PureComponent {
 }
 
 OnkibotApp.propTypes = {
+    /** The page being viewed, passed as props */
     children: React.PropTypes.node.isRequired
 };
 

@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
     canAdministrate: (state.auth.session !== null) && state.auth.session.isInstructor
 });
 
+/** The categories list page, used to navigate categories in a course */
 let Categories = ({ params, canAdministrate }) => (
   <div>
     <Card>
@@ -55,7 +56,9 @@ let Categories = ({ params, canAdministrate }) => (
 );
 
 Categories.propTypes = {
+    /** Params from URL passed as prop */
     params: React.PropTypes.object.isRequired,
+    /** Bool set true if user is logged in as instructor, passed as prop, contains courseId */
     canAdministrate: React.PropTypes.bool.isRequired
 };
 

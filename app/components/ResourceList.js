@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 
 import ResourceListItem from './ResourceListItem';
 
+/** The resource list component, displaying all resources in a specific category in a specific course */
 const ResourceList = ({ courseId, categoryId, resources }) => (
   resources.length > 0 ? (
     <List>
@@ -26,8 +27,11 @@ const ResourceList = ({ courseId, categoryId, resources }) => (
 );
 
 ResourceList.propTypes = {
+    /** The courseId of the course containing the resource */
     courseId: React.PropTypes.string.isRequired,
+    /** The categoryId of the category containing the resource */
     categoryId: React.PropTypes.string.isRequired,
+    /** An array of resource objects */
     resources: React.PropTypes.array.isRequired
 };
 
