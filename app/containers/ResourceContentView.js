@@ -6,11 +6,13 @@ import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monoBlue } from 'react-syntax-highlighter/dist/styles';
+
+import SuggestExternalResourceForm from '../forms/SuggestExternalResourceForm';
 import UserFeedbackList from '../components/UserFeedbackList';
 import ExternalResourceList from '../components/ExternalResourceList';
 
 let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, feedback,
-  averageFeedbackDifficulty, previousResourceId, nextResourceId, courseId, categoryId }) => (
+  averageFeedbackDifficulty, previousResourceId, nextResourceId, courseId, categoryId, resourceId }) => (
     <div className="resource-content-view">
       <div className="page-title-container page-title-container-index">
         <h1>{title}</h1>
@@ -33,18 +35,21 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
           <CardText>{comment}</CardText>
         </div>
       )}
-      {externalResources.length > 0 && (
-        <div className="external-resource-wrap">
-          <CardHeader
-            title="External resources"
-            subtitle="Links suggested by instructors and students"
-          />
-          <Divider />
-          <ExternalResourceList
-            externalResources={externalResources}
-          />
-        </div>
-      )}
+      <div className="external-resource-wrap">
+        <CardHeader
+          title="External resources"
+          subtitle="Links suggested by instructors and students"
+        />
+        <Divider />
+        <ExternalResourceList
+          externalResources={externalResources}
+        />
+        <SuggestExternalResourceForm
+          courseId={courseId}
+          categoryId={categoryId}
+          resourceId={resourceId}
+        />
+      </div>
       {feedback.length > 0 && (
         <div>
           <CardHeader
@@ -106,7 +111,8 @@ ResourceContentView.propTypes = {
     previousResourceId: React.PropTypes.number,
     nextResourceId: React.PropTypes.number,
     courseId: React.PropTypes.number.isRequired,
-    categoryId: React.PropTypes.number.isRequired
+    categoryId: React.PropTypes.number.isRequired,
+    resourceId: React.PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state, { categoryId, resourceId }) => {
