@@ -84,7 +84,7 @@ FeedbackForm.propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     handleSubmit: React.PropTypes.func.isRequired,
     handleCancel: React.PropTypes.func.isRequired,
-    difficulty: React.PropTypes.number.isRequired,
+    difficulty: React.PropTypes.number,
     externalResources: React.PropTypes.array.isRequired,
     onApproval: React.PropTypes.func.isRequired
 };
