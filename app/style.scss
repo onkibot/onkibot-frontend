@@ -140,10 +140,18 @@ header {
         text-transform: uppercase;
         transition: 0.2s;
 
-        :hover,
+        &:hover {
+          color: $text-color;
+        }
+
+        &:active {
+          color: $text-color;
+        }
+
         .active {
           color: $text-color;
         }
+
 
       }
 
@@ -254,14 +262,38 @@ header {
 }
 
 /* Task Container -------- */
+.task-view {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  width: 80%;
+}
+
 .resource-content-view {
+  -webkit-box-sizing: border-box !important; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box !important;    /* Firefox, other Gecko */
+  box-sizing: border-box !important;         /* Opera/IE 8+ */
   margin-bottom: 10px;
   min-height: 150px;
-  text-align: center;
+  padding: 0 30px;
   width: 100%;
 
   img {
     max-height: 250px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    margin: 30px 0 5px;
+  }
+}
+
+.external-resource-wrap {
+  h3,
+  p {
+    margin-left: 14px !important;
   }
 }
 
@@ -273,6 +305,7 @@ header {
 .task-navigation {
   height: 50px;
   margin-top: 20px;
+  text-align: center;
 
   a {
     color: $primary-dark;
@@ -337,7 +370,7 @@ footer {
           }
         }
 
-        .icon-text {
+        .footer-icon-text {
           margin-left: 10px;
         }
       }
@@ -349,7 +382,6 @@ footer {
   }
 
   #onki-icon {
-    cursor: pointer;
     height: 30px;
     width: 30px;
 
