@@ -21,7 +21,7 @@ const ResourceList = ({ courseId, categoryId, resources }) => (
       ))}
     </List>
   ) : (
-    <p>Looks like there are no resources yet.</p>
+    <p className="text-align-center">Looks like there are no resources yet.</p>
   )
 );
 
