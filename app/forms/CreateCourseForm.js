@@ -26,38 +26,37 @@ const mapDispatchToProps = (dispatch, { router }) => ({
     }
 });
 
-let CreateCourseForm = ({ handleSubmit, pristine }) => {
-    return (
-      <form onSubmit={handleSubmit} className="form-style">
-        <Field
-          name="name"
-          fullWidth={true}
-          component={TextField}
-          floatingLabelText="Course name"
-        />
-        <Field
-          name="description"
-          fullWidth={true}
-          component={TextField}
-          floatingLabelText="Course description"
-        />
-        <RaisedButton
-          label="Create Course"
-          type="submit"
-          fullWidth={true}
-          disabled={pristine}
-          style={{
-              marginTop: '20px',
-              margin: '20px auto',
-              padding: '0px'
-          }}
-        />
-      </form>
-    );
-};
+let CreateCourseForm = ({ handleSubmit, pristine }) => (
+  <form onSubmit={handleSubmit} className="form-style">
+    <Field
+      name="name"
+      fullWidth={true}
+      component={TextField}
+      floatingLabelText="Course name"
+    />
+    <Field
+      name="description"
+      fullWidth={true}
+      component={TextField}
+      floatingLabelText="Course description"
+    />
+    <RaisedButton
+      label="Create Course"
+      type="submit"
+      fullWidth={true}
+      disabled={pristine}
+      style={{
+          marginTop: '20px',
+          margin: '20px auto',
+          padding: '0px'
+      }}
+    />
+  </form>
+);
 
 CreateCourseForm.propTypes = {
-    handleSubmit: React.PropTypes.func.isRequired
+    handleSubmit: React.PropTypes.func.isRequired,
+    pristine: React.PropTypes.bool.isRequired
 };
 
 CreateCourseForm = connect(
