@@ -1,6 +1,7 @@
 import React from 'react';
 import LogoSmall from './svg/LogoSmall';
 
+/** The footer component, displayed at the bottom of every page */
 const Footer = () => (
   <footer>
     <div className="footer-box">

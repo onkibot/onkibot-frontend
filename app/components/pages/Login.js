@@ -3,6 +3,7 @@ import { Card, CardActions } from 'material-ui';
 
 import LoginForm from '../../forms/LoginForm';
 
+/* The user login page */
 const Login = () => (
   <div>
     <Card>

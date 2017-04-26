@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
     canAdministrate: (state.auth.session !== null) && state.auth.session.isInstructor
 });
 
+/** The course list page, used to navigate a users attending courses */
 let Courses = ({ canAdministrate }) => (
   <div>
     <Card>
@@ -36,6 +37,7 @@ let Courses = ({ canAdministrate }) => (
 );
 
 Courses.propTypes = {
+  /** Bool set true if user is logged in as instructor, passed as prop */
     canAdministrate: React.PropTypes.bool.isRequired
 };
 
