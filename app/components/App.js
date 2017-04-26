@@ -18,7 +18,9 @@ class OnkibotApp extends PureComponent {
             </div>
             <Footer />
             <ErrorSnackbar
-              autoHideDuration={4000}
+              bodyStyle={{
+                  backgroundColor: '#F00'
+              }}
             />
           </div>
         );

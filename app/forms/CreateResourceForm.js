@@ -37,7 +37,7 @@ const validate = ({ name, body, externalResources }) => {
             if (!url) {
                 externalResourceErrors.url = 'Required';
             } else if (url.length > 2083) {
-                externalResourceErrors.title = 'Must be less than 2083 characters';
+                externalResourceErrors.url = 'Must be less than 2083 characters';
             }
             externalResourceErrorsArray[index] = externalResourceErrors;
         });
