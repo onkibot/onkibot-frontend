@@ -3,6 +3,7 @@ import { Card, CardActions } from 'material-ui';
 
 import CreateCourseForm from '../../forms/CreateCourseForm';
 
+/** The course creation page */
 const CreateCourse = props => (
   <div>
     <Card>
@@ -17,6 +18,7 @@ const CreateCourse = props => (
 );
 
 CreateCourse.propTypes = {
+    /** The react router passed as props, used to programmatically navigate to different pages */
     router: React.PropTypes.object.isRequired
 };
 

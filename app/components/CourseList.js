@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 
 import CourseListItem from './CourseListItem';
 
+/** The course list component, displaying all courses a specific user is attending */
 const CourseList = ({ courses }) => (
   courses.length > 0 ? (
     <List>
@@ -25,6 +26,7 @@ const CourseList = ({ courses }) => (
 );
 
 CourseList.propTypes = {
+    /** An array of course objects, each containing a name and a description */
     courses: React.PropTypes.array.isRequired
 };
 
