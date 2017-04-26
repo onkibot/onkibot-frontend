@@ -134,12 +134,15 @@ const mapStateToProps = (state, { categoryId, resourceId }) => {
     .filter(it => it.resourceId == resourceId)
     .sort((a, b) => b.approvalCount - a.approvalCount);
 
+    const feedback = state.resourceFeedback
+    .filter(it => it.resourceId == resourceId);
+
     return {
         body: resource.body,
         title: resource.name,
         comment: resource.comment,
-        feedback: resource.feedback,
         averageFeedbackDifficulty: resource.averageFeedbackDifficulty,
+        feedback,
         externalResources,
         previousResourceId,
         nextResourceId

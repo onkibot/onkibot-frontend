@@ -1,15 +1,23 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
 import { fetchSuccess as externalResourcesFetchSuccess } from './externalResources';
+import { fetchSuccess as resourceFeedbackFetchSuccess } from './resourceFeedback';
 
 const actionCreators = reduxCrud.actionCreatorsFor('resources', {
     key: 'resourceId'
 });
 
 export const fetchSuccess = (dispatch, resources) => {
-    dispatch(actionCreators.fetchSuccess(resources));
+    dispatch(actionCreators.fetchSuccess(resources.map(it => ({
+        ...it,
+        myFeedback: it.myFeedback ? it.myFeedback.resourceFeedbackId : null
+    }))));
     resources.forEach((resource) => {
         externalResourcesFetchSuccess(dispatch, resource.externalResources);
+        if (resource.myFeedback) {
+            resourceFeedbackFetchSuccess(dispatch, [resource.myFeedback]);
+        }
+        resourceFeedbackFetchSuccess(dispatch, resource.feedback);
     });
 };
 
@@ -60,28 +68,5 @@ export const fetchResources = (courseId, categoryId) => ((dispatch) => {
     })
     .catch((err) => {
         dispatch(actionCreators.fetchError(err));
-    });
-});
-
-const doSetResourceFeedback = (resourceId, feedback) => ({
-    type: 'SET_RESOURCE_FEEDBACK',
-    resourceId,
-    feedback
-});
-
-export const setResourceFeedback = (courseId, categoryId, resourceId, feedbackInfo) => ((dispatch) => {
-    const config = {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        credentials: 'same-origin',
-        body: JSON.stringify(feedbackInfo)
-    };
-
-    return fetch(`/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}/feedback`, config)
-    .then(response => response.json())
-    .then((returnedFeedback) => {
-        dispatch(doSetResourceFeedback(resourceId, returnedFeedback));
     });
 });
