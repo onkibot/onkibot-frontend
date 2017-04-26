@@ -6,9 +6,11 @@ import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { zenburn } from 'react-syntax-highlighter/dist/styles';
+
+import UserFeedbackList from '../components/UserFeedbackList';
 import ExternalResourceList from '../components/ExternalResourceList';
 
-let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, previousResourceId,
+let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, feedback, previousResourceId,
   nextResourceId, courseId, categoryId }) => (
     <div className="resource-content-view">
       <div className="page-title-container page-title-container-index">
@@ -29,17 +31,28 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
       {comment && (
         <div>
           <CardHeader title="Instructor's comment" />
-          <Divider inset={true} />
+          <Divider />
           <CardText>{comment}</CardText>
         </div>
       )}
       {externalResources.length > 0 && (
         <div className="external-resource-wrap">
-          <h3>External resources</h3>
-          <p>These links are suggested by instructors and students</p>
-          <Divider inset={true} />
+          <CardHeader
+            title="External resources"
+            subtitle="Links suggested by instructors and students"
+          />
+          <Divider />
           <ExternalResourceList
             externalResources={externalResources}
+          />
+        </div>
+      )}
+      {feedback.length > 0 && (
+        <div>
+          <CardHeader title="User feedback" />
+          <Divider />
+          <UserFeedbackList
+            feedback={feedback}
           />
         </div>
       )}
@@ -84,6 +97,7 @@ ResourceContentView.propTypes = {
     title: React.PropTypes.string.isRequired,
     body: React.PropTypes.string.isRequired,
     comment: React.PropTypes.string,
+    feedback: React.PropTypes.array.isRequired,
     externalResources: React.PropTypes.array.isRequired,
     previousResourceId: React.PropTypes.number,
     nextResourceId: React.PropTypes.number,
@@ -110,6 +124,8 @@ const mapStateToProps = (state, { categoryId, resourceId }) => {
     return {
         body: resource.body,
         title: resource.name,
+        comment: resource.comment,
+        feedback: resource.feedback,
         externalResources,
         previousResourceId,
         nextResourceId
