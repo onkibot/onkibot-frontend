@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import { RaisedButton } from 'material-ui';
 import { TextField } from 'redux-form-material-ui';
 
 import { createExternalResource } from '../actions/externalResources';
 
-const mapDispatchToProps = (dispatch, { resetForm, courseId, categoryId, resourceId }) => ({
+const mapDispatchToProps = (dispatch, { courseId, categoryId, resourceId }) => ({
     onSubmit: (externalResourceInfo) => {
         dispatch(createExternalResource(courseId, categoryId, resourceId, externalResourceInfo));
-        resetForm();
+        dispatch(reset('suggest_resource'));
     }
 });
 
