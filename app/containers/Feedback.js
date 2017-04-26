@@ -9,7 +9,7 @@ import FeedbackForm from '../forms/FeedbackForm';
 
 let Feedback = ({ onSubmit, handleClose, externalResources, onApproval, courseId, categoryId, resourceId }) => (
   <Dialog
-    title="Give feedback"
+    title="Provide feedback"
     modal={false}
     open={true}
     onRequestClose={handleClose}
