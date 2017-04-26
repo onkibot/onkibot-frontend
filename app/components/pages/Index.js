@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 const Index = () => (
   <div>
     <div className="fp-video-wrap">
-      <video height="500" autoPlay controls>
+      <video height="500" controls>
         <source src="./video/Group079-Onkibot.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
