@@ -3,13 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dialog } from 'material-ui';
 
-import { setResourceFeedback } from '../actions/resources';
+import { createResourceFeedback } from '../actions/resourceFeedback';
 import { setExternalResourceApproval } from '../actions/externalResources';
 import FeedbackForm from '../forms/FeedbackForm';
 
 let Feedback = ({ onSubmit, handleClose, externalResources, onApproval, courseId, categoryId, resourceId }) => (
   <Dialog
-    title="Give feedback"
+    title="Provide feedback"
     modal={false}
     open={true}
     onRequestClose={handleClose}
@@ -43,9 +43,10 @@ const mapStateToProps = (state, { resourceId }) => {
     };
 };
 
-const mapDispatchToProps = (dispatch, { courseId, categoryId, resourceId }) => ({
+const mapDispatchToProps = (dispatch, { handleClose, courseId, categoryId, resourceId }) => ({
     onSubmit: (feedback) => {
-        dispatch(setResourceFeedback(courseId, categoryId, resourceId, feedback));
+        dispatch(createResourceFeedback(courseId, categoryId, resourceId, feedback));
+        handleClose();
     },
     onApproval: (externalResourceId, approval) => {
         dispatch(setExternalResourceApproval(courseId, categoryId, resourceId, externalResourceId, approval));

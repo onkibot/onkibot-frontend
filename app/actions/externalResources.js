@@ -1,4 +1,5 @@
 import reduxCrud from 'redux-crud';
+import cuid from 'cuid';
 
 const actionCreators = reduxCrud.actionCreatorsFor('externalResources', {
     key: 'externalResourceId'
@@ -8,7 +9,35 @@ export const fetchSuccess = (dispatch, externalResources) => {
     dispatch(actionCreators.fetchSuccess(externalResources));
 };
 
-export const fetchResources = (courseId, categoryId, resourceId) => ((dispatch) => {
+export const createExternalResource = (courseId, categoryId, resourceId, externalResourceInfo) => ((dispatch) => {
+    const config = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        credentials: 'same-origin',
+        body: JSON.stringify(externalResourceInfo)
+    };
+
+    const cid = cuid();
+    const externalResource = {
+        ...externalResourceInfo,
+        externalResourceId: cid
+    };
+
+    dispatch(actionCreators.createStart(externalResource));
+
+    return fetch(`/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}/externals`, config)
+    .then(response => response.json())
+    .then((returnedExternalResource) => {
+        dispatch(actionCreators.createSuccess(returnedExternalResource, cid));
+    })
+    .catch((err) => {
+        dispatch(actionCreators.createError(err, externalResource));
+    });
+});
+
+export const fetchExternalResources = (courseId, categoryId, resourceId) => ((dispatch) => {
     const config = {
         method: 'GET',
         headers: {

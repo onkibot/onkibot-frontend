@@ -8,6 +8,7 @@ import courses from './courses';
 import categories from './categories';
 import resources from './resources';
 import externalResources from './externalResources';
+import resourceFeedback from './resourceFeedback';
 import users from './users';
 import userSearch from './userSearch';
 
@@ -18,6 +19,7 @@ const onkibotApp = combineReducers({
     categories,
     resources,
     externalResources,
+    resourceFeedback,
     users,
     userSearch,
     form: formReducer,
