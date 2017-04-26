@@ -89,11 +89,13 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
                 <span>Previous Task</span>
               </Link>
             )}
-            <Link className="feedback-btn" onClick={provideFeedback}>
-              <RaisedButton
-                label="Provide feedback"
-              />
-            </Link>
+            {!myFeedback && (
+              <Link className="feedback-btn" onClick={provideFeedback}>
+                <RaisedButton
+                  label="Provide feedback"
+                />
+              </Link>
+            )}
             {nextResourceId !== null && (
               <Link
                 to={`courses/${courseId}/categories/${categoryId}/resources/${nextResourceId}/resourceView/`}
