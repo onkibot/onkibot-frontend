@@ -11,6 +11,7 @@ import externalResources from './externalResources';
 import resourceFeedback from './resourceFeedback';
 import users from './users';
 import userSearch from './userSearch';
+import error from './error';
 
 const onkibotApp = combineReducers({
     navbarOpen,
@@ -22,6 +23,7 @@ const onkibotApp = combineReducers({
     resourceFeedback,
     users,
     userSearch,
+    error,
     form: formReducer,
     routing: routerReducer
 });

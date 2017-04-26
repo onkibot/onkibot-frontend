@@ -1,6 +1,8 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
 
+import { setError } from './error';
+
 const actionCreators = reduxCrud.actionCreatorsFor('resourceFeedback', {
     key: 'resourceFeedbackId'
 });
@@ -28,11 +30,20 @@ export const createResourceFeedback = (courseId, categoryId, resourceId, resourc
     dispatch(actionCreators.createStart(resourceFeedback));
 
     return fetch(`/api/v1/courses/${courseId}/categories/${categoryId}/resources/${resourceId}/feedback`, config)
-    .then(response => response.json())
+    .then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+            return response.json();
+        } else {
+            return response.json().then((json) => {
+                throw json;
+            });
+        }
+    })
     .then((returnedResourceFeedback) => {
         dispatch(actionCreators.createSuccess(returnedResourceFeedback, cid));
     })
     .catch((err) => {
         dispatch(actionCreators.createError(err, resourceFeedback));
+        dispatch(setError(err));
     });
 });

@@ -48,6 +48,7 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
           courseId={courseId}
           categoryId={categoryId}
           resourceId={resourceId}
+          externalResources={externalResources}
         />
       </div>
       {myFeedback && (

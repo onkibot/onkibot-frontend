@@ -9,6 +9,55 @@ import { connect } from 'react-redux';
 
 import { createResource } from '../actions/resources';
 
+const validate = ({ name, body, externalResources }) => {
+    const errors = {};
+    if (!name) {
+        errors.name = 'Required';
+    } else if (name.length > 50) {
+        errors.name = 'Must be less than 50 characters';
+    }
+    if (!body) {
+        errors.body = 'Required';
+    }
+    if (externalResources) {
+        const externalResourceErrorsArray = [];
+        const indicesByURL = {};
+        externalResources.forEach(({ title, comment, url }, index) => {
+            indicesByURL[url] = [...(indicesByURL[url] || []), index];
+
+            const externalResourceErrors = {};
+            if (!title) {
+                externalResourceErrors.title = 'Required';
+            } else if (title.length > 50) {
+                externalResourceErrors.title = 'Must be less than 50 characters';
+            }
+            if (!comment) {
+                externalResourceErrors.comment = 'Required';
+            }
+            if (!url) {
+                externalResourceErrors.url = 'Required';
+            } else if (url.length > 2083) {
+                externalResourceErrors.url = 'Must be less than 2083 characters';
+            }
+            externalResourceErrorsArray[index] = externalResourceErrors;
+        });
+
+        Object.keys(indicesByURL).forEach((url) => {
+            const indices = indicesByURL[url];
+            if (indices.length > 1) {
+                indices.forEach((index) => {
+                    externalResourceErrorsArray[index].url = 'Must be unique';
+                });
+            }
+        });
+
+        if (externalResourceErrorsArray.length > 0) {
+            errors.externalResources = externalResourceErrorsArray;
+        }
+    }
+    return errors;
+};
+
 const ExternalResources = ({ fields }) => (
   <div>
     <CardActions>
@@ -67,7 +116,7 @@ ExternalResources.propTypes = {
     fields: React.PropTypes.object.isRequired
 };
 
-let CreateResourceForm = ({ handleSubmit }) => (
+let CreateResourceForm = ({ handleSubmit, pristine }) => (
   <form onSubmit={handleSubmit} className="form-style create-resource">
     <Field
       component={TextField}
@@ -93,12 +142,14 @@ let CreateResourceForm = ({ handleSubmit }) => (
     <FieldArray
       name="externalResources"
       component={ExternalResources}
+      disabled={pristine}
     />
   </form>
 );
 
 CreateResourceForm.propTypes = {
-    handleSubmit: React.PropTypes.func.isRequired
+    handleSubmit: React.PropTypes.func.isRequired,
+    pristine: React.PropTypes.bool.isRequired
 };
 
 const mapDispatchToProps = (dispatch, { courseId, categoryId, router }) => ({
@@ -115,7 +166,8 @@ CreateResourceForm = connect(
     undefined,
     mapDispatchToProps
 )(reduxForm({
-    form: 'createResource'
+    form: 'createResource',
+    validate
 })(CreateResourceForm));
 
 export default CreateResourceForm;
