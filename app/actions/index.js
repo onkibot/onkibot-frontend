@@ -1,5 +1,6 @@
 import { fetchSuccess as coursesFetchSuccess } from './courses';
 import { fetchUsers } from '../actions/users';
+import { setError } from './error';
 
 export const setNavbarOpen = open => ({
     type: 'SET_NAVBAR_OPEN',
@@ -37,7 +38,7 @@ export const loginUser = (credentials) => {
         return fetch('/api/v1/session', config)
         .then((response) => {
             if (response.status >= 200 && response.status < 300) {
-                return response;
+                return Promise.resolve();
             } else {
                 return response.json().then((json) => {
                     throw json;
@@ -49,6 +50,7 @@ export const loginUser = (credentials) => {
         })
         .catch((err) => {
             dispatch(loginError(err));
+            dispatch(setError(err));
         });
     };
 };
@@ -77,14 +79,23 @@ export const sessionUser = () => {
         dispatch(requestSession());
 
         return fetch('/api/v1/session', config)
-        .then(response => response.json())
-        .then((json) => {
-            dispatch(receiveSession(json));
-            coursesFetchSuccess(dispatch, json.attending);
-            dispatch(fetchUsers());
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response.json();
+            } else {
+                return null;
+            }
+        })
+        .then((session) => {
+            if (session) {
+                dispatch(receiveSession(session));
+                coursesFetchSuccess(dispatch, session.attending);
+                dispatch(fetchUsers());
+            }
         })
         .catch((err) => {
             dispatch(sessionError(err));
+            dispatch(setError(err));
         });
     };
 };
@@ -108,11 +119,21 @@ export const logoutUser = () => {
         dispatch(requestLogout());
 
         return fetch('/api/v1/session', config)
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return Promise.resolve();
+            } else {
+                return response.json().then((json) => {
+                    throw json;
+                });
+            }
+        })
         .then(() => {
             location.href = '/';
         })
         .catch((err) => {
             dispatch(logoutError(err));
+            dispatch(setError(err));
         });
     };
 };
@@ -155,6 +176,7 @@ export const signupUser = (signupInfo) => {
         })
         .catch((err) => {
             dispatch(signupError(err));
+            dispatch(setError(err));
         });
     };
 };

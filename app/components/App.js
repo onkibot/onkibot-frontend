@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import SessionNavbar from '../containers/SessionNavbar';
 import SessionUserCard from '../containers/SessionUserCard';
+import ErrorSnackbar from '../containers/ErrorSnackbar';
 import Footer from './Footer';
 
 /** The main app component, contains navbar and the viewed page */
@@ -16,6 +17,9 @@ class OnkibotApp extends PureComponent {
               </div>
             </div>
             <Footer />
+            <ErrorSnackbar
+              autoHideDuration={4000}
+            />
           </div>
         );
     }
