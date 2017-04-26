@@ -141,7 +141,6 @@ export const signupUser = (signupInfo) => {
         dispatch(requestSignup());
 
         return fetch('/api/v1/signup', config)
-        .then(response => response.json())
         .then((response) => {
             if (response.status >= 200 && response.status < 300) {
                 return response;
