@@ -43,9 +43,10 @@ const mapStateToProps = (state, { resourceId }) => {
     };
 };
 
-const mapDispatchToProps = (dispatch, { courseId, categoryId, resourceId }) => ({
+const mapDispatchToProps = (dispatch, { handleClose, courseId, categoryId, resourceId }) => ({
     onSubmit: (feedback) => {
         dispatch(setResourceFeedback(courseId, categoryId, resourceId, feedback));
+        handleClose();
     },
     onApproval: (externalResourceId, approval) => {
         dispatch(setExternalResourceApproval(courseId, categoryId, resourceId, externalResourceId, approval));
