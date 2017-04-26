@@ -5,8 +5,7 @@ import { Link } from 'react-router';
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { zenburn } from 'react-syntax-highlighter/dist/styles';
-
+import { monoBlue } from 'react-syntax-highlighter/dist/styles';
 import UserFeedbackList from '../components/UserFeedbackList';
 import ExternalResourceList from '../components/ExternalResourceList';
 
@@ -20,8 +19,7 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
         <div className="task-view">
           <SyntaxHighlighter
             language="javascript"
-            style={zenburn}
-            showLineNumbers="true"
+            style={monoBlue}
             className="text-align-left"
           >
             {body}
@@ -74,7 +72,7 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
                 <span>Previous Task</span>
               </Link>
             )}
-            <Link onClick={provideFeedback}>
+            <Link className="feedback-btn" onClick={provideFeedback}>
               Provide feedback
             </Link>
             {nextResourceId !== null && (

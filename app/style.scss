@@ -297,6 +297,16 @@ header {
   }
 }
 
+.feedback-btn {
+  color: $primary-blue !important;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    color: darken($primary-blue, 20%) !important;
+  }
+}
+
 .teachersnotes {
   padding: 20px;
   width: 100%;
