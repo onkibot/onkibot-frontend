@@ -6,6 +6,24 @@ import { TextField } from 'redux-form-material-ui';
 
 import { createExternalResource } from '../actions/externalResources';
 
+const validate = ({ title, comment, url }, { externalResources }) => {
+    const errors = {};
+    if (!title) {
+        errors.title = 'Required';
+    } else if (title.length > 50) {
+        errors.title = 'Must be less than 50 characters';
+    }
+    if (!comment) {
+        errors.comment = 'Required';
+    }
+    if (!url) {
+        errors.url = 'Required';
+    } else if (externalResources.some(it => it.url == url)) {
+        errors.url = 'Already an external resource';
+    }
+    return errors;
+};
+
 const mapDispatchToProps = (dispatch, { courseId, categoryId, resourceId }) => ({
     onSubmit: (externalResourceInfo) => {
         dispatch(createExternalResource(courseId, categoryId, resourceId, externalResourceInfo));
@@ -13,7 +31,7 @@ const mapDispatchToProps = (dispatch, { courseId, categoryId, resourceId }) => (
     }
 });
 
-let SuggestExternalResourceForm = ({ handleSubmit }) => (
+let SuggestExternalResourceForm = ({ handleSubmit, pristine }) => (
   <form onSubmit={handleSubmit} className="form-style">
     <Field
       component={TextField}
@@ -34,6 +52,7 @@ let SuggestExternalResourceForm = ({ handleSubmit }) => (
       label="Suggest external resource"
       type="submit"
       fullWidth={true}
+      enabled={pristine}
       style={{
           marginTop: '20px',
           margin: '20px auto',
@@ -44,14 +63,16 @@ let SuggestExternalResourceForm = ({ handleSubmit }) => (
 );
 
 SuggestExternalResourceForm.propTypes = {
-    handleSubmit: React.PropTypes.func.isRequired
+    handleSubmit: React.PropTypes.func.isRequired,
+    pristine: React.PropTypes.bool.isRequired
 };
 
 SuggestExternalResourceForm = connect(
     undefined,
     mapDispatchToProps
 )(reduxForm({
-    form: 'suggest_resource'
+    form: 'suggest_resource',
+    validate
 })(SuggestExternalResourceForm));
 
 export default SuggestExternalResourceForm;
