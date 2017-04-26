@@ -56,7 +56,7 @@ const ExternalResources = ({ fields }) => (
               hintText="URL"
               fullWidth={true}
             />
-        </div>
+          </div>
         </CardText>
       </Card>
     ))}
