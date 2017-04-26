@@ -120,7 +120,10 @@ const mapStateToProps = (state, { categoryId, resourceId }) => {
         }
     }
 
-    const externalResources = state.externalResources.filter(it => it.resourceId == resourceId);
+    const externalResources = state.externalResources
+    .filter(it => it.resourceId == resourceId)
+    .sort((a, b) => b.approvalCount - a.approvalCount);
+    
     return {
         body: resource.body,
         title: resource.name,

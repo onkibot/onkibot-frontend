@@ -6,6 +6,7 @@ const UserFeedbackList = ({ feedback }) => (
   <List>
     {feedback.map(it => (
       <ListItem
+        key={it.resourceFeedbackId}
         leftIcon={<Face />}
         secondaryText={`Difficulty rating: ${it.difficulty}`}
         primaryText={it.comment}
