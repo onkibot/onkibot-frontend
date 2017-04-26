@@ -3,6 +3,7 @@ import { Card, CardActions } from 'material-ui';
 
 import SignupForm from '../../forms/SignupForm';
 
+/** The user signup page */
 const Signup = () => (
   <div>
     <Card>

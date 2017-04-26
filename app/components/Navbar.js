@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Hamburger from 'material-ui/svg-icons/navigation/menu';
 import LogoHeader from './svg/LogoHeader';
 
+/** The navbar component, always displayed at the top of the page */
 const Navbar = ({ loggedIn, logout, open, setOpen }) => (
   <div className="header-navbar">
     <MediaQuery query="(min-device-width: 1224px)">
@@ -81,9 +82,15 @@ const Navbar = ({ loggedIn, logout, open, setOpen }) => (
 );
 
 Navbar.propTypes = {
+    /** Bool describing whether the user is logged in or not */
     loggedIn: React.PropTypes.bool.isRequired,
+    /** Function for logging out */
     logout: React.PropTypes.func.isRequired,
+    /** Bool describing whether the hamburger version of the nav bar is open, used if on mobile */
     open: React.PropTypes.bool.isRequired,
+    /** Function used for opening the hamburger version of the nav bar.
+    /*  Gets passed a bool being true if the navbar should be open, and false if it should be closed
+     */
     setOpen: React.PropTypes.func.isRequired
 };
 
