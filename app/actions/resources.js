@@ -35,6 +35,7 @@ export const createResource = (courseId, categoryId, resourceInfo) => ((dispatch
     .then(response => response.json())
     .then((returnedResource) => {
         dispatch(actionCreators.createSuccess(returnedResource, cid));
+        externalResourcesFetchSuccess(dispatch, returnedResource.externalResources);
     })
     .catch((err) => {
         dispatch(actionCreators.createError(err, resource));
