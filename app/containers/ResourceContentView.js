@@ -15,7 +15,7 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
         <h1>{title}</h1>
       </div>
       {body && (
-        <div className="taskView">
+        <div className="task-view">
           <SyntaxHighlighter
             language="javascript"
             style={zenburn}
@@ -34,8 +34,9 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
         </div>
       )}
       {externalResources.length > 0 && (
-        <div>
-          <CardHeader title="External resources" />
+        <div className="external-resource-wrap">
+          <h3>External resources</h3>
+          <p>These links are suggested by instructors and students</p>
           <Divider inset={true} />
           <ExternalResourceList
             externalResources={externalResources}
