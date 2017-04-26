@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CardHeader, CardActions, Divider } from 'material-ui';
+import { CardHeader, CardActions, CardText, Divider } from 'material-ui';
 import { Link } from 'react-router';
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
@@ -8,32 +8,40 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { zenburn } from 'react-syntax-highlighter/dist/styles';
 import ExternalResourceList from '../components/ExternalResourceList';
 
-let ResourceContentView = ({ provideFeedback, title, body, externalResources, previousResourceId,
+let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, previousResourceId,
   nextResourceId, courseId, categoryId }) => (
     <div className="resource-content-view">
       <div className="page-title-container page-title-container-index">
         <h1>{title}</h1>
       </div>
-      <div className="taskView">
-        <SyntaxHighlighter
-          language="javascript"
-          style={zenburn}
-          showLineNumbers="true"
-          className="text-align-left"
-        >
-          {body}
-        </SyntaxHighlighter>
-      </div>
-      <CardHeader title="Teacher's Notes" />
-      <Divider inset={true} />
-      <ExternalResourceList
-        externalResources={externalResources}
-      />
-      <CardHeader title="Student's Notes" />
-      <Divider inset={true} />
-      <ExternalResourceList
-        externalResources={externalResources}
-      />
+      {body && (
+        <div className="taskView">
+          <SyntaxHighlighter
+            language="javascript"
+            style={zenburn}
+            showLineNumbers="true"
+            className="text-align-left"
+          >
+            {body}
+          </SyntaxHighlighter>
+        </div>
+      )}
+      {comment && (
+        <div>
+          <CardHeader title="Instructor's comment" />
+          <Divider inset={true} />
+          <CardText>{comment}</CardText>
+        </div>
+      )}
+      {externalResources.length > 0 && (
+        <div>
+          <CardHeader title="External resources" />
+          <Divider inset={true} />
+          <ExternalResourceList
+            externalResources={externalResources}
+          />
+        </div>
+      )}
       <CardActions>
         <div className="card-actions-wrap">
           <Divider />
@@ -74,6 +82,7 @@ ResourceContentView.propTypes = {
     provideFeedback: React.PropTypes.func.isRequired,
     title: React.PropTypes.string.isRequired,
     body: React.PropTypes.string.isRequired,
+    comment: React.PropTypes.string,
     externalResources: React.PropTypes.array.isRequired,
     previousResourceId: React.PropTypes.number,
     nextResourceId: React.PropTypes.number,
