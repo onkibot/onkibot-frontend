@@ -11,7 +11,7 @@ import SuggestExternalResourceForm from '../forms/SuggestExternalResourceForm';
 import UserFeedbackList from '../components/UserFeedbackList';
 import ExternalResourceList from '../components/ExternalResourceList';
 
-let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, feedback,
+let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, myFeedback, feedback,
   averageFeedbackDifficulty, previousResourceId, nextResourceId, courseId, categoryId, resourceId }) => (
     <div className="resource-content-view">
       <div className="page-title-container page-title-container-index">
@@ -50,6 +50,18 @@ let ResourceContentView = ({ provideFeedback, title, body, comment, externalReso
           resourceId={resourceId}
         />
       </div>
+      {myFeedback && (
+        <div>
+          <CardHeader
+            title="My feedback"
+            subtitle={`Difficulty rating: ${myFeedback.difficulty}`}
+          />
+          <Divider />
+          <CardText>
+            {myFeedback.comment}
+          </CardText>
+        </div>
+      )}
       {feedback.length > 0 && (
         <div>
           <CardHeader
@@ -105,6 +117,7 @@ ResourceContentView.propTypes = {
     title: React.PropTypes.string.isRequired,
     body: React.PropTypes.string.isRequired,
     comment: React.PropTypes.string,
+    myFeedback: React.PropTypes.object,
     feedback: React.PropTypes.array.isRequired,
     averageFeedbackDifficulty: React.PropTypes.number.isRequired,
     externalResources: React.PropTypes.array.isRequired,
@@ -134,6 +147,9 @@ const mapStateToProps = (state, { categoryId, resourceId }) => {
     .filter(it => it.resourceId == resourceId)
     .sort((a, b) => b.approvalCount - a.approvalCount);
 
+    const myFeedback = state.resourceFeedback
+    .find(it => it.resourceFeedbackId == resource.myFeedback);
+
     const feedback = state.resourceFeedback
     .filter(it => it.resourceId == resourceId);
 
@@ -142,6 +158,7 @@ const mapStateToProps = (state, { categoryId, resourceId }) => {
         title: resource.name,
         comment: resource.comment,
         averageFeedbackDifficulty: resource.averageFeedbackDifficulty,
+        myFeedback,
         feedback,
         externalResources,
         previousResourceId,
