@@ -39,7 +39,7 @@ class ResourceView extends Component {
             <Card>
               <CardHeader
                 title="Back"
-                subtitle="to categories"
+                subtitle="to resources"
                 avatar={
                   <Link
                     to={`courses/${this.props.params.courseId}/categories/${this.props.params.categoryId}/resources/`}

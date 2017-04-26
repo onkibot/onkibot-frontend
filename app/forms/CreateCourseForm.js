@@ -6,6 +6,19 @@ import { TextField } from 'redux-form-material-ui';
 
 import { createCourse } from '../actions/courses';
 
+const validate = ({ name, description }) => {
+    const errors = {};
+    if (!name) {
+        errors.name = 'Required';
+    } else if (name.length > 100) {
+        errors.name = 'Must be less than 100 characters';
+    }
+    if (!description) {
+        errors.description = 'Required';
+    }
+    return errors;
+};
+
 const mapDispatchToProps = (dispatch, { router }) => ({
     onSubmit: (courseInfo) => {
         dispatch(createCourse(courseInfo));
@@ -13,8 +26,7 @@ const mapDispatchToProps = (dispatch, { router }) => ({
     }
 });
 
-let CreateCourseForm = (props) => {
-    const { handleSubmit } = props;
+let CreateCourseForm = ({ handleSubmit, pristine }) => {
     return (
       <form onSubmit={handleSubmit} className="form-style">
         <Field
@@ -33,6 +45,7 @@ let CreateCourseForm = (props) => {
           label="Create Course"
           type="submit"
           fullWidth={true}
+          disabled={pristine}
           style={{
               marginTop: '20px',
               margin: '20px auto',
@@ -51,7 +64,8 @@ CreateCourseForm = connect(
     undefined,
     mapDispatchToProps
 )(reduxForm({
-    form: 'create_course'
+    form: 'create_course',
+    validate
 })(CreateCourseForm));
 
 export default CreateCourseForm;
