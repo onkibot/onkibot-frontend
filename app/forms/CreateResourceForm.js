@@ -25,29 +25,38 @@ const ExternalResources = ({ fields }) => (
     {fields.map((externalResource, index) => (
       <Card
         key={index}
+        style={{ marginTop: '20px' }}
       >
         <CardHeader
           title={`External resource #${index + 1}`}
           avatar={<Clear
             onClick={() => fields.remove(index)}
           />}
+          style={{
+              cursor: 'pointer'
+          }}
         />
         <CardText>
-          <Field
-            component={TextField}
-            name={`${externalResource}.title`}
-            hintText="Title"
-          />
-          <Field
-            component={TextField}
-            name={`${externalResource}.comment`}
-            hintText="Comment"
-          />
-          <Field
-            component={TextField}
-            name={`${externalResource}.url`}
-            hintText="URL"
-          />
+          <div className="form-style">
+            <Field
+              component={TextField}
+              name={`${externalResource}.title`}
+              hintText="Title"
+              fullWidth={true}
+            />
+            <Field
+              component={TextField}
+              name={`${externalResource}.comment`}
+              hintText="Comment"
+              fullWidth={true}
+            />
+            <Field
+              component={TextField}
+              name={`${externalResource}.url`}
+              hintText="URL"
+              fullWidth={true}
+            />
+        </div>
         </CardText>
       </Card>
     ))}
@@ -72,7 +81,7 @@ let CreateResourceForm = ({ handleSubmit }) => (
       hintText="Body"
       multiLine={true}
       fullWidth={true}
-      rows={5}
+      rows={3}
     />
     <Field
       component={TextField}
