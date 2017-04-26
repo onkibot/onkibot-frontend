@@ -10,8 +10,8 @@ import { zenburn } from 'react-syntax-highlighter/dist/styles';
 import UserFeedbackList from '../components/UserFeedbackList';
 import ExternalResourceList from '../components/ExternalResourceList';
 
-let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, feedback, averageFeedbackDifficulty,
-  previousResourceId, nextResourceId, courseId, categoryId }) => (
+let ResourceContentView = ({ provideFeedback, title, body, comment, externalResources, feedback,
+  averageFeedbackDifficulty, previousResourceId, nextResourceId, courseId, categoryId }) => (
     <div className="resource-content-view">
       <div className="page-title-container page-title-container-index">
         <h1>{title}</h1>
