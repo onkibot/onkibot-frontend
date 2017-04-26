@@ -12,7 +12,8 @@ const actualExternalResources = (state, action) => {
                 if (externalResource.externalResourceId == action.externalResourceId) {
                     return {
                         ...externalResource,
-                        myApproval: action.approval
+                        myApproval: action.approval,
+                        approvalCount: externalResource.approvalCount + (action.approval ? 1 : -1)
                     };
                 } else {
                     return externalResource;
