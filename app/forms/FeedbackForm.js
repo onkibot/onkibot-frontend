@@ -5,6 +5,8 @@ import { Field, reduxForm, change, formValueSelector } from 'redux-form';
 import Rating from 'react-rating';
 import { RaisedButton } from 'material-ui';
 import { TextField } from 'redux-form-material-ui';
+import FullStar from 'material-ui/svg-icons/toggle/star';
+import EmptyStar from 'material-ui/svg-icons/toggle/star-border';
 import ExternalResourceApprovalList from '../components/ExternalResourceApprovalList';
 
 class FeedbackForm extends Component {
@@ -23,14 +25,15 @@ class FeedbackForm extends Component {
             display: 'none'
         };
         return (
-          <form onSubmit={handleSubmit} className="form-style">
+          <form onSubmit={handleSubmit} className="form-style feedback-form">
             <label className="feedback-label" htmlFor="Difficulty">Difficulty: </label>
             <Rating
-              empty={<span className="icon-text">-</span>}
               initialRate={difficulty}
-              full={[1, 2, 3, 4, 5].map(n => <span className="icon-text">{n}</span>)}
+              empty={<EmptyStar />}
+              full={<FullStar />}
               onClick={rate => this.updateDifficultyRating(rate)}
             />
+            <br />
             <br />
             <Field
               component={TextField}
