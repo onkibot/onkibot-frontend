@@ -134,7 +134,7 @@ ResourceContentView.propTypes = {
 const mapStateToProps = (state, { categoryId, resourceId }) => {
     const resources = state.resources.filter(it => it.categoryId == categoryId);
     const resource = resources.find(it => it.resourceId == resourceId);
-    const resourceIndex = state.resources.indexOf(resource);
+    const resourceIndex = resources.indexOf(resource);
     let previousResourceId = null;
     let nextResourceId = null;
     if (resourceIndex !== -1) {
