@@ -6,6 +6,7 @@ import { Card, CardHeader, CardActions, CardText, RaisedButton } from 'material-
 import Clear from 'material-ui/svg-icons/content/clear';
 import { TextField } from 'redux-form-material-ui';
 import { connect } from 'react-redux';
+import { isWebUri } from 'valid-url';
 
 import { createResource } from '../actions/resources';
 
@@ -38,6 +39,8 @@ const validate = ({ name, body, externalResources }) => {
                 externalResourceErrors.url = 'Required';
             } else if (url.length > 2083) {
                 externalResourceErrors.url = 'Must be less than 2083 characters';
+            } else if (!isWebUri(url)) {
+                errors.url = 'Must be valid URL';
             }
             externalResourceErrorsArray[index] = externalResourceErrors;
         });
@@ -142,7 +145,6 @@ let CreateResourceForm = ({ handleSubmit, pristine }) => (
     <FieldArray
       name="externalResources"
       component={ExternalResources}
-      disabled={pristine}
     />
   </form>
 );

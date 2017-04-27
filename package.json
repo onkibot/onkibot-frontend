@@ -34,6 +34,7 @@
     "sass-loader": "^5.0.1",
     "slugify": "^1.1.0",
     "style-loader": "^0.13.1",
+    "valid-url": "^1.0.9",
     "webpack": "^2.2.1"
   },
   "devDependencies": {
