@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
 import { RaisedButton } from 'material-ui';
 import { TextField } from 'redux-form-material-ui';
+import { isWebUri } from 'valid-url';
 
 import { createExternalResource } from '../actions/externalResources';
 
@@ -20,6 +21,8 @@ const validate = ({ title, comment, url }, { externalResources }) => {
         errors.url = 'Required';
     } else if (externalResources.some(it => it.url == url)) {
         errors.url = 'Already an external resource';
+    } else if (!isWebUri(url)) {
+        errors.url = 'Must be valid URL';
     }
     return errors;
 };
@@ -52,7 +55,7 @@ let SuggestExternalResourceForm = ({ handleSubmit, pristine }) => (
       label="Suggest external resource"
       type="submit"
       fullWidth={true}
-      enabled={pristine}
+      disabled={pristine}
       style={{
           marginTop: '20px',
           margin: '20px auto',

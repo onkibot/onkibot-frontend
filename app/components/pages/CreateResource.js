@@ -24,7 +24,7 @@ const CreateResource = props => (
         <h1>Create Resource</h1>
       </div>
       <div className="callout">
-        <h4>Need help create a resource?</h4>
+        <h4>Need help creating a resource?</h4>
         <p>
           To create a resource, add a title, a body, a
            comment to the resource and external resources. To add external resources, just click
