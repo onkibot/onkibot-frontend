@@ -9,7 +9,7 @@ import LogoSmall from '../svg/LogoSmall';
 
 describe('Footer Component', () => {
     it('should render without throwing an error', () => {
-        expect(shallow(<Footer />).contains(<span className="icon-text">Copyright © 2017 Onkibot - <a href="mailto:onki@onkibot.com">onki@onkibot.com</a></span>)).toBe(true);
+        expect(shallow(<Footer />).contains(<span className="footer-icon-text">Copyright © 2017 Onkibot - <a href="mailto:onki@onkibot.com">onki@onkibot.com</a></span>)).toBe(true);
     });
 
     it('should be selectable by tag "footer"', () => {

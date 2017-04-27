@@ -1,5 +1,7 @@
 import reduxCrud from 'redux-crud';
 import cuid from 'cuid';
+
+import { setError } from './error';
 import { fetchSuccess as resourcesFetchSuccess } from './resources';
 
 const actionCreators = reduxCrud.actionCreatorsFor('categories', {
@@ -32,12 +34,21 @@ export const createCategory = (courseId, categoryInfo) => ((dispatch) => {
     dispatch(actionCreators.createStart(category));
 
     return fetch(`/api/v1/courses/${courseId}/categories`, config)
-    .then(response => response.json())
+    .then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+            return response.json();
+        } else {
+            return response.json().then((json) => {
+                throw json;
+            });
+        }
+    })
     .then((returnedCategory) => {
         dispatch(actionCreators.createSuccess(returnedCategory, cid));
     })
     .catch((err) => {
         dispatch(actionCreators.createError(err, category));
+        dispatch(setError(err));
     });
 });
 

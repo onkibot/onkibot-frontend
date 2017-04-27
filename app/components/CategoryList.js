@@ -4,24 +4,31 @@ import { Link } from 'react-router';
 
 import CategoryListItem from './CategoryListItem';
 
+/** The category list component, displaying all categories in a specific course */
 const CategoryList = ({ courseId, categories }) => (
-  <List>
-    {categories.map(({ categoryId, name, description }) => (
-      <Link
-        to={`courses/${courseId}/categories/${categoryId}/resources`}
-        key={categoryId}
-      >
-        <CategoryListItem
-          name={name}
-          description={description}
-        />
-      </Link>
-    ))}
-  </List>
+  categories.length > 0 ? (
+    <List>
+      {categories.map(({ categoryId, name, description }) => (
+        <Link
+          to={`courses/${courseId}/categories/${categoryId}/resources`}
+          key={categoryId}
+        >
+          <CategoryListItem
+            name={name}
+            description={description}
+          />
+        </Link>
+      ))}
+    </List>
+  ) : (
+    <p className="text-align-center">Looks like there are no categories yet.</p>
+  )
 );
 
 CategoryList.propTypes = {
-    courseId: React.PropTypes.number.isRequired,
+    /** The courseId of the course containing the displayed categories */
+    courseId: React.PropTypes.string.isRequired,
+    /** An array of category objects, each containing a name and a description */
     categories: React.PropTypes.array.isRequired
 };
 

@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 
 import CreateCategoryForm from '../../forms/CreateCategoryForm';
 
+/** The category creation page, used to create a category for a specific course */
 const CreateCategory = props => (
   <div>
     <Card>
@@ -16,6 +17,12 @@ const CreateCategory = props => (
       <div className="page-title-container page-title-container-index">
         <h1>Create Category</h1>
       </div>
+      <div className="callout">
+        <h4>What is this?</h4>
+        <p>
+          A category is a collection of resources where you can add questions, learning topics or tasks!
+        </p>
+      </div>
       <CardActions>
         <CreateCategoryForm courseId={props.params.courseId} router={props.router} />
       </CardActions>
@@ -24,7 +31,9 @@ const CreateCategory = props => (
 );
 
 CreateCategory.propTypes = {
-    params: React.PropTypes.array.isRequired,
+    /** Params from URL passed as props, contains courseId */
+    params: React.PropTypes.object.isRequired,
+    /** The react router passed as props, used to programmatically navigate to different pages */
     router: React.PropTypes.object.isRequired
 };
 

@@ -1,5 +1,7 @@
 import reduxCrud from 'redux-crud';
 
+import { setError } from './error';
+
 const actionCreators = reduxCrud.actionCreatorsFor('users', {
     key: 'userId'
 });
@@ -20,11 +22,20 @@ export const fetchUsers = () => ((dispatch) => {
     dispatch(actionCreators.fetchStart());
 
     return fetch('/api/v1/users', config)
-    .then(response => response.json())
+    .then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+            return response.json();
+        } else {
+            return response.json().then((json) => {
+                throw json;
+            });
+        }
+    })
     .then((users) => {
         fetchSuccess(dispatch, users);
     })
     .catch((err) => {
         dispatch(actionCreators.fetchError(err));
+        dispatch(setError(err));
     });
 });

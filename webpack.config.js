@@ -28,7 +28,8 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'OnkiBot',
-			template: 'index.ejs'
+			template: 'index.ejs',
+			favicon: '../public/images/onkiBot-logo-blue.png'
 		}),
 		extractSass
 	].concat(debug ? [

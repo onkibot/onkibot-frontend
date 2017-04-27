@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
+import SessionNavbar from '../containers/SessionNavbar';
 import SessionUserCard from '../containers/SessionUserCard';
+import ErrorSnackbar from '../containers/ErrorSnackbar';
 import Footer from './Footer';
-import Navbar from './Navbar';
 
+/** The main app component, contains navbar and the viewed page */
 class OnkibotApp extends PureComponent {
     render() {
         return (
           <div>
-            <Navbar />
+            <SessionNavbar />
             <div className="container">
               <div className="main-content">
                 <SessionUserCard />
@@ -15,12 +17,18 @@ class OnkibotApp extends PureComponent {
               </div>
             </div>
             <Footer />
+            <ErrorSnackbar
+              bodyStyle={{
+                  backgroundColor: '#F00'
+              }}
+            />
           </div>
         );
     }
 }
 
 OnkibotApp.propTypes = {
+    /** The page being viewed, passed as props */
     children: React.PropTypes.node.isRequired
 };
 

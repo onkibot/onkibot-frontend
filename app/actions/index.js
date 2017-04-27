@@ -1,8 +1,10 @@
 import { fetchSuccess as coursesFetchSuccess } from './courses';
 import { fetchUsers } from '../actions/users';
+import { setError } from './error';
 
-export const toggleOnOff = () => ({
-    type: 'TOGGLE_BOOL'
+export const setNavbarOpen = open => ({
+    type: 'SET_NAVBAR_OPEN',
+    open
 });
 
 export const setUserSearch = searchWord => ({
@@ -10,30 +12,9 @@ export const setUserSearch = searchWord => ({
     searchWord
 });
 
-export const createAddedExternalResource = (externalResource, courseId, categoryId) => ({
-    type: 'ADDED_EXTERNAL_RESOURCES_CREATE',
-    courseId,
-    categoryId,
-    externalResource
-});
-
-export const deleteAddedExternalResource = url => ({
-    type: 'ADDED_EXTERNAL_RESOURCES_DELETE',
-    url
-});
-
-export const clearAddedExternalResources = () => ({
-    type: 'ADDED_EXTERNAL_RESOURCES_CLEAR'
-});
-
 const requestLogin = credentials => ({
     type: 'LOGIN_REQUEST',
     credentials
-});
-
-const receiveLogin = session => ({
-    type: 'LOGIN_SUCCESS',
-    session
 });
 
 const loginError = message => ({
@@ -55,14 +36,21 @@ export const loginUser = (credentials) => {
         dispatch(requestLogin(credentials));
 
         return fetch('/api/v1/session', config)
-        .then(response => response.json())
-        .then((json) => {
-            dispatch(receiveLogin(json));
-            coursesFetchSuccess(dispatch, json.attending);
-            dispatch(fetchUsers());
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return Promise.resolve();
+            } else {
+                return response.json().then((json) => {
+                    throw json;
+                });
+            }
+        })
+        .then(() => {
+            location.href = '/';
         })
         .catch((err) => {
             dispatch(loginError(err));
+            dispatch(setError(err));
         });
     };
 };
@@ -91,24 +79,29 @@ export const sessionUser = () => {
         dispatch(requestSession());
 
         return fetch('/api/v1/session', config)
-        .then(response => response.json())
-        .then((json) => {
-            dispatch(receiveSession(json));
-            coursesFetchSuccess(dispatch, json.attending);
-            dispatch(fetchUsers());
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response.json();
+            } else {
+                return null;
+            }
+        })
+        .then((session) => {
+            if (session) {
+                dispatch(receiveSession(session));
+                coursesFetchSuccess(dispatch, session.attending);
+                dispatch(fetchUsers());
+            }
         })
         .catch((err) => {
             dispatch(sessionError(err));
+            dispatch(setError(err));
         });
     };
 };
 
 const requestLogout = () => ({
     type: 'LOGOUT_REQUEST'
-});
-
-const receiveLogout = () => ({
-    type: 'LOGOUT_SUCCESS'
 });
 
 const logoutError = message => ({
@@ -126,11 +119,21 @@ export const logoutUser = () => {
         dispatch(requestLogout());
 
         return fetch('/api/v1/session', config)
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return Promise.resolve();
+            } else {
+                return response.json().then((json) => {
+                    throw json;
+                });
+            }
+        })
         .then(() => {
-            dispatch(receiveLogout());
+            location.href = '/';
         })
         .catch((err) => {
             dispatch(logoutError(err));
+            dispatch(setError(err));
         });
     };
 };
@@ -138,11 +141,6 @@ export const logoutUser = () => {
 const requestSignup = signupInfo => ({
     type: 'SIGNUP_REQUEST',
     signupInfo
-});
-
-const receiveSignup = session => ({
-    type: 'SIGNUP_SUCCESS',
-    session
 });
 
 const signupError = message => ({
@@ -164,14 +162,21 @@ export const signupUser = (signupInfo) => {
         dispatch(requestSignup());
 
         return fetch('/api/v1/signup', config)
-        .then(response => response.json())
-        .then((json) => {
-            dispatch(receiveSignup(json));
-            coursesFetchSuccess(dispatch, json.attending);
-            dispatch(fetchUsers());
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                return response.json().then((json) => {
+                    throw json;
+                });
+            }
+        })
+        .then(() => {
+            location.href = '/';
         })
         .catch((err) => {
             dispatch(signupError(err));
+            dispatch(setError(err));
         });
     };
 };

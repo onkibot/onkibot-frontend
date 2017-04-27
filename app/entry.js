@@ -14,7 +14,6 @@ import App from './components/App';
 import Index from './components/pages/Index';
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
-import TheButton from './components/pages/TheButton';
 import Courses from './components/pages/Courses';
 import CreateCourse from './components/pages/CreateCourse';
 import Categories from './components/pages/Categories';
@@ -24,7 +23,6 @@ import CreateResource from './components/pages/CreateResource';
 import ResourceView from './components/pages/ResourceView';
 import Users from './components/pages/Users';
 import NotFound from './components/pages/NotFound';
-import TaskContainer from './components/TaskContainer';
 import { sessionUser } from './actions';
 
 import './style.scss';
@@ -49,8 +47,6 @@ render(
           <IndexRoute component={Index} />
           <Route path="login" component={Login} />
           <Route path="signup" component={Signup} />
-          <Route path="taskcontainer" component={TaskContainer} />
-          <Route path="button" component={TheButton} />
           <Route path="courses" component={Courses} />
           <Route path="courses/create" component={CreateCourse} />
           <Route path="courses/:courseId/categories" component={Categories} />

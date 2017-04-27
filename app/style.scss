@@ -140,10 +140,18 @@ header {
         text-transform: uppercase;
         transition: 0.2s;
 
-        :hover,
+        &:hover {
+          color: $text-color;
+        }
+
+        &:active {
+          color: $text-color;
+        }
+
         .active {
           color: $text-color;
         }
+
 
       }
 
@@ -227,6 +235,11 @@ header {
 
 }
 
+.fp-video-wrap {
+  text-align: center;
+  width: auto;
+}
+
 /* Forms -------- */
 .form-style {
   margin: 0 auto;
@@ -238,15 +251,103 @@ header {
   max-width: 700px;
 }
 
+.feedback-label {
+  font-size: 18px;
+}
+
+.icon-text {
+  background-color: #FFF;
+  display: inline-block;
+  font-size: 2em;
+  width: 26px;
+}
+
+.feedback-label {
+  margin-right: 10px;
+}
+
+.feedback-form {
+  label {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.create-resource {
+  padding-bottom: 20px;
+}
+
+.callout {
+  border: 1px solid #eee;
+  border-left-color: darken($primary-blue, 20%);
+  border-left-width: 5px;
+  border-radius: 3px;
+  color: darken($primary-blue, 20%);
+  margin: 10px auto;
+  padding: 20px;
+  width: 60%;
+
+  h4 {
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  code {
+    border-radius: 3px;
+  }
+}
+
+.callout+.callout {
+  margin-top: -5px;
+}
+
 /* Task Container -------- */
+.task-view {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  width: 80%;
+}
+
 .resource-content-view {
+  -webkit-box-sizing: border-box !important; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box !important;    /* Firefox, other Gecko */
+  box-sizing: border-box !important;         /* Opera/IE 8+ */
   margin-bottom: 10px;
   min-height: 150px;
-  text-align: center;
+  padding: 0 30px;
   width: 100%;
 
   img {
     max-height: 250px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    margin: 30px 0 5px;
+  }
+}
+
+.external-resource-wrap {
+  h3,
+  p {
+    margin-left: 14px !important;
+  }
+}
+
+.feedback-btn {
+  color: $primary-blue !important;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    color: darken($primary-blue, 20%) !important;
   }
 }
 
@@ -258,6 +359,7 @@ header {
 .task-navigation {
   height: 50px;
   margin-top: 20px;
+  text-align: center;
 
   a {
     color: $primary-dark;
@@ -322,7 +424,7 @@ footer {
           }
         }
 
-        .icon-text {
+        .footer-icon-text {
           margin-left: 10px;
         }
       }
@@ -334,7 +436,6 @@ footer {
   }
 
   #onki-icon {
-    cursor: pointer;
     height: 30px;
     width: 30px;
 

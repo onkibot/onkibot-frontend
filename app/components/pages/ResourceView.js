@@ -1,82 +1,75 @@
-import React from 'react';
-import { Card, CardActions, CardHeader, Divider } from 'material-ui';
-import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+/* eslint max-len: ["error", 255] */
+import React, { Component } from 'react';
+import { Card, CardHeader } from 'material-ui';
 import ArrowBackward from 'material-ui/svg-icons/navigation/arrow-back';
 import { Link } from 'react-router';
-import ResourceContentView from '../ResourceContentView';
 
-const iconStyle = {
-    fontSize: '48px'
-};
+import Feedback from '../../containers/Feedback';
+import ResourceContentView from '../../containers/ResourceContentView';
 
-const ResourceView = props => (
-  <div>
-    <Card>
-      <CardHeader
-        title="Back"
-        subtitle="to categories"
-        avatar={
-          <Link
-            to={`courses/${props.params.courseId}/categories/${props.params.categoryId}/resources/`}
-          >
-            <ArrowBackward />
-          </Link>
-        }
-      />
-      <div className="page-title-container page-title-container-index">
-        <h1>Resource</h1>
-      </div>
-      <CardActions>
-        <div className="card-actions-wrap">
-          <ResourceContentView
-            courseId={props.params.courseId}
-            categoryId={props.params.categoryId}
-            resourceId={props.params.resourceId}
-          />
-          <CardHeader title="Teacher's Notes" />
-          <Divider inset={true} />
-          <ResourceContentView
-            courseId={props.params.courseId}
-            categoryId={props.params.categoryId}
-            resourceId={props.params.resourceId}
-          />
-          <CardHeader title="Student's Notes" />
-          <Divider inset={true} />
-          <ResourceContentView
-            courseId={props.params.courseId}
-            categoryId={props.params.categoryId}
-            resourceId={props.params.resourceId}
-          />
-          <Divider />
-          <div className="task-navigation">
+/** The resource view page, displaying a specific resource */
+class ResourceView extends Component {
 
-            <Link to="/taskcontainer" className="float-left">
-              <ArrowBackward
-                style={iconStyle}
-                viewBox="0 0 20 20"
+    constructor(props) {
+        super(props);
+        /* state for å håndtere dialog (åpne/lukke) */
+        this.state = {
+            dialogOpen: false
+        };
+    }
+
+    handleOpen = () => {
+        this.setState({
+            dialogOpen: true
+        });
+    };
+
+    handleClose = () => {
+        this.setState({
+            dialogOpen: false
+        });
+    };
+
+    render() {
+        const courseId = parseInt(this.props.params.courseId, 10);
+        const categoryId = parseInt(this.props.params.categoryId, 10);
+        const resourceId = parseInt(this.props.params.resourceId, 10);
+        return (
+          <div>
+            <Card>
+              <CardHeader
+                title="Back"
+                subtitle="to resources"
+                avatar={
+                  <Link
+                    to={`courses/${this.props.params.courseId}/categories/${this.props.params.categoryId}/resources/`}
+                  >
+                    <ArrowBackward />
+                  </Link>
+                }
               />
-              <span>Previous Task</span>
-            </Link>
-
-            <Link to="/taskcontainer" className="float-right">
-
-              <span>Next Task</span>
-              <ArrowForward
-                style={iconStyle}
-                viewBox="0 0 20 20"
+              <ResourceContentView
+                provideFeedback={this.handleOpen}
+                courseId={courseId}
+                categoryId={categoryId}
+                resourceId={resourceId}
               />
-            </Link>
-
-            <div className="clearfix" />
+            </Card>
+            { /* om dialogOpen = true, vis feedback-form og send med handleClose-funksjon slik at man kan lukke skjemaet om man trykker på cancel-knapp */ }
+            {this.state.dialogOpen && <Feedback
+              handleClose={this.handleClose}
+              courseId={courseId}
+              categoryId={categoryId}
+              resourceId={resourceId}
+            />}
           </div>
-        </div>
-      </CardActions>
-    </Card>
-  </div>
-);
+        );
+    }
+}
 
 ResourceView.propTypes = {
-    params: React.PropTypes.array.isRequired
+    /** Params from URL passed as props, contains courseId, categoryId and resourceId */
+    params: React.PropTypes.object.isRequired
 };
 
 export default ResourceView;
