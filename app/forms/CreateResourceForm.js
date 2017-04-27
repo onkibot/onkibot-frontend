@@ -40,7 +40,7 @@ const validate = ({ name, body, externalResources }) => {
             } else if (url.length > 2083) {
                 externalResourceErrors.url = 'Must be less than 2083 characters';
             } else if (!isWebUri(url)) {
-                errors.url = 'Must be valid URL';
+                externalResourceErrors.url = 'Must be valid URL';
             }
             externalResourceErrorsArray[index] = externalResourceErrors;
         });
