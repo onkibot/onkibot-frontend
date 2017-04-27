@@ -119,7 +119,7 @@ ExternalResources.propTypes = {
     fields: React.PropTypes.object.isRequired
 };
 
-let CreateResourceForm = ({ handleSubmit, pristine }) => (
+let CreateResourceForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit} className="form-style create-resource">
     <Field
       component={TextField}
