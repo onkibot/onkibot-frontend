@@ -150,8 +150,7 @@ let CreateResourceForm = ({ handleSubmit }) => (
 );
 
 CreateResourceForm.propTypes = {
-    handleSubmit: React.PropTypes.func.isRequired,
-    pristine: React.PropTypes.bool.isRequired
+    handleSubmit: React.PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch, { courseId, categoryId, router }) => ({
